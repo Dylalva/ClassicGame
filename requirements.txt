@@ -1,0 +1,7 @@
+pygame==2.5.2
+numpy==1.26
+python-dotenv==1.0.0
+# pickle5==0.0.12  # Incompatible with Python 3.12+, solo para Python <3.8
+matplotlib==3.7.2
+pyinstaller==5.13.0
+requests==2.31.0
