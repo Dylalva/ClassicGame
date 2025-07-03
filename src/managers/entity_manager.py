@@ -61,13 +61,18 @@ class EntityManager:
             # Necesita referencia al nivel para spawn
             self.spawn_timer = 0
         
-        # Spawn de barriles
-        if len([e for e in self.enemies if e.enemy_type == "barrel"]) < 2 and random.random() < 0.02:
+        # Spawn gradual de barriles (más lento)
+        barrel_count = len([e for e in self.enemies if e.enemy_type == "barrel"])
+        max_barrels = min(1 + (self.spawn_timer // 3600), 3)  # Máximo 3 barriles, uno cada 60 segundos
+        
+        if barrel_count < max_barrels and random.random() < 0.005:  # Spawn mucho más lento
             self.spawn_barrel()
         
-        # Spawn de monstruos
+        # Spawn gradual de monstruos (más lento)
         self.monster_spawn_timer += 1
-        if (self.monster_spawn_timer > 300 and self.monsters_spawned < self.monsters_per_level):
+        max_monsters = min(1 + (self.spawn_timer // 4800), self.monsters_per_level)  # Uno cada 80 segundos
+        
+        if (self.monster_spawn_timer > 1200 and self.monsters_spawned < max_monsters):  # Spawn mucho más lento
             self.spawn_monster()
     
     def spawn_collectibles(self, level=None):

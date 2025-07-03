@@ -113,6 +113,9 @@ class GameManager:
                         resume_state = "PLAYING" if not self.game_state_manager.tutorial_manager.is_active() else "TUTORIAL"
                         self.game_state_manager.set_state(resume_state)
                     else:
+                        # Reiniciar spawn de enemigos al perder
+                        self.entity_manager.reset_level()
+                        self.entity_manager.clear_all()
                         self.game_state_manager.set_state("GAME_OVER")
             elif current_state == "SHOP":
                 self.shop_menu.handle_event(event, self.entity_manager.player, self.shop_manager)
@@ -136,6 +139,7 @@ class GameManager:
         self.game_state_manager.start_tutorial()
         self.level_manager.reset_level()
         self.entity_manager.reset_level()
+        self.entity_manager.clear_all()  # Limpiar todos los enemigos
         
         # Crear nivel y entidades
         self.level, enemies = self.level_manager.create_level(1)

@@ -12,7 +12,7 @@ class Enemy:
         self.config = config
         self.rect = pygame.Rect(x, y, 25, 25)
         self.enemy_type = enemy_type
-        self.speed = 3
+        self.speed = 1.8  # 70% de velocidad (3 * 0.7)
         self.direction = 1  # Siempre hacia la derecha inicialmente
         
         # Estado del enemigo estilo Donkey Kong
@@ -20,7 +20,7 @@ class Enemy:
         self.velocity_y = 0
         self.gravity = 0.8
         self.on_ground = False
-        self.bounce_power = -8
+        self.bounce_power = -12
         
         # Comportamiento específico según tipo
         if enemy_type == "monster":
@@ -28,11 +28,31 @@ class Enemy:
             self.state = "falling"  # falling, waiting, hunting
             self.fall_timer = 0
             self.wait_timer = 0
-            self.speed = 2
+            self.speed = 1.1  # 70% de velocidad (2 * 0.7)
         else:
-            # Barril normal
+            # Barril con IA mejorada
             self.rolling = True
             self.can_fall = True
+            self.target_platform_y = None
+            self.last_player_platform = None
+            self.platform_change_timer = 0
+            self.stuck_on_platform_timer = 0
+            
+            # Sistema de pausa periódica
+            self.pause_timer = 0
+            self.pause_duration = 60  # 1 segundo inicial
+            self.is_paused = False
+            self.pause_cycle = 300  # Cada 5 segundos
+            self.pause_reduction = 5  # Reducir 5 frames cada vez
+            
+            # IA con Q-Learning mejorada
+            self.ai_agent = QLearningAgent(
+                state_size=6,
+                action_size=4,  # [left, right, jump, drop]
+                learning_rate=0.1,
+                discount_factor=0.95,
+                epsilon=0.2
+            )
         
         self.active = True
         
@@ -67,72 +87,179 @@ class Enemy:
             self.monster_behavior(player_rect, platforms)
         else:
             # Movimiento de barril rodante
-            self.barrel_movement(platforms)
+            self.barrel_movement(platforms, player_rect)
         
         # Aplicar física
         self.apply_physics(platforms)
     
-    def barrel_movement(self, platforms):
-        """Movimiento de barril estilo Donkey Kong clásico"""
-        # Movimiento horizontal constante
-        self.velocity_x = self.speed * self.direction
+    def barrel_movement(self, platforms, player_rect=None):
+        """Movimiento inteligente de barril con persecución directa y validación Q-Learning"""
+        if not player_rect or not platforms:
+            # Movimiento básico si no hay información
+            self.velocity_x = self.speed * self.direction
+            return
         
-        # Detectar borde de plataforma
-        if platforms and self.on_ground:
-            on_platform = False
-            current_platform = None
+        # Encontrar plataforma del jugador y actual
+        player_platform = self.find_player_platform(platforms, player_rect)
+        current_platform = self.find_current_platform(platforms)
+        
+        # LÓGICA PRINCIPAL: Persecución directa del jugador
+        dx = player_rect.centerx - self.rect.centerx
+        dy = player_rect.centery - self.rect.centery
+        
+        # Decidir acción principal basada en posición del jugador
+        primary_action = self.decide_primary_action(dx, dy, current_platform, player_platform)
+        
+        # VALIDACIÓN Q-Learning: Solo para mejorar la decisión
+        if hasattr(self, 'ai_agent'):
+            state = self.get_state(player_rect)
+            q_action = self.ai_agent.choose_action(state)
             
-            # Encontrar plataforma actual
-            for platform in platforms:
-                if (self.rect.bottom <= platform.top + 10 and 
-                    self.rect.bottom >= platform.top - 10 and
-                    self.rect.centerx >= platform.left and 
-                    self.rect.centerx <= platform.right):
-                    on_platform = True
-                    current_platform = platform
-                    break
+            # Usar Q-Learning solo si la acción principal no es óptima
+            if self.should_override_action(primary_action, q_action, dx, dy):
+                primary_action = q_action
             
-            if on_platform and current_platform:
-                # Verificar si está cerca del borde
-                edge_distance = 15
-                
-                if self.direction == 1:  # Moviendo a la derecha
-                    if self.rect.right >= current_platform.right - edge_distance:
-                        # Buscar plataforma inferior para caer
-                        can_fall_to_platform = False
-                        for platform in platforms:
-                            if (platform.top > current_platform.top and
-                                platform.left <= self.rect.centerx <= platform.right):
-                                can_fall_to_platform = True
-                                break
-                        
-                        if can_fall_to_platform or random.random() < 0.3:
-                            # Caer de la plataforma
-                            pass
-                        else:
-                            # Rebotar y cambiar dirección
-                            self.direction = -1
-                            self.velocity_y = self.bounce_power
-                            self.on_ground = False
-                
-                elif self.direction == -1:  # Moviendo a la izquierda
-                    if self.rect.left <= current_platform.left + edge_distance:
-                        # Buscar plataforma inferior para caer
-                        can_fall_to_platform = False
-                        for platform in platforms:
-                            if (platform.top > current_platform.top and
-                                platform.left <= self.rect.centerx <= platform.right):
-                                can_fall_to_platform = True
-                                break
-                        
-                        if can_fall_to_platform or random.random() < 0.3:
-                            # Caer de la plataforma
-                            pass
-                        else:
-                            # Rebotar y cambiar dirección
-                            self.direction = 1
-                            self.velocity_y = self.bounce_power
-                            self.on_ground = False
+            # Entrenar Q-Learning con la acción tomada
+            reward = self.calculate_reward(player_rect)
+            next_state = self.get_state(player_rect)
+            done = not self.active
+            self.ai_agent.learn(state, primary_action, reward, next_state, done)
+        
+        # Ejecutar acción decidida
+        self.execute_action_decision(primary_action, current_platform, dx)
+        
+        # Sistema de pausa periódica
+        self.handle_pause_behavior()
+        
+        # Anti-atascamiento
+        self.handle_stuck_behavior(current_platform)
+    
+    def decide_primary_action(self, dx, dy, current_platform, player_platform):
+        """Decide la acción principal basada en lógica directa"""
+        # Si está en pausa, no moverse
+        if self.is_paused:
+            return 3  # Esperar/quedarse quieto
+        
+        # Si el jugador está arriba, saltar
+        if dy < -40 and abs(dx) < 100 and self.on_ground:
+            return 2  # Saltar
+        
+        # Forzar caída si está en el borde de la plataforma
+        if current_platform:
+            edge_distance = 15
+            at_left_edge = self.rect.left <= current_platform.left + edge_distance
+            at_right_edge = self.rect.right >= current_platform.right - edge_distance
+            
+            if at_left_edge or at_right_edge:
+                return 3  # Bajar forzosamente
+        
+        # Si el jugador está abajo, buscar activamente forma de bajar
+        if dy > 40 and current_platform:
+            if self.should_actively_drop(current_platform, player_platform):
+                return 3  # Bajar
+        
+        # Movimiento horizontal hacia el jugador
+        if abs(dx) > 10:
+            return 1 if dx > 0 else 0  # Derecha o Izquierda
+        
+        return 1  # Por defecto, moverse a la derecha
+    
+    def should_override_action(self, primary_action, q_action, dx, dy):
+        """Decide si Q-Learning debe anular la acción principal"""
+        # Solo anular si Q-Learning sugiere algo muy diferente y tiene sentido
+        if primary_action == q_action:
+            return False
+        
+        # Permitir anulación solo en casos específicos
+        if abs(dx) < 50 and abs(dy) < 50:  # Muy cerca del jugador
+            return True
+        
+        return False
+    
+    def execute_action_decision(self, action, current_platform, dx):
+        """Ejecuta la acción decidida"""
+        if action == 0:  # Izquierda
+            self.direction = -1
+            self.velocity_x = -self.speed
+        elif action == 1:  # Derecha
+            self.direction = 1
+            self.velocity_x = self.speed
+        elif action == 2:  # Saltar
+            if self.on_ground:
+                self.velocity_y = -15
+                self.on_ground = False
+        elif action == 3:  # Bajar o esperar
+            if self.is_paused:
+                # Quedarse quieto durante la pausa
+                self.velocity_x = 0
+            else:
+                # FORZAR movimiento para caer - no depender de plataforma
+                self.velocity_x = self.speed * self.direction
+                # Si está en el borde, continuar movimiento para caer
+                if current_platform:
+                    edge_distance = 15
+                    at_left_edge = self.rect.left <= current_platform.left + edge_distance
+                    at_right_edge = self.rect.right >= current_platform.right - edge_distance
+                    
+                    if at_left_edge:
+                        self.direction = -1
+                        self.velocity_x = -self.speed
+                    elif at_right_edge:
+                        self.direction = 1
+                        self.velocity_x = self.speed
+    
+    def handle_stuck_behavior(self, current_platform):
+        """Maneja comportamiento cuando está atascado"""
+        if current_platform and abs(self.velocity_x) < 0.1:
+            self.stuck_on_platform_timer += 1
+            if self.stuck_on_platform_timer > 60:  # 1 segundo atascado
+                # Cambiar dirección o saltar
+                if random.random() < 0.7:
+                    self.direction *= -1
+                    self.velocity_x = self.speed * self.direction
+                else:
+                    self.velocity_y = -15
+                    self.on_ground = False
+                self.stuck_on_platform_timer = 0
+        else:
+            self.stuck_on_platform_timer = 0
+    
+    def handle_pause_behavior(self):
+        """Maneja el sistema de pausa periódica"""
+        self.pause_timer += 1
+        
+        if self.is_paused:
+            # Contar tiempo de pausa
+            if self.pause_timer >= self.pause_duration:
+                self.is_paused = False
+                self.pause_timer = 0
+                # Reducir duración de pausa para la próxima vez
+                self.pause_duration = max(10, self.pause_duration - self.pause_reduction)
+        else:
+            # Verificar si debe pausar
+            if self.pause_timer >= self.pause_cycle:
+                self.is_paused = True
+                self.pause_timer = 0
+    
+    def should_actively_drop(self, current_platform, player_platform):
+        """Busca activamente formas de bajar a otra plataforma"""
+        if not current_platform:
+            return False
+        
+        # Si el jugador está en una plataforma más baja, intentar bajar
+        if player_platform and player_platform.top > current_platform.top:
+            return True
+        
+        # Si está en el borde, bajar automáticamente
+        edge_distance = 20
+        at_left_edge = self.rect.left <= current_platform.left + edge_distance
+        at_right_edge = self.rect.right >= current_platform.right - edge_distance
+        
+        # Bajar automáticamente si está en el borde
+        if at_left_edge or at_right_edge:
+            return True
+        
+        return False
     
     def execute_action(self, action):
         """Ejecuta la acción elegida por la IA"""
@@ -239,6 +366,43 @@ class Enemy:
         proximity_reward = (max_distance - distance) / max_distance
         
         return proximity_reward
+    
+    def find_player_platform(self, platforms, player_rect):
+        """Encuentra la plataforma donde está el jugador"""
+        for platform in platforms:
+            if (player_rect.bottom <= platform.top + 20 and 
+                player_rect.bottom >= platform.top - 10 and
+                player_rect.centerx >= platform.left and 
+                player_rect.centerx <= platform.right):
+                return platform
+        return None
+    
+    def find_current_platform(self, platforms):
+        """Encuentra la plataforma actual del enemigo"""
+        for platform in platforms:
+            if (self.rect.bottom <= platform.top + 10 and 
+                self.rect.bottom >= platform.top - 10 and
+                self.rect.centerx >= platform.left and 
+                self.rect.centerx <= platform.right):
+                return platform
+        return None
+    
+    def should_drop_down(self, current_platform, player_platform):
+        """Decide si debe bajar de la plataforma actual"""
+        if not current_platform or not player_platform:
+            return False
+        
+        # Bajar si el jugador está en una plataforma más baja
+        if player_platform.top > current_platform.top:
+            return True
+        
+        # Bajar si ha estado mucho tiempo en la misma plataforma
+        self.platform_change_timer += 1
+        if self.platform_change_timer > 300:  # 5 segundos
+            self.platform_change_timer = 0
+            return True
+        
+        return False
     
     def load_sprites(self):
         """Carga los sprites del enemigo"""
