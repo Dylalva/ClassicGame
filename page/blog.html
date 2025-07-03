@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Donkey Kong Classic</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .blog-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .blog-card h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        .blog-card p {
+            color: #fff;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .blog-card .read-more {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .blog-card .read-more:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .blog-header h1 {
+            color: #FFD700;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .blog-header p {
+            color: #fff;
+            font-size: 1.2em;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">← Volver al Inicio</a>
+    
+    <div class="blog-container">
+        <div class="blog-header">
+            <h1>🎮 Blog de Desarrollo</h1>
+            <p>Explora el proceso de creación de Donkey Kong Classic con IA</p>
+        </div>
+
+        <div class="blog-grid">
+            <div class="blog-card">
+                <h3>🤖 Algoritmos de Inteligencia Artificial</h3>
+                <p>Descubre cómo implementamos Q-Learning y sistemas híbridos de IA para crear enemigos inteligentes que aprenden del comportamiento del jugador.</p>
+                <a href="blog-ai-algorithms.html" class="read-more">Leer Más</a>
+            </div>
+
+            <div class="blog-card">
+                <h3>🏗️ Arquitectura del Juego</h3>
+                <p>Explora la arquitectura modular basada en managers que hace que el juego sea mantenible y escalable, siguiendo principios SOLID.</p>
+                <a href="blog-architecture.html" class="read-more">Leer Más</a>
+            </div>
+
+            <div class="blog-card">
+                <h3>⚡ Automatización del Desarrollo</h3>
+                <p>Cómo la IA aceleró el desarrollo en un 67%, automatizando tareas complejas y generando código de calidad profesional.</p>
+                <a href="blog-automation.html" class="read-more">Leer Más</a>
+            </div>
+
+            <div class="blog-card">
+                <h3>💻 Ejemplos de Código Innovadores</h3>
+                <p>Showcase de las soluciones más interesantes generadas por IA, desde sistemas híbridos hasta carga dinámica de assets.</p>
+                <a href="blog-code-examples.html" class="read-more">Leer Más</a>
+            </div>
+
+            <div class="blog-card">
+                <h3>🛠️ Guía de Desarrollo</h3>
+                <p>Guía completa para desarrolladores que quieran contribuir o modificar el juego, incluyendo setup y mejores prácticas.</p>
+                <a href="blog-development.html" class="read-more">Leer Más</a>
+            </div>
+
+            <div class="blog-card">
+                <h3>☁️ Configuración de Firebase</h3>
+                <p>Tutorial paso a paso para configurar Firebase y habilitar las funciones en la nube como leaderboards y guardado automático.</p>
+                <a href="blog-firebase.html" class="read-more">Leer Más</a>
+            </div>
+
+            <div class="blog-card">
+                <h3>🎯 Técnicas de Prompting</h3>
+                <p>Las técnicas más efectivas para trabajar con IA en desarrollo de juegos, con ejemplos reales y resultados comprobados.</p>
+                <a href="blog-prompting.html" class="read-more">Leer Más</a>
+            </div>
+
+            <div class="blog-card">
+                <h3>🚀 Mi Viaje con IA</h3>
+                <p>La historia personal detrás del desarrollo: desafíos, descubrimientos y lecciones aprendidas en este proyecto retro-futurista.</p>
+                <a href="blog-journey.html" class="read-more">Leer Más</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

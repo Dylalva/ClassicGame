@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de Firebase - Donkey Kong Classic</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .article-header h1 {
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .article-content {
+            color: #fff;
+            line-height: 1.8;
+        }
+        .article-content h2 {
+            color: #4ECDC4;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .article-content h3 {
+            color: #FF6B6B;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #4ECDC4;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            margin: 0;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+        .step-box {
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #FFD700;
+        }
+        .step-box h4 {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        .warning-box {
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #FF6B6B;
+        }
+        .warning-box h4 {
+            color: #FF6B6B;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <a href="blog.html" class="back-button">← Volver al Blog</a>
+    
+    <div class="article-container">
+        <div class="article-header">
+            <h1>☁️ Configuración de Firebase</h1>
+            <p>Guía paso a paso para habilitar funciones en la nube</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Prerrequisitos</h2>
+            <ul>
+                <li>Cuenta de Google</li>
+                <li>Acceso al proyecto Firebase</li>
+            </ul>
+
+            <h2>Paso 1: Crear Proyecto Firebase</h2>
+            <div class="step-box">
+                <h4>Configuración Inicial</h4>
+                <ol>
+                    <li>Ve a <a href="https://console.firebase.google.com/" target="_blank" style="color: #4ECDC4;">Firebase Console</a></li>
+                    <li>Haz clic en "Crear un proyecto" o "Agregar proyecto"</li>
+                    <li>Ingresa el nombre del proyecto: <code>classicgame-dk</code> (o tu nombre preferido)</li>
+                    <li>Habilita Google Analytics (opcional)</li>
+                    <li>Haz clic en "Crear proyecto"</li>
+                </ol>
+            </div>
+
+            <h2>Paso 2: Habilitar Autenticación</h2>
+            <div class="step-box">
+                <h4>Configurar Métodos de Autenticación</h4>
+                <ol>
+                    <li>En tu proyecto Firebase, ve a <strong>Authentication</strong></li>
+                    <li>Haz clic en "Comenzar"</li>
+                    <li>Ve a la pestaña <strong>Método de inicio de sesión</strong></li>
+                    <li>Habilita los siguientes proveedores:
+                        <ul>
+                            <li><strong>Correo/Contraseña:</strong> Habilitar</li>
+                            <li><strong>Google:</strong> Habilitar y configurar pantalla de consentimiento OAuth</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <h3>Configuración OAuth de Google</h3>
+            <div class="step-box">
+                <h4>Configurar Proveedor Google</h4>
+                <ol>
+                    <li>Haz clic en el proveedor <strong>Google</strong></li>
+                    <li>Habilita el interruptor</li>
+                    <li>Agrega tu correo de soporte del proyecto</li>
+                    <li>Guarda la configuración</li>
+                    <li>Anota el <strong>ID de cliente web</strong> y <strong>secreto de cliente web</strong></li>
+                </ol>
+            </div>
+
+            <h2>Paso 3: Configurar Realtime Database</h2>
+            <div class="step-box">
+                <h4>Crear Base de Datos</h4>
+                <ol>
+                    <li>Ve a <strong>Realtime Database</strong> en Firebase Console</li>
+                    <li>Haz clic en "Crear base de datos"</li>
+                    <li>Elige ubicación (preferiblemente la más cercana a tus usuarios)</li>
+                    <li>Comienza en <strong>modo de prueba</strong> (puedes asegurarlo después)</li>
+                    <li>Tu URL de base de datos será: <code>https://tu-project-id-default-rtdb.firebaseio.com/</code></li>
+                </ol>
+            </div>
+
+            <h2>Paso 4: Obtener Credenciales de Configuración</h2>
+
+            <h3>Clave API Web</h3>
+            <div class="step-box">
+                <h4>Obtener Clave API</h4>
+                <ol>
+                    <li>Ve a <strong>Configuración del proyecto</strong> (ícono de engranaje)</li>
+                    <li>En la pestaña <strong>General</strong>, desplázate a "Tus aplicaciones"</li>
+                    <li>Si no existe una aplicación web, haz clic en "Agregar aplicación" y selecciona el ícono web (&lt;/&gt;)</li>
+                    <li>Registra tu aplicación con un apodo</li>
+                    <li>Copia la <strong>Clave API</strong> del objeto de configuración</li>
+                </ol>
+            </div>
+
+            <h2>Paso 5: Configurar Variables de Entorno</h2>
+            <div class="step-box">
+                <h4>Configurar Archivo .env</h4>
+                <p>Copia el archivo de ejemplo de entorno:</p>
+                <div class="code-block">
+                    <pre>cp .env.example .env</pre>
+                </div>
+                
+                <p>Edita el archivo <code>.env</code> con tus credenciales:</p>
+                <div class="code-block">
+                    <pre># Configuración Firebase
+FIREBASE_API_KEY=tu_api_key_aqui
+FIREBASE_AUTH_DOMAIN=tu-project-id.firebaseapp.com
+FIREBASE_DATABASE_URL=https://tu-project-id-default-rtdb.firebaseio.com/
+FIREBASE_PROJECT_ID=tu-project-id
+FIREBASE_STORAGE_BUCKET=tu-project-id.appspot.com
+FIREBASE_MESSAGING_SENDER_ID=tu_sender_id
+FIREBASE_APP_ID=tu_app_id
+
+# OAuth de Google
+GOOGLE_CLIENT_ID=tu_google_client_id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=tu_google_client_secret</pre>
+                </div>
+            </div>
+
+            <h2>Paso 6: Estructura de la Base de Datos</h2>
+            <p>El juego creará automáticamente la siguiente estructura en tu Realtime Database:</p>
+
+            <div class="code-block">
+                <pre>{
+  "leaderboard": {
+    "user_id_1": {
+      "user_id": "user_id_1",
+      "email": "jugador@example.com",
+      "best_score": 1500,
+      "timestamp": 1640995200
+    }
+  },
+  "cloud_saves": {
+    "user_id_1": {
+      "save_data": {
+        "level": 3,
+        "score": 1200,
+        "lives": 2
+      },
+      "last_updated": 1640995200
+    }
+  }
+}</pre>
+            </div>
+
+            <h2>Paso 7: Reglas de Seguridad (Producción)</h2>
+            <p>Para producción, actualiza las reglas de tu Realtime Database:</p>
+
+            <div class="code-block">
+                <pre>{
+  "rules": {
+    "leaderboard": {
+      ".read": true,
+      "$uid": {
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "cloud_saves": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}</pre>
+            </div>
+
+            <h2>Solución de Problemas</h2>
+
+            <h3>Problemas Comunes</h3>
+
+            <div class="warning-box">
+                <h4>1. "Clave API no válida"</h4>
+                <ul>
+                    <li>Verifica tu clave API en <code>.env</code></li>
+                    <li>Comprueba si la clave API está habilitada para tu proyecto</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4>2. "Permiso denegado"</h4>
+                <ul>
+                    <li>Verifica las reglas de seguridad de tu base de datos</li>
+                    <li>Asegúrate de que el usuario esté autenticado</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4>3. "Error de red"</h4>
+                <ul>
+                    <li>Verifica tu URL de base de datos</li>
+                    <li>Comprueba la conexión a internet</li>
+                </ul>
+            </div>
+
+            <h3>Probar Conexión</h3>
+            <p>Ejecuta esta prueba simple para verificar tu conexión Firebase:</p>
+
+            <div class="code-block">
+                <pre>import os
+from dotenv import load_dotenv
+import requests
+
+load_dotenv()
+
+# Probar conexión a la base de datos
+database_url = os.getenv('FIREBASE_DATABASE_URL')
+test_url = f"{database_url}/test.json"
+
+try:
+    response = requests.get(test_url)
+    print(f"Conexión exitosa: {response.status_code}")
+except Exception as e:
+    print(f"Conexión falló: {e}")</pre>
+            </div>
+
+            <h2>Funcionalidades Habilitadas</h2>
+
+            <h3>Leaderboards Globales</h3>
+            <p>Una vez configurado Firebase, el juego automáticamente:</p>
+            <ul>
+                <li>Guarda las mejores puntuaciones en la nube</li>
+                <li>Muestra rankings globales</li>
+                <li>Sincroniza datos entre dispositivos</li>
+            </ul>
+
+            <h3>Guardado en la Nube</h3>
+            <p>Los jugadores pueden:</p>
+            <ul>
+                <li>Guardar progreso automáticamente</li>
+                <li>Sincronizar entre múltiples dispositivos</li>
+                <li>Recuperar progreso perdido</li>
+            </ul>
+
+            <h3>Autenticación de Usuarios</h3>
+            <p>Sistema completo de usuarios con:</p>
+            <ul>
+                <li>Registro con correo y contraseña</li>
+                <li>Inicio de sesión con Google</li>
+                <li>Gestión de sesiones</li>
+                <li>Perfiles de usuario persistentes</li>
+            </ul>
+
+            <h2>Mejores Prácticas de Seguridad</h2>
+
+            <div class="warning-box">
+                <h4>Importantes Consideraciones de Seguridad</h4>
+                <ol>
+                    <li><strong>Nunca commitees</strong> el archivo <code>.env</code> al control de versiones</li>
+                    <li><strong>Usa variables de entorno</strong> para todos los datos sensibles</li>
+                    <li><strong>Implementa reglas de seguridad apropiadas</strong> para producción</li>
+                    <li><strong>Rota regularmente</strong> las claves API y secretos</li>
+                    <li><strong>Monitorea el uso</strong> en Firebase Console</li>
+                </ol>
+            </div>
+
+            <h2>Configuración Avanzada</h2>
+
+            <h3>Variables de Entorno para Diferentes Ambientes</h3>
+            <div class="code-block">
+                <pre># .env.development
+FIREBASE_PROJECT_ID=tu-proyecto-dev
+
+# .env.production  
+FIREBASE_PROJECT_ID=tu-proyecto-prod
+
+# .env.testing
+FIREBASE_PROJECT_ID=tu-proyecto-test</pre>
+            </div>
+
+            <h3>Configuración de Límites y Cuotas</h3>
+            <p>En Firebase Console, puedes configurar:</p>
+            <ul>
+                <li><strong>Límites de lectura/escritura</strong> para controlar costos</li>
+                <li><strong>Alertas de uso</strong> para monitorear consumo</li>
+                <li><strong>Reglas de seguridad avanzadas</strong> para proteger datos</li>
+            </ul>
+
+            <h2>Monitoreo y Análisis</h2>
+
+            <h3>Métricas Importantes</h3>
+            <p>Monitorea estas métricas en Firebase Console:</p>
+            <ul>
+                <li><strong>Usuarios activos</strong> - Engagement del juego</li>
+                <li><strong>Operaciones de base de datos</strong> - Uso y costos</li>
+                <li><strong>Errores de autenticación</strong> - Problemas de acceso</li>
+                <li><strong>Tiempo de respuesta</strong> - Rendimiento de la aplicación</li>
+            </ul>
+
+            <h3>Configurar Alertas</h3>
+            <div class="code-block">
+                <pre># Ejemplo de configuración de alerta
+# En Firebase Console > Alertas
+- Tipo: Uso de base de datos
+- Umbral: 80% del límite mensual
+- Notificación: Email a admin@tudominio.com</pre>
+            </div>
+
+            <h2>Soporte</h2>
+            <p>Si encuentras problemas:</p>
+
+            <ol>
+                <li>Consulta la <a href="https://firebase.google.com/docs" target="_blank" style="color: #4ECDC4;">Documentación de Firebase</a></li>
+                <li>Verifica que todas las credenciales estén configuradas correctamente</li>
+                <li>Asegúrate de que tu proyecto Firebase tenga los servicios necesarios habilitados</li>
+                <li>Revisa la consola del navegador para mensajes de error detallados</li>
+            </ol>
+
+            <h2>Conclusión</h2>
+            <p>Con Firebase configurado correctamente, tu juego Donkey Kong Classic tendrá capacidades completas en la nube, incluyendo:</p>
+
+            <ul>
+                <li>🏆 <strong>Leaderboards globales</strong> para competencia entre jugadores</li>
+                <li>☁️ <strong>Guardado automático en la nube</strong> para nunca perder progreso</li>
+                <li>👤 <strong>Gestión de usuarios</strong> con múltiples métodos de autenticación</li>
+                <li>📊 <strong>Analytics en tiempo real</strong> para entender el comportamiento del jugador</li>
+                <li>🔒 <strong>Seguridad robusta</strong> para proteger datos de usuarios</li>
+            </ul>
+
+            <p>Esta configuración transforma tu juego local en una experiencia conectada y social, manteniendo la simplicidad del gameplay clásico mientras agrega características modernas que los jugadores esperan.</p>
+        </div>
+    </div>
+</body>
+</html>

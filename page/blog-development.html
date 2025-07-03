@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Desarrollo - Donkey Kong Classic</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .article-header h1 {
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .article-content {
+            color: #fff;
+            line-height: 1.8;
+        }
+        .article-content h2 {
+            color: #4ECDC4;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .article-content h3 {
+            color: #FF6B6B;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #4ECDC4;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            margin: 0;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+        .file-structure {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #4ECDC4;
+            font-family: monospace;
+            color: #4ECDC4;
+        }
+        .checklist {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #FFD700;
+        }
+        .checklist h4 {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        .highlight {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <a href="blog.html" class="back-button">← Volver al Blog</a>
+    
+    <div class="article-container">
+        <div class="article-header">
+            <h1>🛠️ Guía de Desarrollo</h1>
+            <p>Todo lo que necesitas saber para contribuir al proyecto</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Configuración del Entorno de Desarrollo</h2>
+
+            <h3>Prerrequisitos</h3>
+            <ul>
+                <li><strong>Python 3.12+</strong> (recomendado)</li>
+                <li><strong>Git</strong> para control de versiones</li>
+                <li><strong>Editor de código</strong> (VS Code, PyCharm, etc.)</li>
+                <li><strong>Cuenta de Firebase</strong> (para funciones en la nube)</li>
+            </ul>
+
+            <h3>Configuración Inicial</h3>
+            <div class="code-block">
+                <pre>git clone &lt;repository-url&gt;
+cd ClassicGame
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+pip install -r requirements.txt</pre>
+            </div>
+
+            <div class="code-block">
+                <pre>cp .env.example .env
+# Editar .env con tus credenciales de Firebase</pre>
+            </div>
+
+            <div class="code-block">
+                <pre>python main.py</pre>
+            </div>
+
+            <h2>Estructura del Proyecto en Profundidad</h2>
+
+            <div class="file-structure">
+                <pre>ClassicGame/
+├── src/                    # Código fuente
+│   ├── game/              # Lógica principal del juego
+│   │   ├── game_manager.py    # Coordinador principal
+│   │   └── level.py           # Definiciones de nivel
+│   ├── entities/          # Objetos del juego
+│   │   ├── player.py          # Personaje jugador
+│   │   ├── enemy.py           # Enemigos con IA
+│   │   ├── collectible.py     # Objetos coleccionables
+│   │   └── projectile.py      # Objetos lanzables
+│   ├── managers/          # Gestores de sistemas
+│   │   ├── entity_manager.py      # Ciclo de vida de entidades
+│   │   ├── collision_manager.py   # Física/colisiones
+│   │   ├── game_state_manager.py  # Gestión de estados
+│   │   ├── tutorial_manager.py    # Sistema de tutorial
+│   │   ├── level_manager.py       # Generación de niveles
+│   │   ├── firebase_manager.py    # Integración en la nube
+│   │   ├── sound_manager.py       # Sistema de audio
+│   │   ├── save_manager.py        # Guardados locales
+│   │   ├── shop_manager.py        # Lógica de tienda
+│   │   └── ui_manager.py          # Coordinación de UI
+│   ├── ai/                # Inteligencia Artificial
+│   │   └── q_learning.py      # Algoritmo Q-Learning
+│   ├── ui/                # Interfaz de Usuario
+│   │   └── shop_menu.py       # Interfaz de tienda
+│   └── utils/             # Utilidades
+│       └── config.py          # Configuración del juego
+├── assets/                # Assets del juego
+│   ├── player/            # Sprites del jugador
+│   ├── enemy/             # Sprites de enemigos
+│   └── shop/              # Iconos de tienda
+├── data/                  # Datos persistentes
+├── docs/                  # Documentación
+└── tests/                 # Pruebas unitarias</pre>
+            </div>
+
+            <h2>Flujo de Trabajo de Desarrollo</h2>
+
+            <h3>Agregando Nuevas Características</h3>
+
+            <div class="code-block">
+                <pre>git checkout -b feature/nueva-caracteristica</pre>
+            </div>
+
+            <p><span class="highlight">Sigue los Patrones de Arquitectura:</span></p>
+            <ul>
+                <li>Usa el patrón manager para nuevos sistemas</li>
+                <li>Implementa manejo adecuado de errores</li>
+                <li>Agrega opciones de configuración a <code>config.py</code></li>
+            </ul>
+
+            <div class="code-block">
+                <pre>python -m pytest tests/</pre>
+            </div>
+
+            <h3>Pautas de Estilo de Código</h3>
+
+            <h4>Estilo Python</h4>
+            <p>Sigue PEP 8 con estas especificaciones:</p>
+
+            <div class="code-block">
+                <pre># Nomenclatura de clases: PascalCase
+class EntityManager:
+    pass
+
+# Nomenclatura de funciones/variables: snake_case
+def update_entities(self):
+    player_position = self.get_player_position()
+
+# Constantes: UPPER_CASE
+MAX_ENEMIES = 10
+DEFAULT_SPEED = 5
+
+# Docstrings: Estilo Google
+def calculate_distance(self, point_a, point_b):
+    """Calcula la distancia euclidiana entre dos puntos.
+    
+    Args:
+        point_a (tuple): Primer punto (x, y)
+        point_b (tuple): Segundo punto (x, y)
+    
+    Returns:
+        float: Distancia entre puntos
+    """</pre>
+            </div>
+
+            <h4>Patrones Específicos del Juego</h4>
+
+            <p><span class="highlight">Patrón Manager:</span></p>
+            <div class="code-block">
+                <pre>class NewManager:
+    def __init__(self, config):
+        self.config = config
+        # Inicializar estado del manager
+    
+    def update(self):
+        """Actualizar estado del manager cada frame"""
+        pass
+    
+    def render(self, screen):
+        """Renderizar visuales del manager"""
+        pass</pre>
+            </div>
+
+            <p><span class="highlight">Patrón Entity:</span></p>
+            <div class="code-block">
+                <pre>class NewEntity:
+    def __init__(self, x, y, config):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.config = config
+        self.active = True
+    
+    def update(self, *args):
+        """Actualizar estado de la entidad"""
+        pass
+    
+    def render(self, screen):
+        """Renderizar entidad"""
+        pass</pre>
+            </div>
+
+            <h2>Agregando Nuevas Entidades</h2>
+
+            <h3>Paso 1: Crear Clase de Entidad</h3>
+            <div class="code-block">
+                <pre># src/entities/nueva_entidad.py
+import pygame
+
+class NuevaEntidad:
+    def __init__(self, x, y, config):
+        self.config = config
+        self.rect = pygame.Rect(x, y, 30, 30)
+        self.velocity_x = 0
+        self.velocity_y = 0
+        self.active = True
+        
+        # Cargar sprites
+        self.sprites = self.load_sprites()
+        
+    def load_sprites(self):
+        """Cargar sprites de la entidad"""
+        # Implementación aquí
+        pass
+    
+    def update(self):
+        """Actualizar lógica de la entidad"""
+        # Física, IA, etc.
+        pass
+    
+    def render(self, screen):
+        """Renderizar entidad"""
+        if self.sprites:
+            screen.blit(self.sprites[0], self.rect)
+        else:
+            pygame.draw.rect(screen, (255, 0, 0), self.rect)</pre>
+            </div>
+
+            <h3>Paso 2: Integrar con Entity Manager</h3>
+            <div class="code-block">
+                <pre># En src/managers/entity_manager.py
+from src.entities.nueva_entidad import NuevaEntidad
+
+class EntityManager:
+    def __init__(self, config):
+        # ... código existente ...
+        self.nuevas_entidades = []
+    
+    def spawn_nueva_entidad(self, x, y):
+        """Spawn nueva entidad"""
+        entidad = NuevaEntidad(x, y, self.config)
+        self.nuevas_entidades.append(entidad)
+    
+    def update_all(self, platforms=None):
+        # ... actualizaciones existentes ...
+        
+        # Actualizar nuevas entidades
+        for entidad in self.nuevas_entidades[:]:
+            entidad.update()
+            if not entidad.active:
+                self.nuevas_entidades.remove(entidad)
+    
+    def render_all(self, screen):
+        # ... renderizado existente ...
+        
+        # Renderizar nuevas entidades
+        for entidad in self.nuevas_entidades:
+            entidad.render(screen)</pre>
+            </div>
+
+            <h2>Optimización de Rendimiento</h2>
+
+            <h3>Profiling</h3>
+            <div class="code-block">
+                <pre>import cProfile
+import pstats
+
+def profile_game():
+    """Perfilar rendimiento del juego"""
+    profiler = cProfile.Profile()
+    profiler.enable()
+    
+    # Ejecutar bucle del juego
+    game.run()
+    
+    profiler.disable()
+    stats = pstats.Stats(profiler)
+    stats.sort_stats('cumulative')
+    stats.print_stats(20)  # Top 20 funciones</pre>
+            </div>
+
+            <h3>Optimizaciones Comunes</h3>
+
+            <p><span class="highlight">Cache de Sprites:</span></p>
+            <div class="code-block">
+                <pre>class SpriteCache:
+    _cache = {}
+    
+    @classmethod
+    def get_sprite(cls, path, size):
+        key = (path, size)
+        if key not in cls._cache:
+            sprite = pygame.image.load(path)
+            sprite = pygame.transform.scale(sprite, size)
+            cls._cache[key] = sprite
+        return cls._cache[key]</pre>
+            </div>
+
+            <h2>Testing</h2>
+
+            <h3>Testing Unitario</h3>
+            <div class="code-block">
+                <pre># tests/test_nueva_entidad.py
+import unittest
+from src.entities.nueva_entidad import NuevaEntidad
+from src.utils.config import Config
+
+class TestNuevaEntidad(unittest.TestCase):
+    def setUp(self):
+        self.config = Config()
+        self.entidad = NuevaEntidad(100, 100, self.config)
+    
+    def test_initialization(self):
+        """Test inicialización de entidad"""
+        self.assertEqual(self.entidad.rect.x, 100)
+        self.assertEqual(self.entidad.rect.y, 100)
+        self.assertTrue(self.entidad.active)
+    
+    def test_update(self):
+        """Test lógica de actualización de entidad"""
+        initial_x = self.entidad.rect.x
+        self.entidad.velocity_x = 5
+        self.entidad.update()
+        self.assertEqual(self.entidad.rect.x, initial_x + 5)
+
+if __name__ == '__main__':
+    unittest.main()</pre>
+            </div>
+
+            <h2>Debugging</h2>
+
+            <h3>Modo Debug</h3>
+            <div class="code-block">
+                <pre>class Config:
+    DEBUG_MODE = True  # Configurar vía variable de entorno
+    
+    # Colores de debug
+    DEBUG_COLORS = {
+        'COLLISION_BOX': (255, 0, 0),
+        'AI_STATE': (0, 255, 0),
+        'PATH_FINDING': (0, 0, 255)
+    }</pre>
+            </div>
+
+            <h3>Renderizado de Debug</h3>
+            <div class="code-block">
+                <pre>def render_debug_info(self, screen):
+    """Renderizar información de debug"""
+    if not self.config.DEBUG_MODE:
+        return
+    
+    # Dibujar cajas de colisión
+    for entidad in self.entidades:
+        pygame.draw.rect(screen, self.config.DEBUG_COLORS['COLLISION_BOX'], 
+                        entidad.rect, 2)
+    
+    # Dibujar estado de IA
+    font = pygame.font.Font(None, 24)
+    for enemigo in self.enemigos:
+        if hasattr(enemigo, 'ai_agent'):
+            state_text = font.render(f"Estado: {enemigo.current_state}", 
+                                   True, self.config.DEBUG_COLORS['AI_STATE'])
+            screen.blit(state_text, (enemigo.rect.x, enemigo.rect.y - 25))</pre>
+            </div>
+
+            <h2>Gestión de Assets</h2>
+
+            <h3>Agregando Nuevos Assets</h3>
+            <ol>
+                <li><strong>Sprites:</strong> Colocar en el subdirectorio apropiado de <code>assets/</code></li>
+                <li><strong>Convención de Nomenclatura:</strong> <code>entidad_estado_frame.png</code></li>
+                <li><strong>Pautas de Tamaño:</strong> Tamaño consistente dentro de tipos de entidad</li>
+                <li><strong>Formato:</strong> PNG con soporte de transparencia</li>
+            </ol>
+
+            <h3>Patrón de Carga de Assets</h3>
+            <div class="code-block">
+                <pre>def load_asset_safely(self, path, default_size=(32, 32)):
+    """Cargar asset del juego de forma segura con fallback"""
+    try:
+        if os.path.exists(path):
+            sprite = pygame.image.load(path)
+            return pygame.transform.scale(sprite, default_size)
+    except Exception as e:
+        logger.warning(f"Falló la carga de asset {path}: {e}")
+    
+    # Retornar rectángulo coloreado como fallback
+    surface = pygame.Surface(default_size)
+    surface.fill((255, 0, 255))  # Magenta para assets faltantes
+    return surface</pre>
+            </div>
+
+            <h2>Despliegue</h2>
+
+            <h3>Construir Ejecutable</h3>
+            <div class="code-block">
+                <pre>python build.py</pre>
+            </div>
+
+            <div class="checklist">
+                <h4>Lista de Verificación de Distribución</h4>
+                <ul>
+                    <li>☐ Todos los assets incluidos</li>
+                    <li>☐ Variables de entorno configuradas</li>
+                    <li>☐ Dependencias resueltas</li>
+                    <li>☐ Testing multiplataforma</li>
+                    <li>☐ Validación de rendimiento</li>
+                    <li>☐ Verificación de manejo de errores</li>
+                </ul>
+            </div>
+
+            <h2>Pautas de Contribución</h2>
+
+            <h3>Proceso de Pull Request</h3>
+            <ol>
+                <li><strong>Fork</strong> el repositorio</li>
+                <li><strong>Crear</strong> rama de característica</li>
+                <li><strong>Implementar</strong> cambios con tests</li>
+                <li><strong>Actualizar</strong> documentación</li>
+                <li><strong>Enviar</strong> pull request con descripción</li>
+            </ol>
+
+            <div class="checklist">
+                <h4>Lista de Verificación de Code Review</h4>
+                <ul>
+                    <li>☐ El código sigue las pautas de estilo</li>
+                    <li>☐ Los tests pasan</li>
+                    <li>☐ Documentación actualizada</li>
+                    <li>☐ Sin regresiones de rendimiento</li>
+                    <li>☐ Manejo de errores implementado</li>
+                    <li>☐ Assets gestionados apropiadamente</li>
+                </ul>
+            </div>
+
+            <h2>Mejores Prácticas</h2>
+
+            <h3>Arquitectura</h3>
+            <ul>
+                <li>Mantener separación clara de responsabilidades</li>
+                <li>Usar el patrón manager para nuevos sistemas</li>
+                <li>Implementar manejo robusto de errores</li>
+                <li>Seguir principios SOLID</li>
+            </ul>
+
+            <h3>Rendimiento</h3>
+            <ul>
+                <li>Perfilar regularmente el código</li>
+                <li>Usar cache para assets costosos</li>
+                <li>Optimizar bucles críticos</li>
+                <li>Monitorear uso de memoria</li>
+            </ul>
+
+            <h3>Mantenibilidad</h3>
+            <ul>
+                <li>Escribir código autodocumentado</li>
+                <li>Usar nombres descriptivos</li>
+                <li>Mantener funciones pequeñas y enfocadas</li>
+                <li>Documentar decisiones arquitectónicas</li>
+            </ul>
+
+            <h2>Conclusión</h2>
+            <p>Esta guía de desarrollo proporciona la base para contribuir y extender Donkey Kong Classic. Siguiendo estos patrones y pautas, puedes mantener la calidad del código y la arquitectura del sistema mientras agregas nuevas características emocionantes.</p>
+
+            <p>Recuerda: el objetivo es crear código que sea no solo funcional, sino también mantenible, testeable y extensible para futuros desarrolladores.</p>
+        </div>
+    </div>
+</body>
+</html>

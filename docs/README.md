@@ -203,6 +203,6 @@ Special thanks to the open-source community for tools, libraries, and inspiratio
 
 ---
 
-**Last Updated**: December 2024  
+**Last Updated**: July 2025
 **Documentation Version**: 1.0  
 **Game Version**: 1.0

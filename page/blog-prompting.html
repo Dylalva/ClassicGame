@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnicas de Prompting - Donkey Kong Classic</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .article-header h1 {
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .article-content {
+            color: #fff;
+            line-height: 1.8;
+        }
+        .article-content h2 {
+            color: #4ECDC4;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .article-content h3 {
+            color: #FF6B6B;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #4ECDC4;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            margin: 0;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .ineffective {
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #FF6B6B;
+        }
+        .effective {
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #4ECDC4;
+        }
+        .ineffective h4 {
+            color: #FF6B6B;
+            margin-bottom: 10px;
+        }
+        .effective h4 {
+            color: #4ECDC4;
+            margin-bottom: 10px;
+        }
+        .technique-box {
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(78, 205, 196, 0.1));
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #FFD700;
+        }
+        .technique-box h4 {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        .highlight {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <a href="blog.html" class="back-button">← Volver al Blog</a>
+    
+    <div class="article-container">
+        <div class="article-header">
+            <h1>🎯 Técnicas Efectivas de Prompting</h1>
+            <p>Estrategias comprobadas para trabajar con IA en desarrollo de juegos</p>
+        </div>
+
+        <div class="article-content">
+            <h2>Prompting Consciente del Contexto</h2>
+
+            <h3>El Principio</h3>
+            <p>Proporciona contexto rico sobre tu base de código existente, patrones y requerimientos para obtener respuestas más relevantes y útiles.</p>
+
+            <h3>Ejemplos</h3>
+
+            <div class="comparison-box">
+                <div class="ineffective">
+                    <h4>❌ Prompt Inefectivo</h4>
+                    <div class="code-block">
+                        <pre>"Crea una clase enemigo"</pre>
+                    </div>
+                </div>
+                <div class="effective">
+                    <h4>✅ Prompt Efectivo</h4>
+                    <div class="code-block">
+                        <pre>"Crea una clase enemigo para un plataformero estilo Donkey Kong que:
+- Siga el patrón de clase Entity base existente
+- Use la arquitectura manager (EntityManager maneja ciclo de vida)
+- Implemente Q-Learning para comportamiento inteligente
+- Soporte diferentes tipos de enemigo (barril, monstruo)
+- Incluya sistema de animación de sprites
+- Se integre con el sistema de colisiones existente
+- Use el sistema de configuración establecido para parámetros"</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Comparación de Resultados</h3>
+            <ul>
+                <li><strong>Resultado Inefectivo:</strong> Clase enemigo genérica con movimiento básico</li>
+                <li><strong>Resultado Efectivo:</strong> Sistema completo de enemigos con IA, animaciones y arquitectura apropiada</li>
+            </ul>
+
+            <div class="technique-box">
+                <h4>Técnicas Clave</h4>
+                <ol>
+                    <li><strong>Referenciar Patrones Existentes</strong>
+                        <div class="code-block">
+                            <pre>"Siguiendo el patrón manager usado en GameStateManager, crea un TutorialManager que..."</pre>
+                        </div>
+                    </li>
+                    <li><strong>Especificar Puntos de Integración</strong>
+                        <div class="code-block">
+                            <pre>"Esto debe integrarse con el CollisionManager existente y usar el EntityManager para el ciclo de vida..."</pre>
+                        </div>
+                    </li>
+                    <li><strong>Incluir Restricciones Técnicas</strong>
+                        <div class="code-block">
+                            <pre>"Debe funcionar con empaquetado PyInstaller y manejar carga de assets para desarrollo y producción..."</pre>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <h2>Construcción de Complejidad Incremental</h2>
+
+            <h3>El Principio</h3>
+            <p>Construye sistemas complejos paso a paso en lugar de pedir implementaciones completas de una vez.</p>
+
+            <h3>Ejemplo de Progresión</h3>
+
+            <div class="technique-box">
+                <h4>Paso 1: Fundación Básica</h4>
+                <div class="code-block">
+                    <pre>"Crea un enemigo básico que se mueva horizontalmente y rebote en los bordes de la pantalla"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>Paso 2: Agregar Inteligencia</h4>
+                <div class="code-block">
+                    <pre>"Modifica el enemigo para detectar bordes de plataforma y decidir si caer o dar la vuelta"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>Paso 3: Agregar Conciencia del Jugador</h4>
+                <div class="code-block">
+                    <pre>"Agrega detección del jugador para que el enemigo pueda moverse hacia la posición del jugador"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>Paso 4: Agregar Aprendizaje</h4>
+                <div class="code-block">
+                    <pre>"Implementa Q-Learning para que el enemigo aprenda rutas óptimas para alcanzar al jugador"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>Paso 5: Agregar Variedad</h4>
+                <div class="code-block">
+                    <pre>"Crea diferentes tipos de enemigo con comportamientos únicos mientras comparten el sistema base de IA"</pre>
+                </div>
+            </div>
+
+            <h3>Beneficios</h3>
+            <ul>
+                <li><strong>Mejor Calidad de Código:</strong> Cada paso se prueba completamente antes de agregar complejidad</li>
+                <li><strong>Debugging Más Fácil:</strong> Los problemas se aíslan a funcionalidad específica</li>
+                <li><strong>Oportunidad de Aprendizaje:</strong> Entender cada componente antes de avanzar</li>
+                <li><strong>Flexibilidad:</strong> Puede pivotar o modificar el enfoque en cualquier paso</li>
+            </ul>
+
+            <h2>Enfoque Arquitectura-Primero</h2>
+
+            <h3>El Principio</h3>
+            <p>Establece patrones arquitectónicos y diseño de sistema antes de implementar características específicas.</p>
+
+            <h3>Flujo de Trabajo de Ejemplo</h3>
+
+            <div class="technique-box">
+                <h4>1. Prompt de Diseño de Sistema</h4>
+                <div class="code-block">
+                    <pre>"Diseña una arquitectura modular para un juego plataformero 2D que necesita manejar:
+- Múltiples estados de juego (menú, jugando, pausado, tienda)
+- Gestión de entidades en tiempo real (jugador, enemigos, proyectiles)
+- Sistemas de IA para comportamiento de enemigos
+- Persistencia de datos en la nube
+- Gestión de assets
+- Sistema de sonido
+
+Usa Python/Pygame y sigue principios SOLID."</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>2. Implementación del Patrón Manager</h4>
+                <div class="code-block">
+                    <pre>"Basado en el diseño arquitectónico, crea un GameManager que coordine:
+- EntityManager para objetos del juego
+- GameStateManager para transiciones de estado
+- CollisionManager para física
+- UIManager para interfaz
+- SoundManager para audio
+
+Muestra cómo estos managers se comunican y comparten datos."</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>3. Implementación de Característica Específica</h4>
+                <div class="code-block">
+                    <pre>"Ahora implementa el EntityManager siguiendo el patrón establecido:
+- Gestiona el ciclo de vida de todas las entidades del juego
+- Maneja spawn con limitación de tasa
+- Proporciona coordinación de actualización/renderizado
+- Se integra con CollisionManager para física"</pre>
+                </div>
+            </div>
+
+            <h3>Resultados</h3>
+            <p>Este enfoque llevó a:</p>
+            <ul>
+                <li><strong>Estilo de Código Consistente:</strong> Todos los componentes siguen los mismos patrones</li>
+                <li><strong>Mantenimiento Fácil:</strong> Separación clara de responsabilidades</li>
+                <li><strong>Diseño Escalable:</strong> Fácil agregar nuevas características</li>
+                <li><strong>Código Testeable:</strong> Cada manager puede probarse independientemente</li>
+            </ul>
+
+            <h2>Emparejamiento Problema-Solución</h2>
+
+            <h3>El Principio</h3>
+            <p>Al encontrar problemas, proporciona tanto la descripción específica del problema COMO el resultado deseado.</p>
+
+            <h3>Plantillas de Ejemplo</h3>
+
+            <div class="technique-box">
+                <h4>Plantilla de Corrección de Bugs</h4>
+                <div class="code-block">
+                    <pre>"Problema: [Descripción específica del problema]
+Comportamiento Actual: [Lo que está pasando ahora]
+Comportamiento Esperado: [Lo que debería pasar]
+Contexto: [Información relevante de código/sistema]
+Restricciones: [Cualquier limitación o requerimiento]"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>Plantilla de Solicitud de Característica</h4>
+                <div class="code-block">
+                    <pre>"Objetivo: [Lo que quieres lograr]
+Estado Actual: [Lo que existe ahora]
+Requerimientos: [Necesidades específicas]
+Integración: [Cómo encaja con sistemas existentes]
+Ejemplos: [Implementaciones similares o referencias]"</pre>
+                </div>
+            </div>
+
+            <h3>Ejemplo Real</h3>
+
+            <div class="technique-box">
+                <h4>Descripción del Problema</h4>
+                <div class="code-block">
+                    <pre>"Problema: Los enemigos se atascan en los bordes de plataforma y no caen
+Comportamiento Actual: El enemigo llega al borde de la plataforma, deja de moverse, se queda ahí indefinidamente
+Comportamiento Esperado: El enemigo debería detectar el borde de la plataforma y:
+1. Caer a plataforma inferior si el jugador está abajo
+2. Dar la vuelta si no existe plataforma inferior
+3. Saltar a plataforma superior si el jugador está arriba
+Contexto: Usando pygame.Rect para detección de colisiones, las plataformas son objetos pygame.Rect
+Restricciones: Debe funcionar con el sistema Q-Learning existente y no romper el comportamiento actual de IA"</pre>
+                </div>
+            </div>
+
+            <p><strong>Solución de IA:</strong> La IA proporcionó una solución comprensiva con detección de bordes, lógica de decisión e integración Q-Learning.</p>
+
+            <h2>Prompting Basado en Restricciones</h2>
+
+            <h3>El Principio</h3>
+            <p>Especifica restricciones técnicas, limitaciones y requerimientos por adelantado para obtener soluciones prácticas.</p>
+
+            <h3>Categorías de Restricciones</h3>
+
+            <div class="technique-box">
+                <h4>1. Restricciones Técnicas</h4>
+                <div class="code-block">
+                    <pre>"Debe funcionar con Python 3.12+, Pygame 2.5.2, y ser compatible con empaquetado PyInstaller"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>2. Restricciones de Rendimiento</h4>
+                <div class="code-block">
+                    <pre>"Debe mantener 60 FPS con hasta 50 entidades en pantalla simultáneamente"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>3. Restricciones de Memoria</h4>
+                <div class="code-block">
+                    <pre>"Mantener uso de memoria bajo 100MB para todo el juego"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>4. Restricciones de Plataforma</h4>
+                <div class="code-block">
+                    <pre>"Debe funcionar en Windows, macOS y Linux sin código específico de plataforma"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>5. Restricciones de Integración</h4>
+                <div class="code-block">
+                    <pre>"Debe integrarse con autenticación Firebase existente y funcionar offline como respaldo"</pre>
+                </div>
+            </div>
+
+            <h2>Prompting de Revisión de Código</h2>
+
+            <h3>El Principio</h3>
+            <p>Usa IA como revisor de código para identificar problemas, sugerir mejoras y asegurar mejores prácticas.</p>
+
+            <h3>Plantillas de Revisión</h3>
+
+            <div class="technique-box">
+                <h4>1. Revisión General de Código</h4>
+                <div class="code-block">
+                    <pre>"Revisa este código para:
+- Mejores prácticas de Python y cumplimiento PEP 8
+- Bugs potenciales o casos edge
+- Optimizaciones de rendimiento
+- Consideraciones de seguridad
+- Mejoras de mantenibilidad
+
+[CÓDIGO AQUÍ]"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>2. Revisión de Arquitectura</h4>
+                <div class="code-block">
+                    <pre>"Revisa esta arquitectura de sistema para:
+- Adherencia a principios SOLID
+- Uso de patrones de diseño
+- Acoplamiento y cohesión
+- Preocupaciones de escalabilidad
+- Consideraciones de testing
+
+[DESCRIPCIÓN/CÓDIGO DE ARQUITECTURA]"</pre>
+                </div>
+            </div>
+
+            <div class="technique-box">
+                <h4>3. Revisión Específica de Juegos</h4>
+                <div class="code-block">
+                    <pre>"Revisa este código de juego para:
+- Rendimiento de frame rate (objetivo 60 FPS)
+- Gestión de memoria
+- Eficiencia del game loop
+- Claridad de gestión de estados
+- Impacto en experiencia del jugador
+
+[CÓDIGO DE JUEGO AQUÍ]"</pre>
+                </div>
+            </div>
+
+            <h2>Estrategias Avanzadas de Prompting</h2>
+
+            <h3>1. Razonamiento Multi-Paso</h3>
+            <div class="code-block">
+                <pre>"Necesito implementar IA de enemigos que se adapte al comportamiento del jugador. Pensemos esto paso a paso:
+
+Paso 1: ¿Qué datos deberíamos recopilar sobre el comportamiento del jugador?
+Paso 2: ¿Cómo deberíamos procesar estos datos para identificar patrones?
+Paso 3: ¿Cómo debería la IA adaptar su comportamiento basado en estos patrones?
+Paso 4: ¿Cómo equilibramos adaptación con gameplay predecible?
+Paso 5: ¿Cómo implementamos esto eficientemente en un game loop en tiempo real?
+
+Por favor trabaja cada paso y luego proporciona una implementación completa."</pre>
+            </div>
+
+            <h3>2. Análisis Comparativo</h3>
+            <div class="code-block">
+                <pre>"Compara estos tres enfoques para IA de enemigos en un juego plataformero:
+
+Enfoque 1: Máquinas de estado con comportamientos predefinidos
+Enfoque 2: Q-Learning con aprendizaje basado en recompensas
+Enfoque 3: Sistema híbrido combinando reglas y aprendizaje
+
+Para cada enfoque, analiza:
+- Complejidad de implementación
+- Características de rendimiento
+- Impacto en experiencia del jugador
+- Mantenibilidad
+- Extensibilidad
+
+Luego recomienda el mejor enfoque para un juego estilo Donkey Kong y proporciona detalles de implementación."</pre>
+            </div>
+
+            <h2>Midiendo la Efectividad del Prompting</h2>
+
+            <h3>Métricas de Éxito</h3>
+
+            <div class="technique-box">
+                <h4>1. Calidad del Código</h4>
+                <ul>
+                    <li>Sigue patrones establecidos</li>
+                    <li>Incluye manejo apropiado de errores</li>
+                    <li>Tiene documentación clara</li>
+                    <li>Pasa estándares de revisión de código</li>
+                </ul>
+            </div>
+
+            <div class="technique-box">
+                <h4>2. Éxito de Integración</h4>
+                <ul>
+                    <li>Funciona con sistemas existentes</li>
+                    <li>Mantiene consistencia arquitectónica</li>
+                    <li>No rompe funcionalidad existente</li>
+                    <li>Sigue convenciones del proyecto</li>
+                </ul>
+            </div>
+
+            <div class="technique-box">
+                <h4>3. Completitud</h4>
+                <ul>
+                    <li>Aborda todos los requerimientos</li>
+                    <li>Maneja casos edge</li>
+                    <li>Incluye imports/dependencias necesarias</li>
+                    <li>Proporciona ejemplos de uso</li>
+                </ul>
+            </div>
+
+            <div class="technique-box">
+                <h4>4. Eficiencia</h4>
+                <ul>
+                    <li>Mínimo ida y vuelta necesario</li>
+                    <li>Primera respuesta es utilizable</li>
+                    <li>Requiere modificaciones mínimas</li>
+                    <li>Ahorra tiempo de desarrollo</li>
+                </ul>
+            </div>
+
+            <h2>Mejora Continua</h2>
+
+            <ul>
+                <li><strong>Rastrea lo que funciona:</strong> Mantén prompts exitosos para reutilizar</li>
+                <li><strong>Refina plantillas:</strong> Mejora plantillas de prompts basado en resultados</li>
+                <li><strong>Construye contexto:</strong> Mantén contexto a través de prompts relacionados</li>
+                <li><strong>Aprende patrones:</strong> Identifica qué tipos de solicitudes funcionan mejor</li>
+            </ul>
+
+            <h2>Conclusión</h2>
+            <p>El prompting efectivo de IA para desarrollo de juegos se trata de:</p>
+
+            <ol>
+                <li><strong>Proporcionar Contexto Rico:</strong> Mientras más contexto, mejores resultados</li>
+                <li><strong>Construir Incrementalmente:</strong> Los sistemas complejos funcionan mejor cuando se construyen paso a paso</li>
+                <li><strong>Pensar Arquitectura Primero:</strong> Establecer patrones antes de implementar características</li>
+                <li><strong>Ser Específico:</strong> Requerimientos detallados llevan a soluciones detalladas</li>
+                <li><strong>Iterar Rápidamente:</strong> Usar retroalimentación de IA para refinar y mejorar</li>
+            </ol>
+
+            <p>Estas técnicas transformaron la IA de un simple generador de código en un verdadero socio de desarrollo, capaz de sugerir mejores arquitecturas, manejar requerimientos complejos y producir código de calidad de producción.</p>
+
+            <p>La clave está en tratar la IA como un socio colaborativo en lugar de solo una herramienta—proporciona el contexto y restricciones que necesita para ayudarte a construir algo grandioso.</p>
+        </div>
+    </div>
+</body>
+</html>

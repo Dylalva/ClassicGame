@@ -2,7 +2,12 @@
 Implementación de Q-Learning para la IA de enemigos
 """
 
-import numpy as np
+try:
+    import numpy as np
+except ImportError:
+    # Usar reemplazo cuando NumPy no está disponible (PyInstaller)
+    from src.utils.numpy_replacement import zeros, array, random_choice, exp, maximum
+    import src.utils.numpy_replacement as np
 import random
 import pickle
 import os
@@ -38,10 +43,11 @@ class QLearningAgent:
         
         # Si el estado no existe en la tabla, inicializarlo
         if state_key not in self.q_table:
-            self.q_table[state_key] = np.zeros(self.action_size)
+            self.q_table[state_key] = [0.0] * self.action_size
         
         # Elegir la mejor acción
-        return np.argmax(self.q_table[state_key])
+        q_values = self.q_table[state_key]
+        return q_values.index(max(q_values))
     
     def learn(self, state, action, reward, next_state, done):
         """Actualiza la tabla Q usando la ecuación de Bellman"""
@@ -50,13 +56,13 @@ class QLearningAgent:
         
         # Inicializar estados si no existen
         if state_key not in self.q_table:
-            self.q_table[state_key] = np.zeros(self.action_size)
+            self.q_table[state_key] = [0.0] * self.action_size
         if next_state_key not in self.q_table:
-            self.q_table[next_state_key] = np.zeros(self.action_size)
+            self.q_table[next_state_key] = [0.0] * self.action_size
         
         # Ecuación de Bellman
         current_q = self.q_table[state_key][action]
-        max_next_q = np.max(self.q_table[next_state_key]) if not done else 0
+        max_next_q = max(self.q_table[next_state_key]) if not done else 0
         
         new_q = current_q + self.learning_rate * (reward + self.discount_factor * max_next_q - current_q)
         self.q_table[state_key][action] = new_q

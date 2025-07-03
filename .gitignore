@@ -1,12 +1,19 @@
+# Build artifacts
+build/
+dist/
+*.spec
+*.egg-info/
+
+# Environment variables
+.env
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -19,35 +26,45 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Virtual Environment
-venv/
-env/
-ENV/
+# PyInstaller
+*.manifest
+*.spec
+
+# Game data
+data/saves/
+*.json
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Game specific
-data/saves/
-data/models/*.pkl
+# Logs
 *.log
+logs/
 
-# Firebase
-firebase-adminsdk-*.json
+# Temporary files
+*.tmp
+*.temp
+*~
 
-# Environment variables
-.env.local
-.env.production
-.env
-# PyInstaller
-*.spec
-build/
-dist/
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
