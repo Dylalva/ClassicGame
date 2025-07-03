@@ -3,12 +3,13 @@ Clase Player - Maneja el jugador principal
 """
 
 import pygame
+import os
 
 class Player:
     def __init__(self, x, y, config, color='BLUE', sound_manager=None):
         self.config = config
         self.sound_manager = sound_manager
-        self.rect = pygame.Rect(x, y, 30, 40)
+        self.rect = pygame.Rect(x, y, 40, 55)
         self.velocity_x = 0
         self.velocity_y = 0
         self.speed = 5
@@ -21,6 +22,15 @@ class Player:
         self.total_points = 0  # Puntos totales acumulados
         self.bananas = 0  # Bananas explosivas disponibles
         self.color = color
+        self.direction = 1  # Dirección del jugador
+        
+        # Sistema de animación
+        self.sprites = self.load_sprites()
+        self.current_frame = 0
+        self.animation_timer = 0
+        self.animation_speed = 8  # Frames entre cambios
+        self.jump_frame = 0  # Frame actual del salto
+        self.is_jumping_animation = False
         
     def update(self, platforms=None):
         """Actualiza el estado del jugador"""
@@ -30,8 +40,10 @@ class Player:
         self.velocity_x = 0
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.velocity_x = -self.speed
+            self.direction = -1
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.velocity_x = self.speed
+            self.direction = 1
         
         # Salto
         if (keys[pygame.K_SPACE] or keys[pygame.K_UP] or keys[pygame.K_w]) and self.on_ground:
@@ -89,29 +101,98 @@ class Player:
         self.velocity_y = 0
         self.on_ground = True
     
+    def load_sprites(self):
+        """Carga los sprites del jugador"""
+        sprites = {
+            'idle': [],
+            'jump': []
+        }
+        
+        # Cargar sprites de salto (sprite_01 a sprite_11)
+        for i in range(1, 12):
+            sprite_path = f'assets/player/sprite_{i:02d}.png'
+            if os.path.exists(sprite_path):
+                try:
+                    sprite = pygame.image.load(sprite_path)
+                    sprite = pygame.transform.scale(sprite, (self.rect.width, self.rect.height))
+                    sprites['jump'].append(sprite)
+                except:
+                    pass
+        
+        # Usar sprite_00 para idle si existe
+        idle_path = 'assets/player/sprite_00.png'
+        if os.path.exists(idle_path):
+            try:
+                sprite = pygame.image.load(idle_path)
+                sprite = pygame.transform.scale(sprite, (self.rect.width, self.rect.height))
+                sprites['idle'].append(sprite)
+            except:
+                pass
+        
+        return sprites if any(sprites.values()) else None
+    
+    def update_animation(self):
+        """Actualiza la animación del sprite"""
+        if not self.sprites:
+            return
+        
+        # Animación de salto
+        if not self.on_ground and self.sprites['jump']:
+            if not self.is_jumping_animation:
+                self.is_jumping_animation = True
+                self.jump_frame = 0
+            
+            self.animation_timer += 1
+            if self.animation_timer >= self.animation_speed:
+                if self.jump_frame < len(self.sprites['jump']) - 1:
+                    self.jump_frame += 1
+                self.animation_timer = 0
+        else:
+            # En el suelo - resetear salto
+            if self.is_jumping_animation:
+                self.is_jumping_animation = False
+                self.jump_frame = 0
+    
     def render(self, screen):
         """Renderiza el jugador"""
-        # Cuerpo del jugador
-        pygame.draw.rect(screen, self.config.COLORS[self.color], self.rect)
+        # Actualizar animación
+        self.update_animation()
         
-        # Cara simple para identificar al jugador
-        face_center = (self.rect.centerx, self.rect.centery - 5)
-        pygame.draw.circle(screen, self.config.COLORS['WHITE'], face_center, 3)
+        if self.sprites:
+            # Seleccionar sprite según estado
+            if self.is_jumping_animation and self.sprites['jump']:
+                sprite = self.sprites['jump'][self.jump_frame]
+            elif self.sprites['idle']:
+                sprite = self.sprites['idle'][0]  # Usar primer frame idle
+            else:
+                sprite = None
+            
+            if sprite:
+                # Voltear sprite según dirección
+                if self.direction == -1:
+                    sprite = pygame.transform.flip(sprite, True, False)
+                screen.blit(sprite, self.rect)
+            else:
+                # Fallback: rectángulo
+                pygame.draw.rect(screen, self.config.COLORS[self.color], self.rect)
+        else:
+            # Fallback: rectángulo
+            pygame.draw.rect(screen, self.config.COLORS[self.color], self.rect)
+            # Cara simple
+            face_center = (self.rect.centerx, self.rect.centery - 5)
+            pygame.draw.circle(screen, self.config.COLORS['WHITE'], face_center, 3)
         
-        # Renderizar vidas
+        # Renderizar información del jugador
         font = pygame.font.Font(None, 36)
         lives_text = font.render(f"Vidas: {self.lives}", True, self.config.COLORS['WHITE'])
         screen.blit(lives_text, (10, 10))
         
-        # Renderizar puntuación
         score_text = font.render(f"Puntos: {self.score}", True, self.config.COLORS['WHITE'])
         screen.blit(score_text, (10, 50))
         
-        # Renderizar puntos totales
         total_text = font.render(f"Total: {self.total_points}", True, self.config.COLORS['YELLOW'])
         screen.blit(total_text, (10, 90))
         
-        # Renderizar bananas
         if self.bananas > 0:
             banana_text = font.render(f"Bananas: {self.bananas}", True, self.config.COLORS['GREEN'])
             screen.blit(banana_text, (10, 130))

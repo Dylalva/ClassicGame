@@ -3,6 +3,7 @@ Menú de tienda para comprar items
 """
 
 import pygame
+import os
 
 class ShopMenu:
     def __init__(self, config):
@@ -43,6 +44,25 @@ class ShopMenu:
             elif event.key == pygame.K_ESCAPE:
                 self.action = "CLOSE"
     
+    def load_item_images(self):
+        """Carga imágenes de los items de la tienda"""
+        images = {}
+        item_paths = {
+            'banana': 'assets/shop/banana.png',
+            'heart': 'assets/shop/heart.png'
+        }
+        
+        for item_id, path in item_paths.items():
+            if os.path.exists(path):
+                try:
+                    image = pygame.image.load(path)
+                    image = pygame.transform.scale(image, (40, 40))
+                    images[item_id] = image
+                except:
+                    pass
+        
+        return images
+    
     def render(self, screen, player, shop_manager=None):
         """Renderiza el menú de tienda"""
         # Fondo semi-transparente
@@ -61,25 +81,41 @@ class ShopMenu:
         points_rect = points_text.get_rect(center=(self.config.WINDOW_WIDTH//2, 160))
         screen.blit(points_text, points_rect)
         
+        # Cargar imágenes
+        item_images = self.load_item_images()
+        
         # Items de la tienda
         y_start = 220
         for i, item in enumerate(self.items):
             color = self.config.COLORS['YELLOW'] if i == self.selected_option else self.config.COLORS['WHITE']
             
+            # Rectángulo del item
+            item_rect = pygame.Rect(self.config.WINDOW_WIDTH//2 - 200, y_start + i * 80 - 10, 400, 70)
+            if i == self.selected_option:
+                pygame.draw.rect(screen, (50, 50, 100), item_rect)
+                pygame.draw.rect(screen, color, item_rect, 2)
+            
+            # Imagen del item
+            image_x = item_rect.x + 10
+            if item["name"] == "Banana Explosiva" and 'banana' in item_images:
+                screen.blit(item_images['banana'], (image_x, item_rect.y + 15))
+            elif item["name"] == "Vida Extra" and 'heart' in item_images:
+                screen.blit(item_images['heart'], (image_x, item_rect.y + 15))
+            
+            # Texto del item
+            text_x = image_x + 50 if ('banana' in item_images or 'heart' in item_images) else item_rect.x + 10
+            
             # Nombre del item
             name_text = self.font.render(item["name"], True, color)
-            name_rect = name_text.get_rect(center=(self.config.WINDOW_WIDTH//2, y_start + i * 80))
-            screen.blit(name_text, name_rect)
+            screen.blit(name_text, (text_x, item_rect.y + 5))
             
             # Costo y descripción
             if item["cost"] > 0:
                 cost_text = self.small_font.render(f"Costo: {item['cost']} pts", True, color)
-                cost_rect = cost_text.get_rect(center=(self.config.WINDOW_WIDTH//2, y_start + i * 80 + 25))
-                screen.blit(cost_text, cost_rect)
+                screen.blit(cost_text, (text_x, item_rect.y + 30))
             
             desc_text = self.small_font.render(item["description"], True, self.config.COLORS['WHITE'])
-            desc_rect = desc_text.get_rect(center=(self.config.WINDOW_WIDTH//2, y_start + i * 80 + 45))
-            screen.blit(desc_text, desc_rect)
+            screen.blit(desc_text, (text_x, item_rect.y + 50))
         
         # Inventario actual
         inventory_y = y_start + len(self.items) * 80 + 40
