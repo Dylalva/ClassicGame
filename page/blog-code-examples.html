@@ -5,100 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejemplos de Código Innovadores - Donkey Kong Classic</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .article-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .article-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .article-header h1 {
-            color: #FFD700;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .article-content {
-            color: #fff;
-            line-height: 1.8;
-        }
-        .article-content h2 {
-            color: #4ECDC4;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-        .article-content h3 {
-            color: #FF6B6B;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        .code-block {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #4ECDC4;
-            overflow-x: auto;
-        }
-        .code-block pre {
-            margin: 0;
-            color: #fff;
-            font-family: 'Courier New', monospace;
-        }
-        .innovation-box {
-            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid #FFD700;
-        }
-        .innovation-box h4 {
-            color: #FFD700;
-            margin-bottom: 10px;
-        }
-        .highlight {
-            background: rgba(255, 215, 0, 0.2);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-    </style>
+    <link rel="stylesheet" href="blogstyle.css">
 </head>
 <body>
-    <a href="blog.html" class="back-button">← Volver al Blog</a>
+    <script src="lang.js"></script>
+    <div class="nav-header">
+        <a href="blog.html" class="back-button">
+            <span data-lang="es">← Volver al Blog</span>
+            <span data-lang="en" style="display:none">← Back to Blog</span>
+        </a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span data-lang="es">🇺🇸 EN</span>
+            <span data-lang="en" style="display:none">🇪🇸 ES</span>
+        </button>
+    </div>
     
     <div class="article-container">
         <div class="article-header">
-            <h1>💻 Ejemplos de Código Innovadores</h1>
-            <p>Showcase de las soluciones más interesantes generadas por IA</p>
+            <h1>
+                <span data-lang="es">💻 Ejemplos de Código Innovadores</span>
+                <span data-lang="en" style="display:none">💻 Innovative Code Examples</span>
+            </h1>
+            <p>
+                <span data-lang="es">Showcase de las soluciones más interesantes generadas por IA</span>
+                <span data-lang="en" style="display:none">Showcase of the most interesting AI-generated solutions</span>
+            </p>
         </div>
 
         <div class="article-content">
-            <h2>Sistema de IA Híbrido</h2>
-            <p><span class="highlight">Desafío:</span> Crear enemigos inteligentes que sean desafiantes pero predecibles.</p>
-            <p><span class="highlight">Solución de IA:</span> Sistema híbrido que combina lógica basada en reglas con validación Q-Learning.</p>
+            <h2>
+                <span data-lang="es">Sistema de IA Híbrido</span>
+                <span data-lang="en" style="display:none">Hybrid AI System</span>
+            </h2>
+            <p>
+                <span data-lang="es"><span class="highlight">Desafío:</span> Crear enemigos inteligentes que sean desafiantes pero predecibles.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">Challenge:</span> Create intelligent enemies that are challenging but predictable.</span>
+            </p>
+            <p>
+                <span data-lang="es"><span class="highlight">Solución de IA:</span> Sistema híbrido que combina lógica basada en reglas con validación Q-Learning.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">AI Solution:</span> Hybrid system combining rule-based logic with Q-Learning validation.</span>
+            </p>
 
             <div class="code-block">
                 <pre>def barrel_movement(self, platforms, player_rect=None):
@@ -131,35 +77,59 @@
             </div>
 
             <div class="innovation-box">
-                <h4>Por qué esto es Innovador:</h4>
+                <h4>
+                    <span data-lang="es">Por qué esto es Innovador:</span>
+                    <span data-lang="en" style="display:none">Why this is Innovative:</span>
+                </h4>
                 <ul>
-                    <li><strong>Lo mejor de ambos mundos:</strong> Comportamiento base predecible con mejoras adaptativas</li>
-                    <li><strong>Aprendizaje contextual:</strong> Q-Learning solo anula cuando tiene alta confianza</li>
-                    <li><strong>Experiencia del jugador:</strong> Mantiene la sensación del juego mientras agrega inteligencia</li>
-                    <li><strong>Amigable para debugging:</strong> El núcleo basado en reglas es fácil de entender y modificar</li>
+                    <li>
+                        <span data-lang="es"><strong>Lo mejor de ambos mundos:</strong> Comportamiento base predecible con mejoras adaptativas</span>
+                        <span data-lang="en" style="display:none"><strong>Best of both worlds:</strong> Predictable base behavior with adaptive improvements</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Aprendizaje contextual:</strong> Q-Learning solo anula cuando tiene alta confianza</span>
+                        <span data-lang="en" style="display:none"><strong>Contextual learning:</strong> Q-Learning only overrides when highly confident</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Experiencia del jugador:</strong> Mantiene la sensación del juego mientras agrega inteligencia</span>
+                        <span data-lang="en" style="display:none"><strong>Player experience:</strong> Maintains game feel while adding intelligence</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Amigable para debugging:</strong> El núcleo basado en reglas es fácil de entender y modificar</span>
+                        <span data-lang="en" style="display:none"><strong>Debug-friendly:</strong> Rule-based core is easy to understand and modify</span>
+                    </li>
                 </ul>
             </div>
 
-            <h2>Carga Dinámica de Assets</h2>
-            <p><span class="highlight">Desafío:</span> Assets que no cargan en ejecutables empaquetados debido a diferencias de rutas.</p>
-            <p><span class="highlight">Solución de IA:</span> Resolución dinámica de rutas que funciona tanto en desarrollo como en producción.</p>
+            <h2>
+                <span data-lang="es">Carga Dinámica de Assets</span>
+                <span data-lang="en" style="display:none">Dynamic Asset Loading</span>
+            </h2>
+            <p>
+                <span data-lang="es"><span class="highlight">Desafío:</span> Assets que no cargan en ejecutables empaquetados debido a diferencias de rutas.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">Challenge:</span> Assets not loading in packaged executables due to path differences.</span>
+            </p>
+            <p>
+                <span data-lang="es"><span class="highlight">Solución de IA:</span> Resolución dinámica de rutas que funciona tanto en desarrollo como en producción.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">AI Solution:</span> Dynamic path resolution that works in both development and production.</span>
+            </p>
 
             <div class="code-block">
                 <pre>def load_sprites(self):
-    """Carga dinámica de assets para desarrollo y ejecutables empaquetados"""
+    <span data-lang="es">"""Carga dinámica de assets para desarrollo y ejecutables empaquetados"""</span><span data-lang="en" style="display:none">"""Dynamic asset loading for development and packaged executables"""</span>
     sprites = {'idle': [], 'jump': []}
     
-    # PASO 1: Determinar la ruta base correcta
+    <span data-lang="es"># PASO 1: Determinar la ruta base correcta</span><span data-lang="en" style="display:none"># STEP 1: Determine correct base path</span>
     if hasattr(sys, '_MEIPASS'):
-        # Ejecutable empaquetado con PyInstaller
+        <span data-lang="es"># Ejecutable empaquetado con PyInstaller</span><span data-lang="en" style="display:none"># PyInstaller packaged executable</span>
         base_path = sys._MEIPASS
-        print("Cargando assets desde ejecutable empaquetado")
+        <span data-lang="es">print("Cargando assets desde ejecutable empaquetado")</span><span data-lang="en" style="display:none">print("Loading assets from packaged executable")</span>
     else:
-        # Entorno de desarrollo
+        <span data-lang="es"># Entorno de desarrollo</span><span data-lang="en" style="display:none"># Development environment</span>
         base_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        print("Cargando assets desde directorio de desarrollo")
+        <span data-lang="es">print("Cargando assets desde directorio de desarrollo")</span><span data-lang="en" style="display:none">print("Loading assets from development directory")</span>
     
-    # PASO 2: Cargar sprites con manejo comprensivo de errores
+    <span data-lang="es"># PASO 2: Cargar sprites con manejo comprensivo de errores</span><span data-lang="en" style="display:none"># STEP 2: Load sprites with comprehensive error handling</span>
     for i in range(1, 12):
         sprite_path = os.path.join(base_path, 'assets', 'player', f'sprite_{i:02d}.png')
         
@@ -168,248 +138,152 @@
                 sprite = pygame.image.load(sprite_path)
                 sprite = pygame.transform.scale(sprite, (self.rect.width, self.rect.height))
                 sprites['jump'].append(sprite)
-                print(f"✓ Sprite cargado: sprite_{i:02d}.png")
+                <span data-lang="es">print(f"✓ Sprite cargado: sprite_{i:02d}.png")</span><span data-lang="en" style="display:none">print(f"✓ Sprite loaded: sprite_{i:02d}.png")</span>
             except Exception as e:
-                print(f"✗ Error cargando sprite {sprite_path}: {e}")
-                # Continuar cargando otros sprites
+                <span data-lang="es">print(f"✗ Error cargando sprite {sprite_path}: {e}")</span><span data-lang="en" style="display:none">print(f"✗ Error loading sprite {sprite_path}: {e}")</span>
+                <span data-lang="es"># Continuar cargando otros sprites</span><span data-lang="en" style="display:none"># Continue loading other sprites</span>
         else:
-            print(f"⚠ Sprite no encontrado: {sprite_path}")
+            <span data-lang="es">print(f"⚠ Sprite no encontrado: {sprite_path}")</span><span data-lang="en" style="display:none">print(f"⚠ Sprite not found: {sprite_path}")</span>
     
     return sprites if any(sprites.values()) else None
 
 def load_asset_safely(self, asset_path, default_size=(32, 32)):
-    """Carga segura de assets con fallback"""
+    <span data-lang="es">"""Carga segura de assets con fallback"""</span><span data-lang="en" style="display:none">"""Safe asset loading with fallback"""</span>
     try:
         if os.path.exists(asset_path):
             asset = pygame.image.load(asset_path)
             return pygame.transform.scale(asset, default_size)
     except Exception as e:
-        print(f"Falló la carga de asset para {asset_path}: {e}")
+        <span data-lang="es">print(f"Falló la carga de asset para {asset_path}: {e}")</span><span data-lang="en" style="display:none">print(f"Asset loading failed for {asset_path}: {e}")</span>
     
-    # Retornar rectángulo coloreado como fallback
+    <span data-lang="es"># Retornar rectángulo coloreado como fallback</span><span data-lang="en" style="display:none"># Return colored rectangle as fallback</span>
     surface = pygame.Surface(default_size)
-    surface.fill((255, 0, 255))  # Magenta para assets faltantes
+    <span data-lang="es">surface.fill((255, 0, 255))  # Magenta para assets faltantes</span><span data-lang="en" style="display:none">surface.fill((255, 0, 255))  # Magenta for missing assets</span>
     return surface</pre>
             </div>
 
             <div class="innovation-box">
-                <h4>Por qué esto es Innovador:</h4>
+                <h4>
+                    <span data-lang="es">Por qué esto es Innovador:</span>
+                    <span data-lang="en" style="display:none">Why this is Innovative:</span>
+                </h4>
                 <ul>
-                    <li><strong>Compatibilidad universal:</strong> Funciona en desarrollo y ejecutables empaquetados</li>
-                    <li><strong>Degradación elegante:</strong> Continúa funcionando incluso con assets faltantes</li>
-                    <li><strong>Logging detallado:</strong> Proporciona retroalimentación clara sobre el estado de carga de assets</li>
-                    <li><strong>Sistema de fallback:</strong> Nunca crashea debido a assets faltantes</li>
+                    <li>
+                        <span data-lang="es"><strong>Compatibilidad universal:</strong> Funciona en desarrollo y ejecutables empaquetados</span>
+                        <span data-lang="en" style="display:none"><strong>Universal compatibility:</strong> Works in development and packaged executables</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Degradación elegante:</strong> Continúa funcionando incluso con assets faltantes</span>
+                        <span data-lang="en" style="display:none"><strong>Graceful degradation:</strong> Continues working even with missing assets</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Logging detallado:</strong> Proporciona retroalimentación clara sobre el estado de carga de assets</span>
+                        <span data-lang="en" style="display:none"><strong>Detailed logging:</strong> Provides clear feedback on asset loading status</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Sistema de fallback:</strong> Nunca crashea debido a assets faltantes</span>
+                        <span data-lang="en" style="display:none"><strong>Fallback system:</strong> Never crashes due to missing assets</span>
+                    </li>
                 </ul>
             </div>
 
-            <h2>Spawn Inteligente de Enemigos</h2>
-            <p><span class="highlight">Desafío:</span> Equilibrar la dificultad de enemigos sin abrumar al jugador.</p>
-            <p><span class="highlight">Solución de IA:</span> Sistema de spawn adaptativo que escala con el tiempo y rendimiento del jugador.</p>
+            <h2>
+                <span data-lang="es">Spawn Inteligente de Enemigos</span>
+                <span data-lang="en" style="display:none">Intelligent Enemy Spawning</span>
+            </h2>
+            <p>
+                <span data-lang="es"><span class="highlight">Desafío:</span> Equilibrar la dificultad de enemigos sin abrumar al jugador.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">Challenge:</span> Balance enemy difficulty without overwhelming the player.</span>
+            </p>
+            <p>
+                <span data-lang="es"><span class="highlight">Solución de IA:</span> Sistema de spawn adaptativo que escala con el tiempo y rendimiento del jugador.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">AI Solution:</span> Adaptive spawning system that scales with time and player performance.</span>
+            </p>
 
             <div class="code-block">
                 <pre>def spawn_entities(self):
-    """Spawn inteligente de entidades con dificultad adaptativa"""
+    <span data-lang="es">"""Spawn inteligente de entidades con dificultad adaptativa"""</span><span data-lang="en" style="display:none">"""Intelligent entity spawning with adaptive difficulty"""</span>
     self.spawn_timer += 1
     
-    # SPAWN ADAPTATIVO DE BARRILES
+    <span data-lang="es"># SPAWN ADAPTATIVO DE BARRILES</span><span data-lang="en" style="display:none"># ADAPTIVE BARREL SPAWNING</span>
     self.spawn_barrels_adaptively()
     
-    # SPAWN GRADUAL DE MONSTRUOS
+    <span data-lang="es"># SPAWN GRADUAL DE MONSTRUOS</span><span data-lang="en" style="display:none"># GRADUAL MONSTER SPAWNING</span>
     self.spawn_monsters_gradually()
 
 def spawn_barrels_adaptively(self):
-    """Spawn de barriles con dificultad creciente en el tiempo"""
+    <span data-lang="es">"""Spawn de barriles con dificultad creciente en el tiempo"""</span><span data-lang="en" style="display:none">"""Barrel spawning with increasing difficulty over time"""</span>
     barrel_count = len([e for e in self.enemies if e.enemy_type == "barrel"])
     
-    # Calcular máximo de barriles basado en tiempo jugado
-    time_factor = self.spawn_timer // 3600  # Cada 60 segundos
-    max_barrels = min(1 + time_factor, 3)  # Máximo 3 barriles
+    <span data-lang="es"># Calcular máximo de barriles basado en tiempo jugado</span><span data-lang="en" style="display:none"># Calculate maximum barrels based on play time</span>
+    time_factor = self.spawn_timer // 3600  <span data-lang="es"># Cada 60 segundos</span><span data-lang="en" style="display:none"># Every 60 seconds</span>
+    max_barrels = min(1 + time_factor, 3)  <span data-lang="es"># Máximo 3 barriles</span><span data-lang="en" style="display:none"># Maximum 3 barrels</span>
     
-    # Calcular tasa de spawn (aumenta con el tiempo)
+    <span data-lang="es"># Calcular tasa de spawn (aumenta con el tiempo)</span><span data-lang="en" style="display:none"># Calculate spawn rate (increases with time)</span>
     current_spawn_rate = min(
         self.base_spawn_rate + (time_factor * self.spawn_rate_increase),
         self.max_spawn_rate
     )
     
-    # Spawn si está bajo el límite y pasa la verificación de probabilidad
+    <span data-lang="es"># Spawn si está bajo el límite y pasa la verificación de probabilidad</span><span data-lang="en" style="display:none"># Spawn if under limit and passes probability check</span>
     if barrel_count < max_barrels and random.random() < current_spawn_rate:
         self.spawn_barrel()
-        print(f"Barril spawneado (Tasa: {current_spawn_rate:.3f}, Cantidad: {barrel_count + 1}/{max_barrels})")
-
-def spawn_barrel(self):
-    """Spawn de barril en ubicación estratégica"""
-    # Elegir punto de spawn basado en posición del jugador
-    spawn_points = [(50, 100), (self.config.WINDOW_WIDTH - 50, 100)]
-    
-    # Preferir punto de spawn más lejos del jugador
-    if hasattr(self, 'player') and self.player:
-        player_x = self.player.rect.centerx
-        if player_x < self.config.WINDOW_WIDTH / 2:
-            spawn_point = spawn_points[1]  # Spawn a la derecha
-        else:
-            spawn_point = spawn_points[0]  # Spawn a la izquierda
-    else:
-        spawn_point = random.choice(spawn_points)
-    
-    new_enemy = Enemy(spawn_point[0], spawn_point[1], self.config, "barrel")
-    self.enemies.append(new_enemy)</pre>
+        <span data-lang="es">print(f"Barril spawneado (Tasa: {current_spawn_rate:.3f}, Cantidad: {barrel_count + 1}/{max_barrels})")</span><span data-lang="en" style="display:none">print(f"Barrel spawned (Rate: {current_spawn_rate:.3f}, Count: {barrel_count + 1}/{max_barrels})")</span></pre>
             </div>
 
             <div class="innovation-box">
-                <h4>Por qué esto es Innovador:</h4>
+                <h4>
+                    <span data-lang="es">Por qué esto es Innovador:</span>
+                    <span data-lang="en" style="display:none">Why this is Innovative:</span>
+                </h4>
                 <ul>
-                    <li><strong>Dificultad adaptativa:</strong> La tasa de spawn aumenta con el tiempo jugado</li>
-                    <li><strong>Posicionamiento estratégico:</strong> Los enemigos aparecen lejos del jugador para mejor desafío</li>
-                    <li><strong>Progresión equilibrada:</strong> El aumento gradual previene abrumar</li>
-                    <li><strong>Monitoreo de rendimiento:</strong> Estadísticas integradas para ajustes</li>
+                    <li>
+                        <span data-lang="es"><strong>Dificultad adaptativa:</strong> La tasa de spawn aumenta con el tiempo jugado</span>
+                        <span data-lang="en" style="display:none"><strong>Adaptive difficulty:</strong> Spawn rate increases with play time</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Posicionamiento estratégico:</strong> Los enemigos aparecen lejos del jugador para mejor desafío</span>
+                        <span data-lang="en" style="display:none"><strong>Strategic positioning:</strong> Enemies spawn away from player for better challenge</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Progresión equilibrada:</strong> El aumento gradual previene abrumar</span>
+                        <span data-lang="en" style="display:none"><strong>Balanced progression:</strong> Gradual increase prevents overwhelming</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Monitoreo de rendimiento:</strong> Estadísticas integradas para ajustes</span>
+                        <span data-lang="en" style="display:none"><strong>Performance monitoring:</strong> Built-in statistics for tuning</span>
+                    </li>
                 </ul>
             </div>
 
-            <h2>Sistema de Pausa Adaptativo</h2>
-            <p><span class="highlight">Desafío:</span> Hacer enemigos menos predecibles sin hacerlos injustos.</p>
-            <p><span class="highlight">Solución de IA:</span> Sistema de pausa dinámico que disminuye con el tiempo, haciendo enemigos más agresivos.</p>
-
-            <div class="code-block">
-                <pre>def handle_pause_behavior(self):
-    """Sistema de pausa dinámico que se adapta con el tiempo"""
-    self.pause_timer += 1
-    
-    if self.is_paused:
-        # Contar tiempo de pausa
-        if self.pause_timer >= self.pause_duration:
-            self.is_paused = False
-            self.pause_timer = 0
-            
-            # ELEMENTO ADAPTATIVO: Reducir duración de pausa para la próxima vez
-            self.pause_duration = max(
-                self.min_pause_duration,
-                self.pause_duration - self.pause_reduction
-            )
-            
-            print(f"Enemigo reanudado, próxima pausa será de {self.pause_duration} frames")
-    else:
-        # Verificar si es hora de pausar
-        if self.pause_timer >= self.pause_cycle:
-            self.is_paused = True
-            self.pause_timer = 0
-            print(f"Enemigo pausado por {self.pause_duration} frames")
-
-def get_pause_statistics(self):
-    """Obtener estadísticas actuales del sistema de pausa"""
-    return {
-        'current_pause_duration': self.pause_duration,
-        'min_pause_duration': self.min_pause_duration,
-        'is_currently_paused': self.is_paused,
-        'pause_reduction_per_cycle': self.pause_reduction,
-        'aggressiveness_level': 1 - (self.pause_duration / 60)  # Escala 0-1
-    }</pre>
-            </div>
-
-            <div class="innovation-box">
-                <h4>Por qué esto es Innovador:</h4>
-                <ul>
-                    <li><strong>Dificultad emergente:</strong> Los enemigos naturalmente se vuelven más agresivos con el tiempo</li>
-                    <li><strong>Adaptación del jugador:</strong> Da tiempo a los jugadores para aprender, luego aumenta el desafío</li>
-                    <li><strong>Progresión suave:</strong> El cambio gradual se siente natural, no brusco</li>
-                    <li><strong>Configurable:</strong> Fácil de ajustar para diferentes curvas de dificultad</li>
-                </ul>
-            </div>
-
-            <h2>Automatización Robusta de Build</h2>
-            <p><span class="highlight">Desafío:</span> Crear un sistema de build que maneje todos los casos edge y diferencias de plataforma.</p>
-            <p><span class="highlight">Solución de IA:</span> Automatización comprensiva de build con manejo de errores y reportes.</p>
-
-            <div class="code-block">
-                <pre>def build_game():
-    """Sistema robusto de build con manejo comprensivo de errores"""
-    print("Iniciando proceso de build...")
-    
-    # PASO 1: Detectar disponibilidad de PyInstaller
-    pyinstaller_cmd = detect_pyinstaller_command()
-    if not pyinstaller_cmd:
-        print("✗ PyInstaller no disponible")
-        return False
-    
-    # PASO 2: Build con captura de errores
-    final_cmd = build_command(pyinstaller_cmd)
-    
-    try:
-        print(f"Ejecutando: {' '.join(final_cmd)}")
-        result = subprocess.run(
-            final_cmd, 
-            check=True, 
-            capture_output=True, 
-            text=True,
-            timeout=300  # Timeout de 5 minutos
-        )
-        print("✓ Build completado exitosamente")
-        return True
-        
-    except subprocess.TimeoutExpired:
-        print("✗ Build expiró después de 5 minutos")
-        return False
-    except subprocess.CalledProcessError as e:
-        print(f"✗ Build falló con código de salida: {e.returncode}")
-        analyze_build_error(e.stdout, e.stderr)
-        return False
-    except Exception as e:
-        print(f"✗ Error inesperado de build: {e}")
-        return False
-
-def analyze_build_error(stdout, stderr):
-    """Analizar errores de build y proporcionar sugerencias útiles"""
-    error_patterns = {
-        "No module named": "Dependencia faltante - verificar requirements.txt",
-        "Permission denied": "Problema de permisos - intentar ejecutar como administrador",
-        "Unable to find": "Archivo faltante - verificar si todos los assets están presentes",
-        "Memory error": "Memoria insuficiente - intentar cerrar otras aplicaciones",
-        "CPU dispatcher": "Conflicto NumPy - verificar compatibilidad de versión NumPy"
-    }
-    
-    combined_output = f"{stdout}\n{stderr}".lower()
-    
-    print("\n🔍 Análisis de Error:")
-    for pattern, suggestion in error_patterns.items():
-        if pattern.lower() in combined_output:
-            print(f"  • {pattern}: {suggestion}")
-    
-    print(f"\n📋 Salida Completa de Error:")
-    if stdout:
-        print(f"STDOUT:\n{stdout}")
-    if stderr:
-        print(f"STDERR:\n{stderr}")</pre>
-            </div>
-
-            <div class="innovation-box">
-                <h4>Por qué esto es Innovador:</h4>
-                <ul>
-                    <li><strong>Detección inteligente:</strong> Encuentra automáticamente la forma correcta de ejecutar PyInstaller</li>
-                    <li><strong>Análisis comprensivo de errores:</strong> Proporciona sugerencias específicas para problemas comunes</li>
-                    <li><strong>Protección de timeout:</strong> Previene builds colgados</li>
-                    <li><strong>Sistema de validación:</strong> Asegura que el build realmente funcionó</li>
-                    <li><strong>Soporte al usuario:</strong> Crea documentación y ayudas de instalación</li>
-                </ul>
-            </div>
-
-            <h2>Q-Learning sin NumPy</h2>
-            <p><span class="highlight">Desafío:</span> Conflictos de PyInstaller con NumPy causando errores de empaquetado.</p>
-            <p><span class="highlight">Solución de IA:</span> Implementación de Q-Learning usando solo Python estándar.</p>
+            <h2>
+                <span data-lang="es">Q-Learning sin NumPy</span>
+                <span data-lang="en" style="display:none">Q-Learning without NumPy</span>
+            </h2>
+            <p>
+                <span data-lang="es"><span class="highlight">Desafío:</span> Conflictos de PyInstaller con NumPy causando errores de empaquetado.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">Challenge:</span> PyInstaller conflicts with NumPy causing packaging errors.</span>
+            </p>
+            <p>
+                <span data-lang="es"><span class="highlight">Solución de IA:</span> Implementación de Q-Learning usando solo Python estándar.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">AI Solution:</span> Q-Learning implementation using only standard Python.</span>
+            </p>
 
             <div class="code-block">
                 <pre>class SimpleArray:
-    """Reemplazo simple de NumPy para empaquetado"""
+    <span data-lang="es">"""Reemplazo simple de NumPy para empaquetado"""</span><span data-lang="en" style="display:none">"""Simple NumPy replacement for packaging"""</span>
     def __init__(self, data):
         self.data = data if isinstance(data, list) else [data]
     
     def argmax(self):
-        """Encuentra el índice del valor máximo"""
+        <span data-lang="es">"""Encuentra el índice del valor máximo"""</span><span data-lang="en" style="display:none">"""Find index of maximum value"""</span>
         if not self.data:
             return 0
         max_val = max(self.data)
         return self.data.index(max_val)
     
     def zeros(self, shape):
-        """Crea array de ceros"""
+        <span data-lang="es">"""Crea array de ceros"""</span><span data-lang="en" style="display:none">"""Create array of zeros"""</span>
         if isinstance(shape, int):
             return [0.0] * shape
         return [[0.0] * shape[1] for _ in range(shape[0])]
@@ -424,7 +298,7 @@ class QLearningAgent:
         self.q_table = {}
     
     def choose_action(self, state):
-        """Selección de acción epsilon-greedy sin NumPy"""
+        <span data-lang="es">"""Selección de acción epsilon-greedy sin NumPy"""</span><span data-lang="en" style="display:none">"""Epsilon-greedy action selection without NumPy"""</span>
         state_key = self.get_state_key(state)
         
         if random.random() < self.epsilon:
@@ -433,34 +307,73 @@ class QLearningAgent:
         if state_key not in self.q_table:
             self.q_table[state_key] = [0.0] * self.action_size
         
-        # Usar implementación manual de argmax
+        <span data-lang="es"># Usar implementación manual de argmax</span><span data-lang="en" style="display:none"># Use manual argmax implementation</span>
         q_values = self.q_table[state_key]
         max_value = max(q_values)
         return q_values.index(max_value)</pre>
             </div>
 
             <div class="innovation-box">
-                <h4>Por qué esto es Innovador:</h4>
+                <h4>
+                    <span data-lang="es">Por qué esto es Innovador:</span>
+                    <span data-lang="en" style="display:none">Why this is Innovative:</span>
+                </h4>
                 <ul>
-                    <li><strong>Solución de compatibilidad:</strong> Elimina conflictos de dependencias de PyInstaller</li>
-                    <li><strong>Rendimiento mantenido:</strong> Funcionalidad completa sin bibliotecas externas</li>
-                    <li><strong>Simplicidad:</strong> Más fácil de debuggear y entender</li>
-                    <li><strong>Portabilidad:</strong> Funciona en cualquier instalación de Python</li>
+                    <li>
+                        <span data-lang="es"><strong>Solución de compatibilidad:</strong> Elimina conflictos de dependencias de PyInstaller</span>
+                        <span data-lang="en" style="display:none"><strong>Compatibility solution:</strong> Eliminates PyInstaller dependency conflicts</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Rendimiento mantenido:</strong> Funcionalidad completa sin bibliotecas externas</span>
+                        <span data-lang="en" style="display:none"><strong>Maintained performance:</strong> Full functionality without external libraries</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Simplicidad:</strong> Más fácil de debuggear y entender</span>
+                        <span data-lang="en" style="display:none"><strong>Simplicity:</strong> Easier to debug and understand</span>
+                    </li>
+                    <li>
+                        <span data-lang="es"><strong>Portabilidad:</strong> Funciona en cualquier instalación de Python</span>
+                        <span data-lang="en" style="display:none"><strong>Portability:</strong> Works on any Python installation</span>
+                    </li>
                 </ul>
             </div>
 
-            <h2>Conclusión</h2>
-            <p>Estos ejemplos demuestran cómo la IA puede generar código sofisticado y listo para producción que maneja la complejidad del mundo real y casos edge de manera efectiva. Las soluciones van más allá de la funcionalidad básica para incluir:</p>
+            <h2>
+                <span data-lang="es">Conclusión</span>
+                <span data-lang="en" style="display:none">Conclusion</span>
+            </h2>
+            <p>
+                <span data-lang="es">Estos ejemplos demuestran cómo la IA puede generar código sofisticado y listo para producción que maneja la complejidad del mundo real y casos edge de manera efectiva. Las soluciones van más allá de la funcionalidad básica para incluir:</span>
+                <span data-lang="en" style="display:none">These examples demonstrate how AI can generate sophisticated, production-ready code that handles real-world complexity and edge cases effectively. The solutions go beyond basic functionality to include:</span>
+            </p>
 
             <ul>
-                <li><strong>Manejo robusto de errores</strong></li>
-                <li><strong>Degradación elegante</strong></li>
-                <li><strong>Adaptabilidad inteligente</strong></li>
-                <li><strong>Compatibilidad multiplataforma</strong></li>
-                <li><strong>Experiencia de usuario optimizada</strong></li>
+                <li>
+                    <span data-lang="es"><strong>Manejo robusto de errores</strong></span>
+                    <span data-lang="en" style="display:none"><strong>Robust error handling</strong></span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Degradación elegante</strong></span>
+                    <span data-lang="en" style="display:none"><strong>Graceful degradation</strong></span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Adaptabilidad inteligente</strong></span>
+                    <span data-lang="en" style="display:none"><strong>Intelligent adaptability</strong></span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Compatibilidad multiplataforma</strong></span>
+                    <span data-lang="en" style="display:none"><strong>Cross-platform compatibility</strong></span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Experiencia de usuario optimizada</strong></span>
+                    <span data-lang="en" style="display:none"><strong>Optimized user experience</strong></span>
+                </li>
             </ul>
 
-            <p>La clave está en proporcionar contexto rico y requerimientos específicos a la IA, permitiéndole generar soluciones que no solo funcionan, sino que son mantenibles, extensibles y profesionales.</p>
+            <p>
+                <span data-lang="es">La clave está en proporcionar contexto rico y requerimientos específicos a la IA, permitiéndole generar soluciones que no solo funcionan, sino que son mantenibles, extensibles y profesionales.</span>
+                <span data-lang="en" style="display:none">The key is providing rich context and specific requirements to AI, allowing it to generate solutions that not only work but are maintainable, extensible, and professional.</span>
+            </p>
         </div>
     </div>
 </body>

@@ -5,141 +5,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Donkey Kong Classic</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        .blog-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        .blog-card h3 {
-            color: #FFD700;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-        .blog-card p {
-            color: #fff;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .blog-card .read-more {
-            display: inline-block;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-        .blog-card .read-more:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .blog-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .blog-header h1 {
-            color: #FFD700;
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-        .blog-header p {
-            color: #fff;
-            font-size: 1.2em;
-        }
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-    </style>
+    <link rel="stylesheet" href="blogstyle.css"> 
 </head>
 <body>
-    <a href="index.html" class="back-button">← Volver al Inicio</a>
+    <script src="lang.js"></script>
+    <div class="nav-header">
+        <a href="index.html" class="back-button">
+            <span data-lang="es">← Volver al Inicio</span>
+            <span data-lang="en" style="display:none">← Back to Home</span>
+        </a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span data-lang="es">🇺🇸 EN</span>
+            <span data-lang="en" style="display:none">🇪🇸 ES</span>
+        </button>
+    </div>
     
     <div class="blog-container">
         <div class="blog-header">
-            <h1>🎮 Blog de Desarrollo</h1>
-            <p>Explora el proceso de creación de Donkey Kong Classic con IA</p>
+            <h1>
+                <span data-lang="es">🎮 Blog de Desarrollo</span>
+                <span data-lang="en" style="display:none">🎮 Development Blog</span>
+            </h1>
+            <p>
+                <span data-lang="es">Explora el proceso de creación de Donkey Kong Classic con IA</span>
+                <span data-lang="en" style="display:none">Explore the AI-powered creation process of Donkey Kong Classic</span>
+            </p>
         </div>
 
         <div class="blog-grid">
             <div class="blog-card">
-                <h3>🤖 Algoritmos de Inteligencia Artificial</h3>
-                <p>Descubre cómo implementamos Q-Learning y sistemas híbridos de IA para crear enemigos inteligentes que aprenden del comportamiento del jugador.</p>
-                <a href="blog-ai-algorithms.html" class="read-more">Leer Más</a>
+                <h3>
+                    <span data-lang="es">🚀 Mi Viaje con IA</span>
+                    <span data-lang="en" style="display:none">🚀 My AI Journey</span>
+                </h3>
+                <p>
+                    <span data-lang="es">La historia personal detrás del desarrollo: desafíos, descubrimientos y lecciones aprendidas en este proyecto retro-futurista.</span>
+                    <span data-lang="en" style="display:none">The personal story behind development: challenges, discoveries and lessons learned in this retro-futuristic project.</span>
+                </p>
+                <a href="blog-journey.html" class="read-more">
+                    <span data-lang="es">Leer Más</span>
+                    <span data-lang="en" style="display:none">Read More</span>
+                </a>
+            </div>
+
+               <div class="blog-card">
+                <h3>
+                    <span data-lang="es">🎮 Galería de Gameplay</span>
+                    <span data-lang="en" style="display:none">🎮 Gameplay Gallery</span>
+                </h3>
+                <p>
+                    <span data-lang="es">Explora capturas de pantalla del juego mostrando diferentes mecánicas, menús y características visuales del proyecto.</span>
+                    <span data-lang="en" style="display:none">Explore game screenshots showing different mechanics, menus and visual features of the project.</span>
+                </p>
+                <a href="blog-gameplay.html" class="read-more">
+                    <span data-lang="es">Ver Galería</span>
+                    <span data-lang="en" style="display:none">View Gallery</span>
+                </a>
             </div>
 
             <div class="blog-card">
-                <h3>🏗️ Arquitectura del Juego</h3>
-                <p>Explora la arquitectura modular basada en managers que hace que el juego sea mantenible y escalable, siguiendo principios SOLID.</p>
-                <a href="blog-architecture.html" class="read-more">Leer Más</a>
+                <h3>
+                    <span data-lang="es">🎯 Técnicas de Prompting</span>
+                    <span data-lang="en" style="display:none">🎯 Prompting Techniques</span>
+                </h3>
+                <p>
+                    <span data-lang="es">Las técnicas más efectivas para trabajar con IA en desarrollo de juegos, con ejemplos reales y resultados comprobados.</span>
+                    <span data-lang="en" style="display:none">The most effective techniques for working with AI in game development, with real examples and proven results.</span>
+                </p>
+                <a href="blog-prompting.html" class="read-more">
+                    <span data-lang="es">Leer Más</span>
+                    <span data-lang="en" style="display:none">Read More</span>
+                </a>
+            </div>
+            
+            <div class="blog-card">
+                <h3>
+                    <span data-lang="es">🤖 Algoritmos de Inteligencia Artificial</span>
+                    <span data-lang="en" style="display:none">🤖 AI Algorithms</span>
+                </h3>
+                <p>
+                    <span data-lang="es">Descubre cómo implementamos Q-Learning y sistemas híbridos de IA para crear enemigos inteligentes que aprenden del comportamiento del jugador.</span>
+                    <span data-lang="en" style="display:none">Discover how we implemented Q-Learning and hybrid AI systems to create intelligent enemies that learn from player behavior.</span>
+                </p>
+                <a href="blog-ai-algorithms.html" class="read-more">
+                    <span data-lang="es">Leer Más</span>
+                    <span data-lang="en" style="display:none">Read More</span>
+                </a>
             </div>
 
             <div class="blog-card">
-                <h3>⚡ Automatización del Desarrollo</h3>
-                <p>Cómo la IA aceleró el desarrollo en un 67%, automatizando tareas complejas y generando código de calidad profesional.</p>
-                <a href="blog-automation.html" class="read-more">Leer Más</a>
+                <h3>
+                    <span data-lang="es">🏗️ Arquitectura del Juego</span>
+                    <span data-lang="en" style="display:none">🏗️ Game Architecture</span>
+                </h3>
+                <p>
+                    <span data-lang="es">Explora la arquitectura modular basada en managers que hace que el juego sea mantenible y escalable, siguiendo principios SOLID.</span>
+                    <span data-lang="en" style="display:none">Explore the modular manager-based architecture that makes the game maintainable and scalable, following SOLID principles.</span>
+                </p>
+                <a href="blog-architecture.html" class="read-more">
+                    <span data-lang="es">Leer Más</span>
+                    <span data-lang="en" style="display:none">Read More</span>
+                </a>
             </div>
 
             <div class="blog-card">
-                <h3>💻 Ejemplos de Código Innovadores</h3>
-                <p>Showcase de las soluciones más interesantes generadas por IA, desde sistemas híbridos hasta carga dinámica de assets.</p>
-                <a href="blog-code-examples.html" class="read-more">Leer Más</a>
+                <h3>
+                    <span data-lang="es">⚡ Automatización del Desarrollo</span>
+                    <span data-lang="en" style="display:none">⚡ Development Automation</span>
+                </h3>
+                <p>
+                    <span data-lang="es">Cómo la IA aceleró el desarrollo en un 67%, automatizando tareas complejas y generando código de calidad profesional.</span>
+                    <span data-lang="en" style="display:none">How AI accelerated development by 67%, automating complex tasks and generating professional-quality code.</span>
+                </p>
+                <a href="blog-automation.html" class="read-more">
+                    <span data-lang="es">Leer Más</span>
+                    <span data-lang="en" style="display:none">Read More</span>
+                </a>
             </div>
 
             <div class="blog-card">
-                <h3>🛠️ Guía de Desarrollo</h3>
-                <p>Guía completa para desarrolladores que quieran contribuir o modificar el juego, incluyendo setup y mejores prácticas.</p>
-                <a href="blog-development.html" class="read-more">Leer Más</a>
+                <h3>
+                    <span data-lang="es">💻 Ejemplos de Código Innovadores</span>
+                    <span data-lang="en" style="display:none">💻 Innovative Code Examples</span>
+                </h3>
+                <p>
+                    <span data-lang="es">Showcase de las soluciones más interesantes generadas por IA, desde sistemas híbridos hasta carga dinámica de assets.</span>
+                    <span data-lang="en" style="display:none">Showcase of the most interesting AI-generated solutions, from hybrid systems to dynamic asset loading.</span>
+                </p>
+                <a href="blog-code-examples.html" class="read-more">
+                    <span data-lang="es">Leer Más</span>
+                    <span data-lang="en" style="display:none">Read More</span>
+                </a>
             </div>
 
             <div class="blog-card">
-                <h3>☁️ Configuración de Firebase</h3>
-                <p>Tutorial paso a paso para configurar Firebase y habilitar las funciones en la nube como leaderboards y guardado automático.</p>
-                <a href="blog-firebase.html" class="read-more">Leer Más</a>
+                <h3>
+                    <span data-lang="es">🛠️ Guía de Desarrollo</span>
+                    <span data-lang="en" style="display:none">🛠️ Development Guide</span>
+                </h3>
+                <p>
+                    <span data-lang="es">Guía completa para desarrolladores que quieran contribuir o modificar el juego, incluyendo setup y mejores prácticas.</span>
+                    <span data-lang="en" style="display:none">Complete guide for developers who want to contribute or modify the game, including setup and best practices.</span>
+                </p>
+                <a href="blog-development.html" class="read-more">
+                    <span data-lang="es">Leer Más</span>
+                    <span data-lang="en" style="display:none">Read More</span>
+                </a>
             </div>
 
             <div class="blog-card">
-                <h3>🎯 Técnicas de Prompting</h3>
-                <p>Las técnicas más efectivas para trabajar con IA en desarrollo de juegos, con ejemplos reales y resultados comprobados.</p>
-                <a href="blog-prompting.html" class="read-more">Leer Más</a>
-            </div>
-
-            <div class="blog-card">
-                <h3>🚀 Mi Viaje con IA</h3>
-                <p>La historia personal detrás del desarrollo: desafíos, descubrimientos y lecciones aprendidas en este proyecto retro-futurista.</p>
-                <a href="blog-journey.html" class="read-more">Leer Más</a>
+                <h3>
+                    <span data-lang="es">☁️ Configuración de Firebase</span>
+                    <span data-lang="en" style="display:none">☁️ Firebase Setup</span>
+                </h3>
+                <p>
+                    <span data-lang="es">Tutorial paso a paso para configurar Firebase y habilitar las funciones en la nube como leaderboards y guardado automático.</span>
+                    <span data-lang="en" style="display:none">Step-by-step tutorial to configure Firebase and enable cloud features like leaderboards and auto-save.</span>
+                </p>
+                <a href="blog-firebase.html" class="read-more">
+                    <span data-lang="es">Leer Más</span>
+                    <span data-lang="en" style="display:none">Read More</span>
+                </a>
             </div>
         </div>
     </div>

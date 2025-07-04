@@ -21,23 +21,3 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLanguage();
     }
 });
-
-// Smooth scrolling
-function scrollToSection(sectionId) {
-    document.getElementById(sectionId).scrollIntoView({
-        behavior: 'smooth'
-    });
-}
-
-// Copy command functionality
-function copyCommand() {
-    const command = 'git clone https://github.com/Dylalva/ClassicGame.git';
-    navigator.clipboard.writeText(command).then(() => {
-        const btn = event.target;
-        const originalText = btn.innerHTML;
-        btn.innerHTML = currentLang === 'es' ? 'Copiado!' : 'Copied!';
-        setTimeout(() => {
-            btn.innerHTML = originalText;
-        }, 2000);
-    });
-}

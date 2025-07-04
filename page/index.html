@@ -9,14 +9,21 @@
 <body>
     <header>
         <nav>
-            <div class="logo">🎮 Donkey Kong Classic</div>
+            <div class="logo">🎮 <span data-lang="es">Donkey Kong Classic</span><span data-lang="en" style="display:none">Donkey Kong Classic</span></div>
             <div class="nav-links">
-                <a href="blog.html" class="nav-link">📝 Blog</a>
-                <a href="https://github.com/Dylalva/ClassicGame" class="github-btn" id="githubBtn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <button class="lang-btn" onclick="toggleLanguage()">
+                    <span data-lang="es">🇺🇸 EN</span>
+                    <span data-lang="en" style="display:none">🇪🇸 ES</span>
+                </button>
+                <a href="blog.html" class="nav-link">
+                    <span data-lang="es">📝 Blog</span>
+                    <span data-lang="en" style="display:none">📝 Blog</span>
+                </a>
+                <a href="https://github.com/Dylalva/ClassicGame" class="github-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
-                    GitHub
+                    <span class="btn-text">GitHub</span>
                 </a>
             </div>
         </nav>
@@ -25,11 +32,23 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>Donkey Kong Classic Game</h1>
-                <p>Un juego de plataformas clásico con IA avanzada usando Q-Learning</p>
+                <h1>
+                    <span data-lang="es">Donkey Kong Classic Game</span>
+                    <span data-lang="en" style="display:none">Donkey Kong Classic Game</span>
+                </h1>
+                <p>
+                    <span data-lang="es">Un juego de plataformas clásico con IA avanzada usando Q-Learning</span>
+                    <span data-lang="en" style="display:none">A classic platformer game with advanced AI using Q-Learning</span>
+                </p>
                 <div class="hero-buttons">
-                    <button class="btn primary" onclick="scrollToSection('features')">Explorar</button>
-                    <button class="btn secondary" onclick="scrollToSection('download')">Descargar</button>
+                    <button class="btn primary" onclick="scrollToSection('features')">
+                        <span data-lang="es">Explorar</span>
+                        <span data-lang="en" style="display:none">Explore</span>
+                    </button>
+                    <button class="btn secondary" onclick="scrollToSection('download')">
+                        <span data-lang="es">Descargar</span>
+                        <span data-lang="en" style="display:none">Download</span>
+                    </button>
                 </div>
             </div>
             <div class="hero-image">
@@ -38,33 +57,63 @@
         </section>
 
         <section id="features" class="features">
-            <h2>Características</h2>
+            <h2>
+                <span data-lang="es">Características</span>
+                <span data-lang="en" style="display:none">Features</span>
+            </h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎮</div>
-                    <h3>Mecánicas Clásicas</h3>
-                    <p>Plataformas tradicionales con controles intuitivos</p>
+                    <h3>
+                        <span data-lang="es">Mecánicas Clásicas</span>
+                        <span data-lang="en" style="display:none">Classic Mechanics</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Plataformas tradicionales con controles intuitivos</span>
+                        <span data-lang="en" style="display:none">Traditional platformer with intuitive controls</span>
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🤖</div>
-                    <h3>IA Avanzada</h3>
-                    <p>Enemigos con Q-Learning que aprenden tu estilo</p>
+                    <h3>
+                        <span data-lang="es">IA Avanzada</span>
+                        <span data-lang="en" style="display:none">Advanced AI</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Enemigos con Q-Learning que aprenden tu estilo</span>
+                        <span data-lang="en" style="display:none">Q-Learning enemies that learn your playstyle</span>
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">☁️</div>
-                    <h3>Firebase Cloud</h3>
-                    <p>Datos guardados en la nube automáticamente</p>
+                    <h3>
+                        <span data-lang="es">Firebase Cloud</span>
+                        <span data-lang="en" style="display:none">Firebase Cloud</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Datos guardados en la nube automáticamente</span>
+                        <span data-lang="en" style="display:none">Automatic cloud data saving</span>
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🏪</div>
-                    <h3>Sistema de Tienda</h3>
-                    <p>Mejoras y power-ups disponibles</p>
+                    <h3>
+                        <span data-lang="es">Sistema de Tienda</span>
+                        <span data-lang="en" style="display:none">Shop System</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Mejoras y power-ups disponibles</span>
+                        <span data-lang="en" style="display:none">Upgrades and power-ups available</span>
+                    </p>
                 </div>
             </div>
         </section>
 
         <section class="tech-stack">
-            <h2>Tecnologías</h2>
+            <h2>
+                <span data-lang="es">Tecnologías</span>
+                <span data-lang="en" style="display:none">Technologies</span>
+            </h2>
             <div class="tech-grid">
                 <span class="tech-tag">Python 3.12+</span>
                 <span class="tech-tag">Pygame 2.5.2</span>
@@ -76,25 +125,49 @@
         </section>
 
         <section id="download" class="download">
-            <h2>Comenzar</h2>
+            <h2>
+                <span data-lang="es">Comenzar</span>
+                <span data-lang="en" style="display:none">Get Started</span>
+            </h2>
             <div class="download-options">
                 <div class="download-card">
-                    <h3>Ejecutable</h3>
-                    <p>Descarga y ejecuta directamente</p>
-                    <button class="btn primary">Descargar .exe</button>
+                    <h3>
+                        <span data-lang="es">Ejecutable</span>
+                        <span data-lang="en" style="display:none">Executable</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Descarga y ejecuta directamente</span>
+                        <span data-lang="en" style="display:none">Download and run directly</span>
+                    </p>
+                    <button class="btn primary">
+                        <span data-lang="es">Descargar .exe</span>
+                        <span data-lang="en" style="display:none">Download .exe</span>
+                    </button>
                 </div>
                 <div class="download-card">
-                    <h3>Código Fuente</h3>
-                    <p>Clona el repositorio y ejecuta</p>
+                    <h3>
+                        <span data-lang="es">Código Fuente</span>
+                        <span data-lang="en" style="display:none">Source Code</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Clona el repositorio y ejecuta</span>
+                        <span data-lang="en" style="display:none">Clone repository and run</span>
+                    </p>
                     <code>git clone https://github.com/Dylalva/ClassicGame.git</code>
-                    <button class="btn secondary" onclick="copyCommand()">Copiar</button>
+                    <button class="btn secondary" onclick="copyCommand()">
+                        <span data-lang="es">Copiar</span>
+                        <span data-lang="en" style="display:none">Copy</span>
+                    </button>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Donkey Kong Classic Game. Licencia MIT.</p>
+        <p>
+            <span data-lang="es">&copy; 2025 Donkey Kong Classic Game. Licencia MIT.</span>
+            <span data-lang="en" style="display:none">&copy; 2025 Donkey Kong Classic Game. MIT License.</span>
+        </p>
     </footer>
 
     <script src="script.js"></script>

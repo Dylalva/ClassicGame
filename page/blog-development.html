@@ -5,138 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía de Desarrollo - Donkey Kong Classic</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .article-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .article-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .article-header h1 {
-            color: #FFD700;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .article-content {
-            color: #fff;
-            line-height: 1.8;
-        }
-        .article-content h2 {
-            color: #4ECDC4;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-        .article-content h3 {
-            color: #FF6B6B;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        .code-block {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #4ECDC4;
-            overflow-x: auto;
-        }
-        .code-block pre {
-            margin: 0;
-            color: #fff;
-            font-family: 'Courier New', monospace;
-        }
-        .file-structure {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid #4ECDC4;
-            font-family: monospace;
-            color: #4ECDC4;
-        }
-        .checklist {
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #FFD700;
-        }
-        .checklist h4 {
-            color: #FFD700;
-            margin-bottom: 15px;
-        }
-        .highlight {
-            background: rgba(255, 215, 0, 0.2);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-    </style>
+    <link rel="stylesheet" href="blogstyle.css">
 </head>
 <body>
-    <a href="blog.html" class="back-button">← Volver al Blog</a>
+    <script src="lang.js"></script>
+    <div class="nav-header">
+        <a href="blog.html" class="back-button">
+            <span data-lang="es">← Volver al Blog</span>
+            <span data-lang="en" style="display:none">← Back to Blog</span>
+        </a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span data-lang="es">🇺🇸 EN</span>
+            <span data-lang="en" style="display:none">🇪🇸 ES</span>
+        </button>
+    </div>
     
     <div class="article-container">
         <div class="article-header">
-            <h1>🛠️ Guía de Desarrollo</h1>
-            <p>Todo lo que necesitas saber para contribuir al proyecto</p>
+            <h1>
+                <span data-lang="es">🛠️ Guía de Desarrollo</span>
+                <span data-lang="en" style="display:none">🛠️ Development Guide</span>
+            </h1>
+            <p>
+                <span data-lang="es">Todo lo que necesitas saber para contribuir al proyecto</span>
+                <span data-lang="en" style="display:none">Everything you need to know to contribute to the project</span>
+            </p>
         </div>
 
         <div class="article-content">
-            <h2>Configuración del Entorno de Desarrollo</h2>
+            <h2>
+                <span data-lang="es">Configuración del Entorno de Desarrollo</span>
+                <span data-lang="en" style="display:none">Development Environment Setup</span>
+            </h2>
 
-            <h3>Prerrequisitos</h3>
+            <h3>
+                <span data-lang="es">Prerrequisitos</span>
+                <span data-lang="en" style="display:none">Prerequisites</span>
+            </h3>
             <ul>
-                <li><strong>Python 3.12+</strong> (recomendado)</li>
-                <li><strong>Git</strong> para control de versiones</li>
-                <li><strong>Editor de código</strong> (VS Code, PyCharm, etc.)</li>
-                <li><strong>Cuenta de Firebase</strong> (para funciones en la nube)</li>
+                <li>
+                    <span data-lang="es"><strong>Python 3.12+</strong> (recomendado)</span>
+                    <span data-lang="en" style="display:none"><strong>Python 3.12+</strong> (recommended)</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Git</strong> para control de versiones</span>
+                    <span data-lang="en" style="display:none"><strong>Git</strong> for version control</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Editor de código</strong> (VS Code, PyCharm, etc.)</span>
+                    <span data-lang="en" style="display:none"><strong>Code editor</strong> (VS Code, PyCharm, etc.)</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Cuenta de Firebase</strong> (para funciones en la nube)</span>
+                    <span data-lang="en" style="display:none"><strong>Firebase account</strong> (for cloud features)</span>
+                </li>
             </ul>
 
-            <h3>Configuración Inicial</h3>
+            <h3>
+                <span data-lang="es">Configuración Inicial</span>
+                <span data-lang="en" style="display:none">Initial Setup</span>
+            </h3>
             <div class="code-block">
                 <pre>git clone &lt;repository-url&gt;
 cd ClassicGame
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+<span data-lang="es"># En Windows: venv\Scripts\activate</span><span data-lang="en" style="display:none"># On Windows: venv\Scripts\activate</span>
+source venv/bin/activate
 pip install -r requirements.txt</pre>
             </div>
 
             <div class="code-block">
                 <pre>cp .env.example .env
-# Editar .env con tus credenciales de Firebase</pre>
+<span data-lang="es"># Editar .env con tus credenciales de Firebase</span><span data-lang="en" style="display:none"># Edit .env with your Firebase credentials</span></pre>
             </div>
 
             <div class="code-block">
                 <pre>python main.py</pre>
             </div>
 
-            <h2>Estructura del Proyecto en Profundidad</h2>
+            <h2>
+                <span data-lang="es">Estructura del Proyecto en Profundidad</span>
+                <span data-lang="en" style="display:none">In-Depth Project Structure</span>
+            </h2>
 
             <div class="file-structure">
-                <pre>ClassicGame/
+                <pre><span data-lang="es">ClassicGame/
 ├── src/                    # Código fuente
 │   ├── game/              # Lógica principal del juego
 │   │   ├── game_manager.py    # Coordinador principal
@@ -169,49 +122,109 @@ pip install -r requirements.txt</pre>
 │   └── shop/              # Iconos de tienda
 ├── data/                  # Datos persistentes
 ├── docs/                  # Documentación
-└── tests/                 # Pruebas unitarias</pre>
+└── tests/                 # Pruebas unitarias</span><span data-lang="en" style="display:none">ClassicGame/
+├── src/                    # Source code
+│   ├── game/              # Core game logic
+│   │   ├── game_manager.py    # Main coordinator
+│   │   └── level.py           # Level definitions
+│   ├── entities/          # Game objects
+│   │   ├── player.py          # Player character
+│   │   ├── enemy.py           # AI enemies
+│   │   ├── collectible.py     # Collectible objects
+│   │   └── projectile.py      # Throwable objects
+│   ├── managers/          # System managers
+│   │   ├── entity_manager.py      # Entity lifecycle
+│   │   ├── collision_manager.py   # Physics/collisions
+│   │   ├── game_state_manager.py  # State management
+│   │   ├── tutorial_manager.py    # Tutorial system
+│   │   ├── level_manager.py       # Level generation
+│   │   ├── firebase_manager.py    # Cloud integration
+│   │   ├── sound_manager.py       # Audio system
+│   │   ├── save_manager.py        # Local saves
+│   │   ├── shop_manager.py        # Shop logic
+│   │   └── ui_manager.py          # UI coordination
+│   ├── ai/                # Artificial Intelligence
+│   │   └── q_learning.py      # Q-Learning algorithm
+│   ├── ui/                # User Interface
+│   │   └── shop_menu.py       # Shop interface
+│   └── utils/             # Utilities
+│       └── config.py          # Game configuration
+├── assets/                # Game assets
+│   ├── player/            # Player sprites
+│   ├── enemy/             # Enemy sprites
+│   └── shop/              # Shop icons
+├── data/                  # Persistent data
+├── docs/                  # Documentation
+└── tests/                 # Unit tests</span></pre>
             </div>
 
-            <h2>Flujo de Trabajo de Desarrollo</h2>
+            <h2>
+                <span data-lang="es">Flujo de Trabajo de Desarrollo</span>
+                <span data-lang="en" style="display:none">Development Workflow</span>
+            </h2>
 
-            <h3>Agregando Nuevas Características</h3>
+            <h3>
+                <span data-lang="es">Agregando Nuevas Características</span>
+                <span data-lang="en" style="display:none">Adding New Features</span>
+            </h3>
 
             <div class="code-block">
-                <pre>git checkout -b feature/nueva-caracteristica</pre>
+                <pre><span data-lang="es">git checkout -b feature/nueva-caracteristica</span><span data-lang="en" style="display:none">git checkout -b feature/new-feature</span></pre>
             </div>
 
-            <p><span class="highlight">Sigue los Patrones de Arquitectura:</span></p>
+            <p>
+                <span data-lang="es"><span class="highlight">Sigue los Patrones de Arquitectura:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Follow Architecture Patterns:</span></span>
+            </p>
             <ul>
-                <li>Usa el patrón manager para nuevos sistemas</li>
-                <li>Implementa manejo adecuado de errores</li>
-                <li>Agrega opciones de configuración a <code>config.py</code></li>
+                <li>
+                    <span data-lang="es">Usa el patrón manager para nuevos sistemas</span>
+                    <span data-lang="en" style="display:none">Use manager pattern for new systems</span>
+                </li>
+                <li>
+                    <span data-lang="es">Implementa manejo adecuado de errores</span>
+                    <span data-lang="en" style="display:none">Implement proper error handling</span>
+                </li>
+                <li>
+                    <span data-lang="es">Agrega opciones de configuración a <code>config.py</code></span>
+                    <span data-lang="en" style="display:none">Add configuration options to <code>config.py</code></span>
+                </li>
             </ul>
 
             <div class="code-block">
                 <pre>python -m pytest tests/</pre>
             </div>
 
-            <h3>Pautas de Estilo de Código</h3>
+            <h3>
+                <span data-lang="es">Pautas de Estilo de Código</span>
+                <span data-lang="en" style="display:none">Code Style Guidelines</span>
+            </h3>
 
-            <h4>Estilo Python</h4>
-            <p>Sigue PEP 8 con estas especificaciones:</p>
+            <h4>
+                <span data-lang="es">Estilo Python</span>
+                <span data-lang="en" style="display:none">Python Style</span>
+            </h4>
+            <p>
+                <span data-lang="es">Sigue PEP 8 con estas especificaciones:</span>
+                <span data-lang="en" style="display:none">Follow PEP 8 with these specifications:</span>
+            </p>
 
             <div class="code-block">
-                <pre># Nomenclatura de clases: PascalCase
+                <pre><span data-lang="es"># Nomenclatura de clases: PascalCase</span><span data-lang="en" style="display:none"># Class naming: PascalCase</span>
 class EntityManager:
     pass
 
-# Nomenclatura de funciones/variables: snake_case
+<span data-lang="es"># Nomenclatura de funciones/variables: snake_case</span><span data-lang="en" style="display:none"># Function/variable naming: snake_case</span>
 def update_entities(self):
     player_position = self.get_player_position()
 
-# Constantes: UPPER_CASE
+<span data-lang="es"># Constantes: UPPER_CASE</span><span data-lang="en" style="display:none"># Constants: UPPER_CASE</span>
 MAX_ENEMIES = 10
 DEFAULT_SPEED = 5
 
-# Docstrings: Estilo Google
+<span data-lang="es"># Docstrings: Estilo Google</span><span data-lang="en" style="display:none"># Docstrings: Google style</span>
 def calculate_distance(self, point_a, point_b):
-    """Calcula la distancia euclidiana entre dos puntos.
+    <span data-lang="es">"""Calcula la distancia euclidiana entre dos puntos.
     
     Args:
         point_a (tuple): Primer punto (x, y)
@@ -219,52 +232,31 @@ def calculate_distance(self, point_a, point_b):
     
     Returns:
         float: Distancia entre puntos
-    """</pre>
+    """</span><span data-lang="en" style="display:none">"""Calculate euclidean distance between two points.
+    
+    Args:
+        point_a (tuple): First point (x, y)
+        point_b (tuple): Second point (x, y)
+    
+    Returns:
+        float: Distance between points
+    """</span></pre>
             </div>
 
-            <h4>Patrones Específicos del Juego</h4>
+            <h2>
+                <span data-lang="es">Agregando Nuevas Entidades</span>
+                <span data-lang="en" style="display:none">Adding New Entities</span>
+            </h2>
 
-            <p><span class="highlight">Patrón Manager:</span></p>
+            <h3>
+                <span data-lang="es">Paso 1: Crear Clase de Entidad</span>
+                <span data-lang="en" style="display:none">Step 1: Create Entity Class</span>
+            </h3>
             <div class="code-block">
-                <pre>class NewManager:
-    def __init__(self, config):
-        self.config = config
-        # Inicializar estado del manager
-    
-    def update(self):
-        """Actualizar estado del manager cada frame"""
-        pass
-    
-    def render(self, screen):
-        """Renderizar visuales del manager"""
-        pass</pre>
-            </div>
-
-            <p><span class="highlight">Patrón Entity:</span></p>
-            <div class="code-block">
-                <pre>class NewEntity:
-    def __init__(self, x, y, config):
-        self.rect = pygame.Rect(x, y, width, height)
-        self.config = config
-        self.active = True
-    
-    def update(self, *args):
-        """Actualizar estado de la entidad"""
-        pass
-    
-    def render(self, screen):
-        """Renderizar entidad"""
-        pass</pre>
-            </div>
-
-            <h2>Agregando Nuevas Entidades</h2>
-
-            <h3>Paso 1: Crear Clase de Entidad</h3>
-            <div class="code-block">
-                <pre># src/entities/nueva_entidad.py
+                <pre><span data-lang="es"># src/entities/nueva_entidad.py</span><span data-lang="en" style="display:none"># src/entities/new_entity.py</span>
 import pygame
 
-class NuevaEntidad:
+<span data-lang="es">class NuevaEntidad:</span><span data-lang="en" style="display:none">class NewEntity:</span>
     def __init__(self, x, y, config):
         self.config = config
         self.rect = pygame.Rect(x, y, 30, 30)
@@ -272,263 +264,267 @@ class NuevaEntidad:
         self.velocity_y = 0
         self.active = True
         
-        # Cargar sprites
+        <span data-lang="es"># Cargar sprites</span><span data-lang="en" style="display:none"># Load sprites</span>
         self.sprites = self.load_sprites()
         
     def load_sprites(self):
-        """Cargar sprites de la entidad"""
-        # Implementación aquí
+        <span data-lang="es">"""Cargar sprites de la entidad"""</span><span data-lang="en" style="display:none">"""Load entity sprites"""</span>
+        <span data-lang="es"># Implementación aquí</span><span data-lang="en" style="display:none"># Implementation here</span>
         pass
     
     def update(self):
-        """Actualizar lógica de la entidad"""
-        # Física, IA, etc.
+        <span data-lang="es">"""Actualizar lógica de la entidad"""</span><span data-lang="en" style="display:none">"""Update entity logic"""</span>
+        <span data-lang="es"># Física, IA, etc.</span><span data-lang="en" style="display:none"># Physics, AI, etc.</span>
         pass
     
     def render(self, screen):
-        """Renderizar entidad"""
+        <span data-lang="es">"""Renderizar entidad"""</span><span data-lang="en" style="display:none">"""Render entity"""</span>
         if self.sprites:
             screen.blit(self.sprites[0], self.rect)
         else:
             pygame.draw.rect(screen, (255, 0, 0), self.rect)</pre>
             </div>
 
-            <h3>Paso 2: Integrar con Entity Manager</h3>
+            <h2>
+                <span data-lang="es">Testing</span>
+                <span data-lang="en" style="display:none">Testing</span>
+            </h2>
+
+            <h3>
+                <span data-lang="es">Testing Unitario</span>
+                <span data-lang="en" style="display:none">Unit Testing</span>
+            </h3>
             <div class="code-block">
-                <pre># En src/managers/entity_manager.py
-from src.entities.nueva_entidad import NuevaEntidad
-
-class EntityManager:
-    def __init__(self, config):
-        # ... código existente ...
-        self.nuevas_entidades = []
-    
-    def spawn_nueva_entidad(self, x, y):
-        """Spawn nueva entidad"""
-        entidad = NuevaEntidad(x, y, self.config)
-        self.nuevas_entidades.append(entidad)
-    
-    def update_all(self, platforms=None):
-        # ... actualizaciones existentes ...
-        
-        # Actualizar nuevas entidades
-        for entidad in self.nuevas_entidades[:]:
-            entidad.update()
-            if not entidad.active:
-                self.nuevas_entidades.remove(entidad)
-    
-    def render_all(self, screen):
-        # ... renderizado existente ...
-        
-        # Renderizar nuevas entidades
-        for entidad in self.nuevas_entidades:
-            entidad.render(screen)</pre>
-            </div>
-
-            <h2>Optimización de Rendimiento</h2>
-
-            <h3>Profiling</h3>
-            <div class="code-block">
-                <pre>import cProfile
-import pstats
-
-def profile_game():
-    """Perfilar rendimiento del juego"""
-    profiler = cProfile.Profile()
-    profiler.enable()
-    
-    # Ejecutar bucle del juego
-    game.run()
-    
-    profiler.disable()
-    stats = pstats.Stats(profiler)
-    stats.sort_stats('cumulative')
-    stats.print_stats(20)  # Top 20 funciones</pre>
-            </div>
-
-            <h3>Optimizaciones Comunes</h3>
-
-            <p><span class="highlight">Cache de Sprites:</span></p>
-            <div class="code-block">
-                <pre>class SpriteCache:
-    _cache = {}
-    
-    @classmethod
-    def get_sprite(cls, path, size):
-        key = (path, size)
-        if key not in cls._cache:
-            sprite = pygame.image.load(path)
-            sprite = pygame.transform.scale(sprite, size)
-            cls._cache[key] = sprite
-        return cls._cache[key]</pre>
-            </div>
-
-            <h2>Testing</h2>
-
-            <h3>Testing Unitario</h3>
-            <div class="code-block">
-                <pre># tests/test_nueva_entidad.py
+                <pre><span data-lang="es"># tests/test_nueva_entidad.py</span><span data-lang="en" style="display:none"># tests/test_new_entity.py</span>
 import unittest
-from src.entities.nueva_entidad import NuevaEntidad
+<span data-lang="es">from src.entities.nueva_entidad import NuevaEntidad</span><span data-lang="en" style="display:none">from src.entities.new_entity import NewEntity</span>
 from src.utils.config import Config
 
-class TestNuevaEntidad(unittest.TestCase):
+<span data-lang="es">class TestNuevaEntidad(unittest.TestCase):</span><span data-lang="en" style="display:none">class TestNewEntity(unittest.TestCase):</span>
     def setUp(self):
         self.config = Config()
-        self.entidad = NuevaEntidad(100, 100, self.config)
+        <span data-lang="es">self.entidad = NuevaEntidad(100, 100, self.config)</span><span data-lang="en" style="display:none">self.entity = NewEntity(100, 100, self.config)</span>
     
     def test_initialization(self):
-        """Test inicialización de entidad"""
-        self.assertEqual(self.entidad.rect.x, 100)
+        <span data-lang="es">"""Test inicialización de entidad"""</span><span data-lang="en" style="display:none">"""Test entity initialization"""</span>
+        <span data-lang="es">self.assertEqual(self.entidad.rect.x, 100)
         self.assertEqual(self.entidad.rect.y, 100)
-        self.assertTrue(self.entidad.active)
+        self.assertTrue(self.entidad.active)</span><span data-lang="en" style="display:none">self.assertEqual(self.entity.rect.x, 100)
+        self.assertEqual(self.entity.rect.y, 100)
+        self.assertTrue(self.entity.active)</span>
     
     def test_update(self):
-        """Test lógica de actualización de entidad"""
-        initial_x = self.entidad.rect.x
+        <span data-lang="es">"""Test lógica de actualización de entidad"""</span><span data-lang="en" style="display:none">"""Test entity update logic"""</span>
+        <span data-lang="es">initial_x = self.entidad.rect.x
         self.entidad.velocity_x = 5
         self.entidad.update()
-        self.assertEqual(self.entidad.rect.x, initial_x + 5)
+        self.assertEqual(self.entidad.rect.x, initial_x + 5)</span><span data-lang="en" style="display:none">initial_x = self.entity.rect.x
+        self.entity.velocity_x = 5
+        self.entity.update()
+        self.assertEqual(self.entity.rect.x, initial_x + 5)</span>
 
 if __name__ == '__main__':
     unittest.main()</pre>
             </div>
 
-            <h2>Debugging</h2>
+            <h2>
+                <span data-lang="es">Despliegue</span>
+                <span data-lang="en" style="display:none">Deployment</span>
+            </h2>
 
-            <h3>Modo Debug</h3>
-            <div class="code-block">
-                <pre>class Config:
-    DEBUG_MODE = True  # Configurar vía variable de entorno
-    
-    # Colores de debug
-    DEBUG_COLORS = {
-        'COLLISION_BOX': (255, 0, 0),
-        'AI_STATE': (0, 255, 0),
-        'PATH_FINDING': (0, 0, 255)
-    }</pre>
-            </div>
-
-            <h3>Renderizado de Debug</h3>
-            <div class="code-block">
-                <pre>def render_debug_info(self, screen):
-    """Renderizar información de debug"""
-    if not self.config.DEBUG_MODE:
-        return
-    
-    # Dibujar cajas de colisión
-    for entidad in self.entidades:
-        pygame.draw.rect(screen, self.config.DEBUG_COLORS['COLLISION_BOX'], 
-                        entidad.rect, 2)
-    
-    # Dibujar estado de IA
-    font = pygame.font.Font(None, 24)
-    for enemigo in self.enemigos:
-        if hasattr(enemigo, 'ai_agent'):
-            state_text = font.render(f"Estado: {enemigo.current_state}", 
-                                   True, self.config.DEBUG_COLORS['AI_STATE'])
-            screen.blit(state_text, (enemigo.rect.x, enemigo.rect.y - 25))</pre>
-            </div>
-
-            <h2>Gestión de Assets</h2>
-
-            <h3>Agregando Nuevos Assets</h3>
-            <ol>
-                <li><strong>Sprites:</strong> Colocar en el subdirectorio apropiado de <code>assets/</code></li>
-                <li><strong>Convención de Nomenclatura:</strong> <code>entidad_estado_frame.png</code></li>
-                <li><strong>Pautas de Tamaño:</strong> Tamaño consistente dentro de tipos de entidad</li>
-                <li><strong>Formato:</strong> PNG con soporte de transparencia</li>
-            </ol>
-
-            <h3>Patrón de Carga de Assets</h3>
-            <div class="code-block">
-                <pre>def load_asset_safely(self, path, default_size=(32, 32)):
-    """Cargar asset del juego de forma segura con fallback"""
-    try:
-        if os.path.exists(path):
-            sprite = pygame.image.load(path)
-            return pygame.transform.scale(sprite, default_size)
-    except Exception as e:
-        logger.warning(f"Falló la carga de asset {path}: {e}")
-    
-    # Retornar rectángulo coloreado como fallback
-    surface = pygame.Surface(default_size)
-    surface.fill((255, 0, 255))  # Magenta para assets faltantes
-    return surface</pre>
-            </div>
-
-            <h2>Despliegue</h2>
-
-            <h3>Construir Ejecutable</h3>
+            <h3>
+                <span data-lang="es">Construir Ejecutable</span>
+                <span data-lang="en" style="display:none">Build Executable</span>
+            </h3>
             <div class="code-block">
                 <pre>python build.py</pre>
             </div>
 
             <div class="checklist">
-                <h4>Lista de Verificación de Distribución</h4>
+                <h4>
+                    <span data-lang="es">Lista de Verificación de Distribución</span>
+                    <span data-lang="en" style="display:none">Distribution Checklist</span>
+                </h4>
                 <ul>
-                    <li>☐ Todos los assets incluidos</li>
-                    <li>☐ Variables de entorno configuradas</li>
-                    <li>☐ Dependencias resueltas</li>
-                    <li>☐ Testing multiplataforma</li>
-                    <li>☐ Validación de rendimiento</li>
-                    <li>☐ Verificación de manejo de errores</li>
+                    <li>
+                        <span data-lang="es">☐ Todos los assets incluidos</span>
+                        <span data-lang="en" style="display:none">☐ All assets included</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Variables de entorno configuradas</span>
+                        <span data-lang="en" style="display:none">☐ Environment variables configured</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Dependencias resueltas</span>
+                        <span data-lang="en" style="display:none">☐ Dependencies resolved</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Testing multiplataforma</span>
+                        <span data-lang="en" style="display:none">☐ Cross-platform testing</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Validación de rendimiento</span>
+                        <span data-lang="en" style="display:none">☐ Performance validation</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Verificación de manejo de errores</span>
+                        <span data-lang="en" style="display:none">☐ Error handling verification</span>
+                    </li>
                 </ul>
             </div>
 
-            <h2>Pautas de Contribución</h2>
+            <h2>
+                <span data-lang="es">Pautas de Contribución</span>
+                <span data-lang="en" style="display:none">Contribution Guidelines</span>
+            </h2>
 
-            <h3>Proceso de Pull Request</h3>
+            <h3>
+                <span data-lang="es">Proceso de Pull Request</span>
+                <span data-lang="en" style="display:none">Pull Request Process</span>
+            </h3>
             <ol>
-                <li><strong>Fork</strong> el repositorio</li>
-                <li><strong>Crear</strong> rama de característica</li>
-                <li><strong>Implementar</strong> cambios con tests</li>
-                <li><strong>Actualizar</strong> documentación</li>
-                <li><strong>Enviar</strong> pull request con descripción</li>
+                <li>
+                    <span data-lang="es"><strong>Fork</strong> el repositorio</span>
+                    <span data-lang="en" style="display:none"><strong>Fork</strong> the repository</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Crear</strong> rama de característica</span>
+                    <span data-lang="en" style="display:none"><strong>Create</strong> feature branch</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Implementar</strong> cambios con tests</span>
+                    <span data-lang="en" style="display:none"><strong>Implement</strong> changes with tests</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Actualizar</strong> documentación</span>
+                    <span data-lang="en" style="display:none"><strong>Update</strong> documentation</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Enviar</strong> pull request con descripción</span>
+                    <span data-lang="en" style="display:none"><strong>Submit</strong> pull request with description</span>
+                </li>
             </ol>
 
             <div class="checklist">
-                <h4>Lista de Verificación de Code Review</h4>
+                <h4>
+                    <span data-lang="es">Lista de Verificación de Code Review</span>
+                    <span data-lang="en" style="display:none">Code Review Checklist</span>
+                </h4>
                 <ul>
-                    <li>☐ El código sigue las pautas de estilo</li>
-                    <li>☐ Los tests pasan</li>
-                    <li>☐ Documentación actualizada</li>
-                    <li>☐ Sin regresiones de rendimiento</li>
-                    <li>☐ Manejo de errores implementado</li>
-                    <li>☐ Assets gestionados apropiadamente</li>
+                    <li>
+                        <span data-lang="es">☐ El código sigue las pautas de estilo</span>
+                        <span data-lang="en" style="display:none">☐ Code follows style guidelines</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Los tests pasan</span>
+                        <span data-lang="en" style="display:none">☐ Tests pass</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Documentación actualizada</span>
+                        <span data-lang="en" style="display:none">☐ Documentation updated</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Sin regresiones de rendimiento</span>
+                        <span data-lang="en" style="display:none">☐ No performance regressions</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Manejo de errores implementado</span>
+                        <span data-lang="en" style="display:none">☐ Error handling implemented</span>
+                    </li>
+                    <li>
+                        <span data-lang="es">☐ Assets gestionados apropiadamente</span>
+                        <span data-lang="en" style="display:none">☐ Assets managed appropriately</span>
+                    </li>
                 </ul>
             </div>
 
-            <h2>Mejores Prácticas</h2>
+            <h2>
+                <span data-lang="es">Mejores Prácticas</span>
+                <span data-lang="en" style="display:none">Best Practices</span>
+            </h2>
 
-            <h3>Arquitectura</h3>
+            <h3>
+                <span data-lang="es">Arquitectura</span>
+                <span data-lang="en" style="display:none">Architecture</span>
+            </h3>
             <ul>
-                <li>Mantener separación clara de responsabilidades</li>
-                <li>Usar el patrón manager para nuevos sistemas</li>
-                <li>Implementar manejo robusto de errores</li>
-                <li>Seguir principios SOLID</li>
+                <li>
+                    <span data-lang="es">Mantener separación clara de responsabilidades</span>
+                    <span data-lang="en" style="display:none">Maintain clear separation of concerns</span>
+                </li>
+                <li>
+                    <span data-lang="es">Usar el patrón manager para nuevos sistemas</span>
+                    <span data-lang="en" style="display:none">Use manager pattern for new systems</span>
+                </li>
+                <li>
+                    <span data-lang="es">Implementar manejo robusto de errores</span>
+                    <span data-lang="en" style="display:none">Implement robust error handling</span>
+                </li>
+                <li>
+                    <span data-lang="es">Seguir principios SOLID</span>
+                    <span data-lang="en" style="display:none">Follow SOLID principles</span>
+                </li>
             </ul>
 
-            <h3>Rendimiento</h3>
+            <h3>
+                <span data-lang="es">Rendimiento</span>
+                <span data-lang="en" style="display:none">Performance</span>
+            </h3>
             <ul>
-                <li>Perfilar regularmente el código</li>
-                <li>Usar cache para assets costosos</li>
-                <li>Optimizar bucles críticos</li>
-                <li>Monitorear uso de memoria</li>
+                <li>
+                    <span data-lang="es">Perfilar regularmente el código</span>
+                    <span data-lang="en" style="display:none">Profile code regularly</span>
+                </li>
+                <li>
+                    <span data-lang="es">Usar cache para assets costosos</span>
+                    <span data-lang="en" style="display:none">Use caching for expensive assets</span>
+                </li>
+                <li>
+                    <span data-lang="es">Optimizar bucles críticos</span>
+                    <span data-lang="en" style="display:none">Optimize critical loops</span>
+                </li>
+                <li>
+                    <span data-lang="es">Monitorear uso de memoria</span>
+                    <span data-lang="en" style="display:none">Monitor memory usage</span>
+                </li>
             </ul>
 
-            <h3>Mantenibilidad</h3>
+            <h3>
+                <span data-lang="es">Mantenibilidad</span>
+                <span data-lang="en" style="display:none">Maintainability</span>
+            </h3>
             <ul>
-                <li>Escribir código autodocumentado</li>
-                <li>Usar nombres descriptivos</li>
-                <li>Mantener funciones pequeñas y enfocadas</li>
-                <li>Documentar decisiones arquitectónicas</li>
+                <li>
+                    <span data-lang="es">Escribir código autodocumentado</span>
+                    <span data-lang="en" style="display:none">Write self-documenting code</span>
+                </li>
+                <li>
+                    <span data-lang="es">Usar nombres descriptivos</span>
+                    <span data-lang="en" style="display:none">Use descriptive names</span>
+                </li>
+                <li>
+                    <span data-lang="es">Mantener funciones pequeñas y enfocadas</span>
+                    <span data-lang="en" style="display:none">Keep functions small and focused</span>
+                </li>
+                <li>
+                    <span data-lang="es">Documentar decisiones arquitectónicas</span>
+                    <span data-lang="en" style="display:none">Document architectural decisions</span>
+                </li>
             </ul>
 
-            <h2>Conclusión</h2>
-            <p>Esta guía de desarrollo proporciona la base para contribuir y extender Donkey Kong Classic. Siguiendo estos patrones y pautas, puedes mantener la calidad del código y la arquitectura del sistema mientras agregas nuevas características emocionantes.</p>
+            <h2>
+                <span data-lang="es">Conclusión</span>
+                <span data-lang="en" style="display:none">Conclusion</span>
+            </h2>
+            <p>
+                <span data-lang="es">Esta guía de desarrollo proporciona la base para contribuir y extender Donkey Kong Classic. Siguiendo estos patrones y pautas, puedes mantener la calidad del código y la arquitectura del sistema mientras agregas nuevas características emocionantes.</span>
+                <span data-lang="en" style="display:none">This development guide provides the foundation for contributing to and extending Donkey Kong Classic. By following these patterns and guidelines, you can maintain code quality and system architecture while adding exciting new features.</span>
+            </p>
 
-            <p>Recuerda: el objetivo es crear código que sea no solo funcional, sino también mantenible, testeable y extensible para futuros desarrolladores.</p>
+            <p>
+                <span data-lang="es">Recuerda: el objetivo es crear código que sea no solo funcional, sino también mantenible, testeable y extensible para futuros desarrolladores.</span>
+                <span data-lang="en" style="display:none">Remember: the goal is to create code that is not only functional, but also maintainable, testable, and extensible for future developers.</span>
+            </p>
         </div>
     </div>
 </body>

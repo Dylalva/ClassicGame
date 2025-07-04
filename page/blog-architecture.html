@@ -5,98 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arquitectura del Juego - Donkey Kong Classic</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .article-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .article-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .article-header h1 {
-            color: #FFD700;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .article-content {
-            color: #fff;
-            line-height: 1.8;
-        }
-        .article-content h2 {
-            color: #4ECDC4;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-        .article-content h3 {
-            color: #FF6B6B;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        .code-block {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #4ECDC4;
-            overflow-x: auto;
-        }
-        .code-block pre {
-            margin: 0;
-            color: #fff;
-            font-family: 'Courier New', monospace;
-        }
-        .architecture-diagram {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid #4ECDC4;
-            font-family: monospace;
-            color: #4ECDC4;
-            text-align: center;
-        }
-        .highlight {
-            background: rgba(255, 215, 0, 0.2);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-    </style>
+    <link rel="stylesheet" href="blogstyle.css">
 </head>
 <body>
-    <a href="blog.html" class="back-button">← Volver al Blog</a>
+    <script src="lang.js"></script>
+    <div class="nav-header">
+        <a href="blog.html" class="back-button">
+            <span data-lang="es">← Volver al Blog</span>
+            <span data-lang="en" style="display:none">← Back to Blog</span>
+        </a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span data-lang="es">🇺🇸 EN</span>
+            <span data-lang="en" style="display:none">🇪🇸 ES</span>
+        </button>
+    </div>
     
     <div class="article-container">
         <div class="article-header">
-            <h1>🏗️ Arquitectura del Juego</h1>
-            <p>Diseño modular y patrones de arquitectura para un código mantenible</p>
+            <h1>
+                <span data-lang="es">🏗️ Arquitectura del Juego</span>
+                <span data-lang="en" style="display:none">🏗️ Game Architecture</span>
+            </h1>
+            <p>
+                <span data-lang="es">Diseño modular y patrones de arquitectura para un código mantenible</span>
+                <span data-lang="en" style="display:none">Modular design and architecture patterns for maintainable code</span>
+            </p>
         </div>
 
         <div class="article-content">
-            <h2>Visión General de la Arquitectura</h2>
-            <p>El juego sigue una arquitectura modular basada en managers que separa las responsabilidades y promueve la mantenibilidad. El sistema está construido alrededor del concepto de managers especializados que manejan diferentes aspectos del juego.</p>
+            <h2>
+                <span data-lang="es">Visión General de la Arquitectura</span>
+                <span data-lang="en" style="display:none">Architecture Overview</span>
+            </h2>
+            <p>
+                <span data-lang="es">El juego sigue una arquitectura modular basada en managers que separa las responsabilidades y promueve la mantenibilidad. El sistema está construido alrededor del concepto de managers especializados que manejan diferentes aspectos del juego.</span>
+                <span data-lang="en" style="display:none">The game follows a modular manager-based architecture that separates responsibilities and promotes maintainability. The system is built around the concept of specialized managers that handle different aspects of the game.</span>
+            </p>
 
             <div class="architecture-diagram">
                 <pre>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -117,22 +61,46 @@
 └─────────────────┘    └─────────────────┘    └─────────────────┘</pre>
             </div>
 
-            <h2>Componentes Principales</h2>
+            <h2>
+                <span data-lang="es">Componentes Principales</span>
+                <span data-lang="en" style="display:none">Main Components</span>
+            </h2>
 
-            <h3>1. Game Manager (src/game/game_manager.py)</h3>
-            <p><span class="highlight">Propósito:</span> Coordinador central que orquesta todos los sistemas del juego.</p>
+            <h3>
+                <span data-lang="es">1. Game Manager (src/game/game_manager.py)</span>
+                <span data-lang="en" style="display:none">1. Game Manager (src/game/game_manager.py)</span>
+            </h3>
+            <p>
+                <span data-lang="es"><span class="highlight">Propósito:</span> Coordinador central que orquesta todos los sistemas del juego.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">Purpose:</span> Central coordinator that orchestrates all game systems.</span>
+            </p>
             
-            <p><span class="highlight">Responsabilidades:</span></p>
+            <p>
+                <span data-lang="es"><span class="highlight">Responsabilidades:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Responsibilities:</span></span>
+            </p>
             <ul>
-                <li>Ejecución del bucle principal del juego</li>
-                <li>Coordinación de managers</li>
-                <li>Delegación del manejo de eventos</li>
-                <li>Coordinación del renderizado</li>
+                <li>
+                    <span data-lang="es">Ejecución del bucle principal del juego</span>
+                    <span data-lang="en" style="display:none">Main game loop execution</span>
+                </li>
+                <li>
+                    <span data-lang="es">Coordinación de managers</span>
+                    <span data-lang="en" style="display:none">Manager coordination</span>
+                </li>
+                <li>
+                    <span data-lang="es">Delegación del manejo de eventos</span>
+                    <span data-lang="en" style="display:none">Event handling delegation</span>
+                </li>
+                <li>
+                    <span data-lang="es">Coordinación del renderizado</span>
+                    <span data-lang="en" style="display:none">Rendering coordination</span>
+                </li>
             </ul>
 
             <div class="code-block">
                 <pre>def run(self):
-    """Bucle principal del juego"""
+    <span data-lang="es">"""Bucle principal del juego"""</span><span data-lang="en" style="display:none">"""Main game loop"""</span>
     while self.running:
         self.handle_events()
         self.update()
@@ -140,24 +108,45 @@
         self.clock.tick(self.config.FPS)
 
 def handle_events(self):
-    """Delega eventos a los managers apropiados"""
+    <span data-lang="es">"""Delega eventos a los managers apropiados"""</span><span data-lang="en" style="display:none">"""Delegates events to appropriate managers"""</span>
     
 def update(self):
-    """Actualiza todos los sistemas del juego"""
+    <span data-lang="es">"""Actualiza todos los sistemas del juego"""</span><span data-lang="en" style="display:none">"""Updates all game systems"""</span>
     
 def render(self):
-    """Renderiza todos los elementos visuales"""</pre>
+    <span data-lang="es">"""Renderiza todos los elementos visuales"""</span><span data-lang="en" style="display:none">"""Renders all visual elements"""</span></pre>
             </div>
 
-            <h3>2. Entity Manager (src/managers/entity_manager.py)</h3>
-            <p><span class="highlight">Propósito:</span> Gestiona todas las entidades del juego (jugador, enemigos, coleccionables, proyectiles).</p>
+            <h3>
+                <span data-lang="es">2. Entity Manager (src/managers/entity_manager.py)</span>
+                <span data-lang="en" style="display:none">2. Entity Manager (src/managers/entity_manager.py)</span>
+            </h3>
+            <p>
+                <span data-lang="es"><span class="highlight">Propósito:</span> Gestiona todas las entidades del juego (jugador, enemigos, coleccionables, proyectiles).</span>
+                <span data-lang="en" style="display:none"><span class="highlight">Purpose:</span> Manages all game entities (player, enemies, collectibles, projectiles).</span>
+            </p>
             
-            <p><span class="highlight">Responsabilidades:</span></p>
+            <p>
+                <span data-lang="es"><span class="highlight">Responsabilidades:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Responsibilities:</span></span>
+            </p>
             <ul>
-                <li>Gestión del ciclo de vida de entidades</li>
-                <li>Control de spawn y timing</li>
-                <li>Actualizaciones e interacciones de entidades</li>
-                <li>Coordinación del renderizado</li>
+                <li>
+                    <span data-lang="es">Gestión del ciclo de vida de entidades</span>
+                    <span data-lang="en" style="display:none">Entity lifecycle management</span>
+                </li>
+                <li>
+                    <span data-lang="es">Control de spawn y timing</span>
+                    <span data-lang="en" style="display:none">Spawn control and timing</span>
+                </li>
+                <li>
+                    <span data-lang="es">Actualizaciones e interacciones de entidades</span>
+                    <span data-lang="en" style="display:none">Entity updates and interactions</span>
+                </li>
+                <li>
+                    <span data-lang="es">Coordinación del renderizado</span>
+                    <span data-lang="en" style="display:none">Rendering coordination</span>
+                </li>
             </ul>
 
             <div class="code-block">
@@ -168,40 +157,76 @@ def render(self):
         self.collectibles = []
         self.projectiles = []
         
-        # Control de spawn
+        <span data-lang="es"># Control de spawn</span><span data-lang="en" style="display:none"># Spawn control</span>
         self.spawn_timer = 0
         self.monster_spawn_timer = 0
         self.monsters_spawned = 0</pre>
             </div>
 
-            <h3>3. Game State Manager (src/managers/game_state_manager.py)</h3>
-            <p><span class="highlight">Propósito:</span> Gestiona los estados del juego y las transiciones.</p>
+            <h3>
+                <span data-lang="es">3. Game State Manager (src/managers/game_state_manager.py)</span>
+                <span data-lang="en" style="display:none">3. Game State Manager (src/managers/game_state_manager.py)</span>
+            </h3>
+            <p>
+                <span data-lang="es"><span class="highlight">Propósito:</span> Gestiona los estados del juego y las transiciones.</span>
+                <span data-lang="en" style="display:none"><span class="highlight">Purpose:</span> Manages game states and transitions.</span>
+            </p>
             
-            <p><span class="highlight">Estados:</span></p>
+            <p>
+                <span data-lang="es"><span class="highlight">Estados:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">States:</span></span>
+            </p>
             <ul>
-                <li><code>MENU</code> - Menú principal</li>
-                <li><code>TUTORIAL</code> - Modo tutorial</li>
-                <li><code>PLAYING</code> - Gameplay activo</li>
-                <li><code>PAUSED</code> - Juego pausado</li>
-                <li><code>SHOP</code> - Tienda del juego</li>
-                <li><code>GAME_OVER</code> - Pantalla de game over</li>
-                <li><code>LEVEL_COMPLETE</code> - Completar nivel</li>
+                <li>
+                    <span data-lang="es"><code>MENU</code> - Menú principal</span>
+                    <span data-lang="en" style="display:none"><code>MENU</code> - Main menu</span>
+                </li>
+                <li>
+                    <span data-lang="es"><code>TUTORIAL</code> - Modo tutorial</span>
+                    <span data-lang="en" style="display:none"><code>TUTORIAL</code> - Tutorial mode</span>
+                </li>
+                <li>
+                    <span data-lang="es"><code>PLAYING</code> - Gameplay activo</span>
+                    <span data-lang="en" style="display:none"><code>PLAYING</code> - Active gameplay</span>
+                </li>
+                <li>
+                    <span data-lang="es"><code>PAUSED</code> - Juego pausado</span>
+                    <span data-lang="en" style="display:none"><code>PAUSED</code> - Game paused</span>
+                </li>
+                <li>
+                    <span data-lang="es"><code>SHOP</code> - Tienda del juego</span>
+                    <span data-lang="en" style="display:none"><code>SHOP</code> - Game shop</span>
+                </li>
+                <li>
+                    <span data-lang="es"><code>GAME_OVER</code> - Pantalla de game over</span>
+                    <span data-lang="en" style="display:none"><code>GAME_OVER</code> - Game over screen</span>
+                </li>
+                <li>
+                    <span data-lang="es"><code>LEVEL_COMPLETE</code> - Completar nivel</span>
+                    <span data-lang="en" style="display:none"><code>LEVEL_COMPLETE</code> - Level complete</span>
+                </li>
             </ul>
 
             <div class="code-block">
                 <pre>def set_state(self, new_state):
-    """Transición segura de estado con validación"""
+    <span data-lang="es">"""Transición segura de estado con validación"""</span><span data-lang="en" style="display:none">"""Safe state transition with validation"""</span>
     
 def is_playing(self):
-    """Verifica si está en estados de gameplay activo"""
+    <span data-lang="es">"""Verifica si está en estados de gameplay activo"""</span><span data-lang="en" style="display:none">"""Checks if in active gameplay states"""</span>
     return self.state in ["PLAYING", "TUTORIAL"]</pre>
             </div>
 
-            <h2>Sistema de Entidades</h2>
+            <h2>
+                <span data-lang="es">Sistema de Entidades</span>
+                <span data-lang="en" style="display:none">Entity System</span>
+            </h2>
 
-            <h3>Jerarquía de Entidades</h3>
+            <h3>
+                <span data-lang="es">Jerarquía de Entidades</span>
+                <span data-lang="en" style="display:none">Entity Hierarchy</span>
+            </h3>
             <div class="architecture-diagram">
-                <pre>Entity (Base)
+                <pre><span data-lang="es">Entity (Base)
 ├── Player
 │   ├── Sistema de Movimiento
 │   ├── Sistema de Animación
@@ -212,199 +237,137 @@ def is_playing(self):
 ├── Collectible
 │   └── Star (Valores de puntos: 10, 20, 50)
 └── Projectile
-    └── Banana (Explosivo)</pre>
+    └── Banana (Explosivo)</span><span data-lang="en" style="display:none">Entity (Base)
+├── Player
+│   ├── Movement System
+│   ├── Animation System
+│   └── Inventory System
+├── Enemy
+│   ├── Barrel (AI-driven)
+│   └── Monster (State machine)
+├── Collectible
+│   └── Star (Point values: 10, 20, 50)
+└── Projectile
+    └── Banana (Explosive)</span></pre>
             </div>
 
-            <h3>Sistema del Jugador (src/entities/player.py)</h3>
-            <p><span class="highlight">Características:</span></p>
+            <h3>
+                <span data-lang="es">Sistema del Jugador (src/entities/player.py)</span>
+                <span data-lang="en" style="display:none">Player System (src/entities/player.py)</span>
+            </h3>
+            <p>
+                <span data-lang="es"><span class="highlight">Características:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Features:</span></span>
+            </p>
             <ul>
-                <li>Animación basada en sprites (12 frames para secuencia de salto)</li>
-                <li>Movimiento basado en física</li>
-                <li>Gestión de inventario (bananas, vidas, puntuación)</li>
-                <li>Manejo de entrada</li>
+                <li>
+                    <span data-lang="es">Animación basada en sprites (12 frames para secuencia de salto)</span>
+                    <span data-lang="en" style="display:none">Sprite-based animation (12 frames for jump sequence)</span>
+                </li>
+                <li>
+                    <span data-lang="es">Movimiento basado en física</span>
+                    <span data-lang="en" style="display:none">Physics-based movement</span>
+                </li>
+                <li>
+                    <span data-lang="es">Gestión de inventario (bananas, vidas, puntuación)</span>
+                    <span data-lang="en" style="display:none">Inventory management (bananas, lives, score)</span>
+                </li>
+                <li>
+                    <span data-lang="es">Manejo de entrada</span>
+                    <span data-lang="en" style="display:none">Input handling</span>
+                </li>
             </ul>
 
             <div class="code-block">
                 <pre>def update_animation(self):
-    """Maneja la animación de sprites basada en el estado"""
+    <span data-lang="es">"""Maneja la animación de sprites basada en el estado"""</span><span data-lang="en" style="display:none">"""Handles sprite animation based on state"""</span>
     if not self.on_ground and self.sprites['jump']:
-        # Reproduce secuencia de animación de salto
+        <span data-lang="es"># Reproduce secuencia de animación de salto</span><span data-lang="en" style="display:none"># Play jump animation sequence</span>
         if not self.is_jumping_animation:
             self.is_jumping_animation = True
             self.jump_frame = 0</pre>
             </div>
 
-            <h2>Arquitectura de IA</h2>
+            <h2>
+                <span data-lang="es">Arquitectura de IA</span>
+                <span data-lang="en" style="display:none">AI Architecture</span>
+            </h2>
 
-            <h3>Sistema de IA Híbrido</h3>
-            <p>El juego implementa un sofisticado sistema de IA que combina múltiples enfoques:</p>
+            <h3>
+                <span data-lang="es">Sistema de IA Híbrido</span>
+                <span data-lang="en" style="display:none">Hybrid AI System</span>
+            </h3>
+            <p>
+                <span data-lang="es">El juego implementa un sofisticado sistema de IA que combina múltiples enfoques:</span>
+                <span data-lang="en" style="display:none">The game implements a sophisticated AI system that combines multiple approaches:</span>
+            </p>
 
             <ol>
-                <li><strong>Capa de Decisión Primaria:</strong> Lógica basada en reglas para comportamiento confiable</li>
-                <li><strong>Capa de Validación:</strong> Q-Learning para refinamiento de comportamiento</li>
-                <li><strong>Capa de Seguridad:</strong> Mecanismos anti-atasco y de respaldo</li>
+                <li>
+                    <span data-lang="es"><strong>Capa de Decisión Primaria:</strong> Lógica basada en reglas para comportamiento confiable</span>
+                    <span data-lang="en" style="display:none"><strong>Primary Decision Layer:</strong> Rule-based logic for reliable behavior</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Capa de Validación:</strong> Q-Learning para refinamiento de comportamiento</span>
+                    <span data-lang="en" style="display:none"><strong>Validation Layer:</strong> Q-Learning for behavior refinement</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Capa de Seguridad:</strong> Mecanismos anti-atasco y de respaldo</span>
+                    <span data-lang="en" style="display:none"><strong>Safety Layer:</strong> Anti-stuck and fallback mechanisms</span>
+                </li>
             </ol>
 
             <div class="code-block">
                 <pre>def barrel_movement(self, platforms, player_rect=None):
-    # 1. Decisión primaria basada en reglas
+    <span data-lang="es"># 1. Decisión primaria basada en reglas</span><span data-lang="en" style="display:none"># 1. Primary rule-based decision</span>
     primary_action = self.decide_primary_action(dx, dy, current_platform, player_platform)
     
-    # 2. Validación Q-Learning
+    <span data-lang="es"># 2. Validación Q-Learning</span><span data-lang="en" style="display:none"># 2. Q-Learning validation</span>
     if hasattr(self, 'ai_agent'):
         q_action = self.ai_agent.choose_action(state)
         if self.should_override_action(primary_action, q_action, dx, dy):
             primary_action = q_action
     
-    # 3. Ejecutar decisión
+    <span data-lang="es"># 3. Ejecutar decisión</span><span data-lang="en" style="display:none"># 3. Execute decision</span>
     self.execute_action_decision(primary_action, current_platform, dx)</pre>
             </div>
 
-            <h2>Gestión de Datos</h2>
+            <h2>
+                <span data-lang="es">Gestión de Datos</span>
+                <span data-lang="en" style="display:none">Data Management</span>
+            </h2>
 
-            <h3>Integración con Firebase (src/managers/firebase_manager.py)</h3>
-            <p><span class="highlight">Servicios Utilizados:</span></p>
+            <h3>
+                <span data-lang="es">Integración con Firebase (src/managers/firebase_manager.py)</span>
+                <span data-lang="en" style="display:none">Firebase Integration (src/managers/firebase_manager.py)</span>
+            </h3>
+            <p>
+                <span data-lang="es"><span class="highlight">Servicios Utilizados:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Services Used:</span></span>
+            </p>
             <ul>
-                <li><strong>Realtime Database:</strong> Leaderboards y guardados en la nube</li>
-                <li><strong>Authentication:</strong> Gestión de usuarios</li>
-                <li><strong>REST API:</strong> Comunicación HTTP directa (sin SDK)</li>
+                <li>
+                    <span data-lang="es"><strong>Realtime Database:</strong> Leaderboards y guardados en la nube</span>
+                    <span data-lang="en" style="display:none"><strong>Realtime Database:</strong> Leaderboards and cloud saves</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Authentication:</strong> Gestión de usuarios</span>
+                    <span data-lang="en" style="display:none"><strong>Authentication:</strong> User management</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>REST API:</strong> Comunicación HTTP directa (sin SDK)</span>
+                    <span data-lang="en" style="display:none"><strong>REST API:</strong> Direct HTTP communication (no SDK)</span>
+                </li>
             </ul>
 
-            <div class="code-block">
-                <pre>{
-  "leaderboard": {
-    "user_id": {
-      "email": "player@example.com",
-      "best_score": 1500,
-      "timestamp": 1640995200
-    }
-  },
-  "cloud_saves": {
-    "user_id": {
-      "save_data": {
-        "level": 3,
-        "score": 1200,
-        "lives": 2
-      },
-      "last_updated": 1640995200
-    }
-  }
-}</pre>
-            </div>
-
-            <h3>Gestión de Datos Locales</h3>
-            <p><span class="highlight">Sistema de Guardado</span> (src/managers/save_manager.py):</p>
-            <ul>
-                <li>Guardados locales basados en JSON</li>
-                <li>Persistencia del progreso del jugador</li>
-                <li>Serialización del estado del juego</li>
-            </ul>
-
-            <h2>Sistema de UI</h2>
-
-            <h3>Sistema de Menús (src/ui/)</h3>
-            <p><span class="highlight">Componentes:</span></p>
-            <ul>
-                <li>Menú Principal</li>
-                <li>Menú de Tienda (con imágenes de objetos)</li>
-                <li>Menú de Pausa</li>
-                <li>Pantalla de Game Over</li>
-                <li>Visualización de Leaderboard</li>
-            </ul>
-
-            <div class="code-block">
-                <pre>class ShopMenu:
-    def load_item_images(self):
-        """Carga iconos de objetos desde assets/shop/"""
-        
-    def render(self, screen, player, shop_manager):
-        """Renderiza tienda con imágenes y estadísticas del jugador"""</pre>
-            </div>
-
-            <h2>Gestión de Assets</h2>
-
-            <h3>Sistema de Sprites</h3>
-            <p><span class="highlight">Sprites del Jugador:</span></p>
-            <ul>
-                <li><code>sprite_00.png</code> - Estado inactivo</li>
-                <li><code>sprite_01.png</code> a <code>sprite_11.png</code> - Secuencia de salto</li>
-            </ul>
-
-            <p><span class="highlight">Sprites de Enemigos:</span></p>
-            <ul>
-                <li><code>enemy1.png</code>, <code>enemy2.png</code>, <code>enemy3.png</code> - Frames de animación</li>
-                <li>Escalado automático al tamaño de entidad</li>
-                <li>Volteo de sprite basado en dirección</li>
-            </ul>
-
-            <h2>Optimización de Rendimiento</h2>
-
-            <h3>Gestión de Entidades</h3>
-            <p><span class="highlight">Estrategias de Optimización:</span></p>
-            <ul>
-                <li>Limpieza de entidades inactivas</li>
-                <li>Limitación de tasa de spawn</li>
-                <li>Optimización de colisiones (conceptos de particionado espacial)</li>
-            </ul>
-
-            <div class="code-block">
-                <pre># Limpieza eficiente de entidades
-for entity in self.entities[:]:  # Iteración segura
-    entity.update()
-    if not entity.active:
-        self.entities.remove(entity)</pre>
-            </div>
-
-            <h2>Manejo de Errores</h2>
-
-            <h3>Sistemas Robustos</h3>
-            <p><span class="highlight">Respaldos de Firebase:</span></p>
-            
-            <div class="code-block">
-                <pre>def get_global_leaderboard(self, limit=10):
-    try:
-        # Operación Firebase
-        return data
-    except Exception as e:
-        print(f"Error: {e}")
-        return []  # Respaldo elegante</pre>
-            </div>
-
-            <h2>Gestión de Configuración</h2>
-
-            <h3>Variables de Entorno</h3>
-            <p><span class="highlight">Seguridad:</span></p>
-            <ul>
-                <li>Datos sensibles en <code>.env</code></li>
-                <li>Protección con <code>.gitignore</code></li>
-                <li>Configuración de ejemplo (<code>.env.example</code>)</li>
-            </ul>
-
-            <div class="code-block">
-                <pre>class Config:
-    WINDOW_WIDTH = 800
-    WINDOW_HEIGHT = 600
-    FPS = 60
-    
-    COLORS = {
-        'BLACK': (0, 0, 0),
-        'WHITE': (255, 255, 255),
-        # ... más colores
-    }</pre>
-            </div>
-
-            <h2>Arquitectura de Despliegue</h2>
-
-            <h3>Sistema de Build (build.py)</h3>
-            <p><span class="highlight">Configuración de PyInstaller:</span></p>
-            <ul>
-                <li>Empaquetado de assets</li>
-                <li>Resolución de dependencias</li>
-                <li>Compatibilidad multiplataforma</li>
-            </ul>
-
-            <h2>Conclusión</h2>
-            <p>Esta arquitectura proporciona una base sólida para un juego mantenible, extensible y de alto rendimiento, manteniendo una separación limpia de responsabilidades y un manejo robusto de errores. El patrón de managers permite una fácil extensión y modificación de funcionalidades sin afectar otros sistemas.</p>
+            <h2>
+                <span data-lang="es">Conclusión</span>
+                <span data-lang="en" style="display:none">Conclusion</span>
+            </h2>
+            <p>
+                <span data-lang="es">Esta arquitectura proporciona una base sólida para un juego mantenible, extensible y de alto rendimiento, manteniendo una separación limpia de responsabilidades y un manejo robusto de errores. El patrón de managers permite una fácil extensión y modificación de funcionalidades sin afectar otros sistemas.</span>
+                <span data-lang="en" style="display:none">This architecture provides a solid foundation for a maintainable, extensible, and high-performance game, maintaining clean separation of concerns and robust error handling. The manager pattern allows for easy extension and modification of functionality without affecting other systems.</span>
+            </p>
         </div>
     </div>
 </body>

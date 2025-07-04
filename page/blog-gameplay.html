@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Gameplay - Donkey Kong Classic</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .article-header h1 {
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .article-content {
+            color: #fff;
+            line-height: 1.8;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .screenshot-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .screenshot-card img:hover {
+            transform: scale(1.02);
+        }
+        .screenshot-card h3 {
+            color: #4ECDC4;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        .screenshot-card p {
+            color: #fff;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+        .features-list li {
+            color: #FFD700;
+            margin: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .features-list li:before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+        .nav-header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+        .close:hover {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <script src="lang.js"></script>
+    <div class="nav-header">
+        <a href="blog.html" class="back-button">
+            <span data-lang="es">← Volver al Blog</span>
+            <span data-lang="en" style="display:none">← Back to Blog</span>
+        </a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span data-lang="es">🇺🇸 EN</span>
+            <span data-lang="en" style="display:none">🇪🇸 ES</span>
+        </button>
+    </div>
+    
+    <div class="article-container">
+        <div class="article-header">
+            <h1>
+                <span data-lang="es">🎮 Galería de Gameplay</span>
+                <span data-lang="en" style="display:none">🎮 Gameplay Gallery</span>
+            </h1>
+            <p>
+                <span data-lang="es">Explora las diferentes características visuales y mecánicas del juego</span>
+                <span data-lang="en" style="display:none">Explore the different visual features and game mechanics</span>
+            </p>
+        </div>
+
+        <div class="article-content">
+            <div class="gallery-grid">
+                <div class="screenshot-card">
+                    <img src="gameplay/main_screen.png" alt="Main Menu" onclick="openModal(this)">
+                    <h3>
+                        <span data-lang="es">🏠 Menú Principal</span>
+                        <span data-lang="en" style="display:none">🏠 Main Menu</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Interfaz principal del juego con diseño retro-futurista y opciones de navegación intuitivas.</span>
+                        <span data-lang="en" style="display:none">Main game interface with retro-futuristic design and intuitive navigation options.</span>
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span data-lang="es">Diseño visual atractivo</span>
+                            <span data-lang="en" style="display:none">Attractive visual design</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Navegación intuitiva</span>
+                            <span data-lang="en" style="display:none">Intuitive navigation</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Efectos visuales modernos</span>
+                            <span data-lang="en" style="display:none">Modern visual effects</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="screenshot-card">
+                    <img src="gameplay/game1_screen.png" alt="Gameplay Screen 1" onclick="openModal(this)">
+                    <h3>
+                        <span data-lang="es">🎯 Gameplay Principal</span>
+                        <span data-lang="en" style="display:none">🎯 Main Gameplay</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Vista del juego en acción mostrando las mecánicas de plataformas clásicas con enemigos inteligentes.</span>
+                        <span data-lang="en" style="display:none">Game in action showing classic platformer mechanics with intelligent enemies.</span>
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span data-lang="es">Mecánicas de plataformas fluidas</span>
+                            <span data-lang="en" style="display:none">Fluid platformer mechanics</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Enemigos con IA avanzada</span>
+                            <span data-lang="en" style="display:none">AI-powered enemies</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Sistema de puntuación dinámico</span>
+                            <span data-lang="en" style="display:none">Dynamic scoring system</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="screenshot-card">
+                    <img src="gameplay/game2_screen.png" alt="Gameplay Screen 2" onclick="openModal(this)">
+                    <h3>
+                        <span data-lang="es">🏃 Acción Avanzada</span>
+                        <span data-lang="en" style="display:none">🏃 Advanced Action</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Gameplay avanzado mostrando múltiples enemigos y mecánicas complejas en acción simultánea.</span>
+                        <span data-lang="en" style="display:none">Advanced gameplay showing multiple enemies and complex mechanics in simultaneous action.</span>
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span data-lang="es">Múltiples enemigos simultáneos</span>
+                            <span data-lang="en" style="display:none">Multiple simultaneous enemies</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Navegación entre plataformas</span>
+                            <span data-lang="en" style="display:none">Platform navigation</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Efectos de partículas</span>
+                            <span data-lang="en" style="display:none">Particle effects</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="screenshot-card">
+                    <img src="gameplay/shop_screen.png" alt="Shop Screen" onclick="openModal(this)">
+                    <h3>
+                        <span data-lang="es">🏪 Tienda del Juego</span>
+                        <span data-lang="en" style="display:none">🏪 Game Shop</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Sistema de tienda integrado donde los jugadores pueden comprar mejoras y power-ups usando puntos ganados.</span>
+                        <span data-lang="en" style="display:none">Integrated shop system where players can buy upgrades and power-ups using earned points.</span>
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span data-lang="es">Sistema de economía interna</span>
+                            <span data-lang="en" style="display:none">Internal economy system</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Mejoras de personaje</span>
+                            <span data-lang="en" style="display:none">Character upgrades</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Power-ups especiales</span>
+                            <span data-lang="en" style="display:none">Special power-ups</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="screenshot-card">
+                    <img src="gameplay/ranking_screen.png" alt="Ranking Screen" onclick="openModal(this)">
+                    <h3>
+                        <span data-lang="es">🏆 Sistema de Rankings</span>
+                        <span data-lang="en" style="display:none">🏆 Ranking System</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Leaderboard global conectado a Firebase que muestra las mejores puntuaciones de todos los jugadores.</span>
+                        <span data-lang="en" style="display:none">Global leaderboard connected to Firebase showing the best scores from all players.</span>
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span data-lang="es">Leaderboard global en tiempo real</span>
+                            <span data-lang="en" style="display:none">Real-time global leaderboard</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Integración con Firebase</span>
+                            <span data-lang="en" style="display:none">Firebase integration</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Competencia entre jugadores</span>
+                            <span data-lang="en" style="display:none">Player competition</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="screenshot-card">
+                    <img src="gameplay/tutorial_screen.png" alt="Tutorial Screen" onclick="openModal(this)">
+                    <h3>
+                        <span data-lang="es">📚 Sistema Tutorial</span>
+                        <span data-lang="en" style="display:none">📚 Tutorial System</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Tutorial interactivo que guía a los nuevos jugadores a través de las mecánicas básicas del juego.</span>
+                        <span data-lang="en" style="display:none">Interactive tutorial that guides new players through the basic game mechanics.</span>
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span data-lang="es">Aprendizaje paso a paso</span>
+                            <span data-lang="en" style="display:none">Step-by-step learning</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Instrucciones visuales claras</span>
+                            <span data-lang="en" style="display:none">Clear visual instructions</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Práctica guiada</span>
+                            <span data-lang="en" style="display:none">Guided practice</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="screenshot-card">
+                    <img src="gameplay/losslife_screen.png" alt="Game Over Screen" onclick="openModal(this)">
+                    <h3>
+                        <span data-lang="es">💀 Pantalla de Game Over</span>
+                        <span data-lang="en" style="display:none">💀 Game Over Screen</span>
+                    </h3>
+                    <p>
+                        <span data-lang="es">Interfaz de fin de juego con estadísticas detalladas y opciones para reiniciar o volver al menú principal.</span>
+                        <span data-lang="en" style="display:none">Game over interface with detailed statistics and options to restart or return to main menu.</span>
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span data-lang="es">Estadísticas de partida</span>
+                            <span data-lang="en" style="display:none">Game statistics</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Opciones de continuación</span>
+                            <span data-lang="en" style="display:none">Continue options</span>
+                        </li>
+                        <li>
+                            <span data-lang="es">Feedback visual atractivo</span>
+                            <span data-lang="en" style="display:none">Attractive visual feedback</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>
+                <span data-lang="es">🎨 Características Visuales</span>
+                <span data-lang="en" style="display:none">🎨 Visual Features</span>
+            </h2>
+            <p>
+                <span data-lang="es">El juego combina elementos retro clásicos con efectos visuales modernos para crear una experiencia única que respeta la nostalgia mientras abraza la innovación tecnológica.</span>
+                <span data-lang="en" style="display:none">The game combines classic retro elements with modern visual effects to create a unique experience that respects nostalgia while embracing technological innovation.</span>
+            </p>
+
+            <h2>
+                <span data-lang="es">🎮 Mecánicas de Juego</span>
+                <span data-lang="en" style="display:none">🎮 Game Mechanics</span>
+            </h2>
+            <p>
+                <span data-lang="es">Cada pantalla muestra diferentes aspectos del sistema de juego, desde la navegación básica hasta las mecánicas avanzadas de IA que hacen que cada partida sea única y desafiante.</span>
+                <span data-lang="en" style="display:none">Each screen shows different aspects of the game system, from basic navigation to advanced AI mechanics that make each game unique and challenging.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal for image viewing -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

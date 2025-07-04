@@ -5,98 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algoritmos de IA - Donkey Kong Classic</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .article-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .article-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .article-header h1 {
-            color: #FFD700;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .article-content {
-            color: #fff;
-            line-height: 1.8;
-        }
-        .article-content h2 {
-            color: #4ECDC4;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-        .article-content h3 {
-            color: #FF6B6B;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        .code-block {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #4ECDC4;
-            overflow-x: auto;
-        }
-        .code-block pre {
-            margin: 0;
-            color: #fff;
-            font-family: 'Courier New', monospace;
-        }
-        .highlight {
-            background: rgba(255, 215, 0, 0.2);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-    </style>
+    <link rel="stylesheet" href="blogstyle.css">
 </head>
 <body>
-    <a href="blog.html" class="back-button">← Volver al Blog</a>
+    <script src="lang.js"></script>
+    <div class="nav-header">
+        <a href="blog.html" class="back-button">
+            <span data-lang="es">← Volver al Blog</span>
+            <span data-lang="en" style="display:none">← Back to Blog</span>
+        </a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span data-lang="es">🇺🇸 EN</span>
+            <span data-lang="en" style="display:none">🇪🇸 ES</span>
+        </button>
+    </div>
     
     <div class="article-container">
         <div class="article-header">
-            <h1>🤖 Algoritmos de Inteligencia Artificial</h1>
-            <p>Implementación de Q-Learning y sistemas híbridos para enemigos inteligentes</p>
+            <h1>
+                <span data-lang="es">🤖 Algoritmos de Inteligencia Artificial</span>
+                <span data-lang="en" style="display:none">🤖 Artificial Intelligence Algorithms</span>
+            </h1>
+            <p>
+                <span data-lang="es">Implementación de Q-Learning y sistemas híbridos para enemigos inteligentes</span>
+                <span data-lang="en" style="display:none">Q-Learning implementation and hybrid systems for intelligent enemies</span>
+            </p>
         </div>
 
         <div class="article-content">
-            <h2>Visión General</h2>
-            <p>El juego implementa un sistema de IA híbrido que combina lógica basada en reglas con aprendizaje por refuerzo (Q-Learning) para crear comportamientos de enemigos inteligentes que se adaptan a los patrones del jugador.</p>
+            <h2>
+                <span data-lang="es">Visión General</span>
+                <span data-lang="en" style="display:none">Overview</span>
+            </h2>
+            <p>
+                <span data-lang="es">El juego implementa un sistema de IA híbrido que combina lógica basada en reglas con aprendizaje por refuerzo (Q-Learning) para crear comportamientos de enemigos inteligentes que se adaptan a los patrones del jugador.</span>
+                <span data-lang="en" style="display:none">The game implements a hybrid AI system that combines rule-based logic with reinforcement learning (Q-Learning) to create intelligent enemy behaviors that adapt to player patterns.</span>
+            </p>
 
-            <h2>Algoritmo Q-Learning</h2>
+            <h2>
+                <span data-lang="es">Algoritmo Q-Learning</span>
+                <span data-lang="en" style="display:none">Q-Learning Algorithm</span>
+            </h2>
             
-            <h3>¿Qué es Q-Learning?</h3>
-            <p>Q-Learning es un algoritmo de aprendizaje por refuerzo libre de modelo que aprende la calidad de las acciones, indicando a un agente qué acción tomar bajo qué circunstancias.</p>
+            <h3>
+                <span data-lang="es">¿Qué es Q-Learning?</span>
+                <span data-lang="en" style="display:none">What is Q-Learning?</span>
+            </h3>
+            <p>
+                <span data-lang="es">Q-Learning es un algoritmo de aprendizaje por refuerzo libre de modelo que aprende la calidad de las acciones, indicando a un agente qué acción tomar bajo qué circunstancias.</span>
+                <span data-lang="en" style="display:none">Q-Learning is a model-free reinforcement learning algorithm that learns the quality of actions, telling an agent what action to take under what circumstances.</span>
+            </p>
 
-            <h3>Detalles de Implementación</h3>
+            <h3>
+                <span data-lang="es">Detalles de Implementación</span>
+                <span data-lang="en" style="display:none">Implementation Details</span>
+            </h3>
             
-            <h4>Espacio de Estados</h4>
-            <p>El agente de IA observa un espacio de estados de 6 dimensiones:</p>
+            <h4>
+                <span data-lang="es">Espacio de Estados</span>
+                <span data-lang="en" style="display:none">State Space</span>
+            </h4>
+            <p>
+                <span data-lang="es">El agente de IA observa un espacio de estados de 6 dimensiones:</span>
+                <span data-lang="en" style="display:none">The AI agent observes a 6-dimensional state space:</span>
+            </p>
             
             <div class="code-block">
                 <pre>state = [
@@ -109,8 +81,14 @@
 ]</pre>
             </div>
 
-            <h4>Espacio de Acciones</h4>
-            <p>El agente puede elegir entre 4 acciones posibles:</p>
+            <h4>
+                <span data-lang="es">Espacio de Acciones</span>
+                <span data-lang="en" style="display:none">Action Space</span>
+            </h4>
+            <p>
+                <span data-lang="es">El agente puede elegir entre 4 acciones posibles:</span>
+                <span data-lang="en" style="display:none">The agent can choose from 4 possible actions:</span>
+            </p>
             
             <div class="code-block">
                 <pre>actions = {
@@ -121,8 +99,14 @@
 }</pre>
             </div>
 
-            <h4>Función de Recompensa</h4>
-            <p>El sistema de recompensas incentiva a la IA a acercarse al jugador:</p>
+            <h4>
+                <span data-lang="es">Función de Recompensa</span>
+                <span data-lang="en" style="display:none">Reward Function</span>
+            </h4>
+            <p>
+                <span data-lang="es">El sistema de recompensas incentiva a la IA a acercarse al jugador:</span>
+                <span data-lang="en" style="display:none">The reward system incentivizes the AI to get closer to the player:</span>
+            </p>
             
             <div class="code-block">
                 <pre>def calculate_reward(self, player_rect):
@@ -143,11 +127,20 @@
     return proximity_reward + same_platform_bonus + stuck_penalty</pre>
             </div>
 
-            <h2>Arquitectura de IA Híbrida</h2>
+            <h2>
+                <span data-lang="es">Arquitectura de IA Híbrida</span>
+                <span data-lang="en" style="display:none">Hybrid AI Architecture</span>
+            </h2>
             
-            <h3>Sistema de Decisión Primario (Basado en Reglas)</h3>
-            <p>La IA utiliza lógica basada en reglas como sistema principal de toma de decisiones:</p>
-            
+            <h3>
+                <span data-lang="es">Sistema de Decisión Primario (Basado en Reglas)</span>
+                <span data-lang="en" style="display:none">Primary Decision System (Rule-Based)</span>
+            </h3>
+            <p>
+                <span data-lang="es">La IA utiliza lógica basada en reglas como sistema principal de toma de decisiones:</span>
+                <span data-lang="en" style="display:none">The AI uses rule-based logic as the main decision-making system:</span>
+            </p>
+
             <div class="code-block">
                 <pre>def decide_primary_action(self, dx, dy, current_platform, player_platform):
     # Forzar caída si está en el borde de la plataforma
@@ -165,8 +158,14 @@
     return RIGHT_ACTION  # Comportamiento por defecto</pre>
             </div>
 
-            <h3>Sistema de Validación Q-Learning</h3>
-            <p>Q-Learning actúa como una capa de validación y mejora:</p>
+            <h3>
+                <span data-lang="es">Sistema de Validación Q-Learning</span>
+                <span data-lang="en" style="display:none">Q-Learning Validation System</span>
+            </h3>
+            <p>
+                <span data-lang="es">Q-Learning actúa como una capa de validación y mejora:</span>
+                <span data-lang="en" style="display:none">Q-Learning acts as a validation and improvement layer:</span>
+            </p>
             
             <div class="code-block">
                 <pre>def should_override_action(self, primary_action, q_action, dx, dy):
@@ -181,36 +180,87 @@
     return False</pre>
             </div>
 
-            <h2>Tipos de Comportamiento de Enemigos</h2>
+            <h2>
+                <span data-lang="es">Tipos de Comportamiento de Enemigos</span>
+                <span data-lang="en" style="display:none">Enemy Behavior Types</span>
+            </h2>
             
-            <h3>Enemigos Barril</h3>
-            <p><span class="highlight">Características:</span></p>
+            <h3>
+                <span data-lang="es">Enemigos Barril</span>
+                <span data-lang="en" style="display:none">Barrel Enemies</span>
+            </h3>
+            <p>
+                <span data-lang="es"><span class="highlight">Características:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Characteristics:</span></span>
+            </p>
             <ul>
-                <li>Velocidad: 1.8 píxeles/frame (70% del original)</li>
-                <li>Comportamiento: Rodamiento y navegación de plataformas</li>
-                <li>IA: Híbrida basada en reglas + Q-Learning</li>
+                <li>
+                    <span data-lang="es">Velocidad: 1.8 píxeles/frame (70% del original)</span>
+                    <span data-lang="en" style="display:none">Speed: 1.8 pixels/frame (70% of original)</span>
+                </li>
+                <li>
+                    <span data-lang="es">Comportamiento: Rodamiento y navegación de plataformas</span>
+                    <span data-lang="en" style="display:none">Behavior: Rolling and platform navigation</span>
+                </li>
+                <li>
+                    <span data-lang="es">IA: Híbrida basada en reglas + Q-Learning</span>
+                    <span data-lang="en" style="display:none">AI: Hybrid rule-based + Q-Learning</span>
+                </li>
             </ul>
 
-            <p><span class="highlight">Estados de Comportamiento:</span></p>
+            <p>
+                <span data-lang="es"><span class="highlight">Estados de Comportamiento:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Behavior States:</span></span>
+            </p>
             <ol>
-                <li><strong>Rodamiento:</strong> Movimiento horizontal normal</li>
-                <li><strong>Detección de Bordes:</strong> Identifica límites de plataforma</li>
-                <li><strong>Navegación de Plataformas:</strong> Salta entre plataformas</li>
-                <li><strong>Persecución del Jugador:</strong> Persigue activamente al jugador</li>
+                <li>
+                    <span data-lang="es"><strong>Rodamiento:</strong> Movimiento horizontal normal</span>
+                    <span data-lang="en" style="display:none"><strong>Rolling:</strong> Normal horizontal movement</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Detección de Bordes:</strong> Identifica límites de plataforma</span>
+                    <span data-lang="en" style="display:none"><strong>Edge Detection:</strong> Identifies platform boundaries</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Navegación de Plataformas:</strong> Salta entre plataformas</span>
+                    <span data-lang="en" style="display:none"><strong>Platform Navigation:</strong> Jumps between platforms</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Persecución del Jugador:</strong> Persigue activamente al jugador</span>
+                    <span data-lang="en" style="display:none"><strong>Player Pursuit:</strong> Actively chases the player</span>
+                </li>
             </ol>
 
-            <h3>Enemigos Monstruo</h3>
-            <p><span class="highlight">Características:</span></p>
+            <h3>
+                <span data-lang="es">Enemigos Monstruo</span>
+                <span data-lang="en" style="display:none">Monster Enemies</span>
+            </h3>
+            <p>
+                <span data-lang="es"><span class="highlight">Características:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Characteristics:</span></span>
+            </p>
             <ul>
-                <li>Velocidad: 1.1 píxeles/frame (70% del original)</li>
-                <li>Comportamiento: Sistema de tres estados</li>
-                <li>IA: Basada en máquina de estados</li>
+                <li>
+                    <span data-lang="es">Velocidad: 1.1 píxeles/frame (70% del original)</span>
+                    <span data-lang="en" style="display:none">Speed: 1.1 pixels/frame (70% of original)</span>
+                </li>
+                <li>
+                    <span data-lang="es">Comportamiento: Sistema de tres estados</span>
+                    <span data-lang="en" style="display:none">Behavior: Three-state system</span>
+                </li>
+                <li>
+                    <span data-lang="es">IA: Basada en máquina de estados</span>
+                    <span data-lang="en" style="display:none">AI: State machine based</span>
+                </li>
             </ul>
 
-            <p><span class="highlight">Estados de Comportamiento:</span></p>
+            <p>
+                <span data-lang="es"><span class="highlight">Estados de Comportamiento:</span></span>
+                <span data-lang="en" style="display:none"><span class="highlight">Behavior States:</span></span>
+            </p>
             
             <div class="code-block">
-                <pre>1. Estado de Caída
+                <pre><span data-lang="es">1. Estado de Caída
    # Cae del cielo por 5-8 segundos
    duration = random.randint(300, 480)  # frames
    velocity_x = 0  # Sin movimiento horizontal
@@ -229,30 +279,70 @@
    
    # Saltar si el jugador está arriba
    if dy < -40 and abs(dx) < 60:
-       velocity_y = -10</pre>
+       velocity_y = -10</span><span data-lang="en" style="display:none">1. Falling State
+   # Falls from sky for 5-8 seconds
+   duration = random.randint(300, 480)  # frames
+   velocity_x = 0  # No horizontal movement
+
+2. Waiting State
+   # Stays still for 1-2 seconds
+   duration = random.randint(60, 120)  # frames
+   velocity_x = 0
+   # Visual indicator: yellow circle
+
+3. Hunting State
+   # Actively pursues the player
+   if abs(dx) > 10:
+       direction = 1 if dx > 0 else -1
+       velocity_x = speed * direction
+   
+   # Jump if player is above
+   if dy < -40 and abs(dx) < 60:
+       velocity_y = -10</span></pre>
             </div>
 
-            <h2>Características Avanzadas de IA</h2>
+            <h2>
+                <span data-lang="es">Características Avanzadas de IA</span>
+                <span data-lang="en" style="display:none">Advanced AI Features</span>
+            </h2>
             
-            <h3>Sistema de Pausa Adaptativo</h3>
-            <p>Los enemigos implementan un sistema de pausa dinámico:</p>
-            
+            <h3>
+                <span data-lang="es">Sistema de Pausa Adaptativo</span>
+                <span data-lang="en" style="display:none">Adaptive Pause System</span>
+            </h3>
+            <p>
+                <span data-lang="es">Los enemigos implementan un sistema de pausa dinámico:</span>
+                <span data-lang="en" style="display:none">Enemies implement a dynamic pause system:</span>
+            </p>
+
             <div class="code-block">
-                <pre># Pausa inicial: 1 segundo cada 5 segundos
+                <pre><span data-lang="es"># Pausa inicial: 1 segundo cada 5 segundos
 pause_duration = 60      # frames (1 segundo)
 pause_cycle = 300        # frames (5 segundos)
 pause_reduction = 5      # frames a reducir cada vez
 
 # Cada pausa se vuelve más corta
-new_duration = max(10, pause_duration - pause_reduction)</pre>
+new_duration = max(10, pause_duration - pause_reduction)</span><span data-lang="en" style="display:none"># Initial pause: 1 second every 5 seconds
+pause_duration = 60      # frames (1 second)
+pause_cycle = 300        # frames (5 seconds)
+pause_reduction = 5      # frames to reduce each time
+
+# Each pause becomes shorter
+new_duration = max(10, pause_duration - pause_reduction)</span></pre>
             </div>
 
-            <h3>Inteligencia de Navegación de Plataformas</h3>
-            <p>La IA puede navegar inteligentemente entre plataformas:</p>
+            <h3>
+                <span data-lang="es">Inteligencia de Navegación de Plataformas</span>
+                <span data-lang="en" style="display:none">Platform Navigation Intelligence</span>
+            </h3>
+            <p>
+                <span data-lang="es">La IA puede navegar inteligentemente entre plataformas:</span>
+                <span data-lang="en" style="display:none">The AI can intelligently navigate between platforms:</span>
+            </p>
             
             <div class="code-block">
                 <pre>def should_actively_drop(self, current_platform, player_platform):
-    # Caer si el jugador está en plataforma inferior
+    <span data-lang="es"># Caer si el jugador está en plataforma inferior
     if player_platform.top > current_platform.top:
         return True
     
@@ -260,54 +350,124 @@ new_duration = max(10, pause_duration - pause_reduction)</pre>
     if at_platform_edge():
         return True
     
-    return False</pre>
+    return False</span><span data-lang="en" style="display:none"># Drop if player is on lower platform
+    if player_platform.top > current_platform.top:
+        return True
+    
+    # Drop if at platform edge
+    if at_platform_edge():
+        return True
+    
+    return False</span></pre>
             </div>
 
-            <h2>Optimización de Rendimiento</h2>
+            <h2>
+                <span data-lang="es">Optimización de Rendimiento</span>
+                <span data-lang="en" style="display:none">Performance Optimization</span>
+            </h2>
             
-            <h3>Normalización del Espacio de Estados</h3>
-            <p>Todos los valores de estado se normalizan al rango [0,1] para un mejor aprendizaje:</p>
+            <h3>
+                <span data-lang="es">Normalización del Espacio de Estados</span>
+                <span data-lang="en" style="display:none">State Space Normalization</span>
+            </h3>
+            <p>
+                <span data-lang="es">Todos los valores de estado se normalizan al rango [0,1] para un mejor aprendizaje:</span>
+                <span data-lang="en" style="display:none">All state values are normalized to [0,1] range for better learning:</span>
+            </p>
             
             <div class="code-block">
                 <pre>normalized_x = x_position / window_width
 normalized_y = y_position / window_height</pre>
             </div>
 
-            <h3>Exploración Epsilon-Greedy</h3>
-            <p>Equilibra exploración vs explotación:</p>
+            <h3>
+                <span data-lang="es">Exploración Epsilon-Greedy</span>
+                <span data-lang="en" style="display:none">Epsilon-Greedy Exploration</span>
+            </h3>
+            <p>
+                <span data-lang="es">Equilibra exploración vs explotación:</span>
+                <span data-lang="en" style="display:none">Balances exploration vs exploitation:</span>
+            </p>
             
             <div class="code-block">
                 <pre>if random.random() < epsilon:
-    action = random.choice(available_actions)  # Explorar
+    <span data-lang="es">action = random.choice(available_actions)  # Explorar
 else:
-    action = argmax(Q_values)  # Explotar</pre>
+    action = argmax(Q_values)  # Explotar</span><span data-lang="en" style="display:none">action = random.choice(available_actions)  # Explore
+else:
+    action = argmax(Q_values)  # Exploit</span></pre>
             </div>
 
-            <h2>Parámetros de Ajuste</h2>
+            <h2>
+                <span data-lang="es">Parámetros de Ajuste</span>
+                <span data-lang="en" style="display:none">Tuning Parameters</span>
+            </h2>
             
-            <h3>Tasa de Aprendizaje (α = 0.1)</h3>
+            <h3>
+                <span data-lang="es">Tasa de Aprendizaje (α = 0.1)</span>
+                <span data-lang="en" style="display:none">Learning Rate (α = 0.1)</span>
+            </h3>
             <ul>
-                <li><strong>Valores más altos:</strong> Aprendizaje más rápido, menos estable</li>
-                <li><strong>Valores más bajos:</strong> Aprendizaje más lento, más estable</li>
-                <li><strong>Actual:</strong> Equilibrado para gameplay en tiempo real</li>
+                <li>
+                    <span data-lang="es"><strong>Valores más altos:</strong> Aprendizaje más rápido, menos estable</span>
+                    <span data-lang="en" style="display:none"><strong>Higher values:</strong> Faster learning, less stable</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Valores más bajos:</strong> Aprendizaje más lento, más estable</span>
+                    <span data-lang="en" style="display:none"><strong>Lower values:</strong> Slower learning, more stable</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Actual:</strong> Equilibrado para gameplay en tiempo real</span>
+                    <span data-lang="en" style="display:none"><strong>Current:</strong> Balanced for real-time gameplay</span>
+                </li>
             </ul>
 
-            <h3>Factor de Descuento (γ = 0.95)</h3>
+            <h3>
+                <span data-lang="es">Factor de Descuento (γ = 0.95)</span>
+                <span data-lang="en" style="display:none">Discount Factor (γ = 0.95)</span>
+            </h3>
             <ul>
-                <li><strong>Valores más altos:</strong> Más enfocado en el futuro</li>
-                <li><strong>Valores más bajos:</strong> Más enfocado en recompensas inmediatas</li>
-                <li><strong>Actual:</strong> Énfasis en estrategia a largo plazo</li>
+                <li>
+                    <span data-lang="es"><strong>Valores más altos:</strong> Más enfocado en el futuro</span>
+                    <span data-lang="en" style="display:none"><strong>Higher values:</strong> More future-focused</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Valores más bajos:</strong> Más enfocado en recompensas inmediatas</span>
+                    <span data-lang="en" style="display:none"><strong>Lower values:</strong> More focused on immediate rewards</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Actual:</strong> Énfasis en estrategia a largo plazo</span>
+                    <span data-lang="en" style="display:none"><strong>Current:</strong> Emphasis on long-term strategy</span>
+                </li>
             </ul>
 
-            <h3>Tasa de Exploración (ε = 0.2)</h3>
+            <h3>
+                <span data-lang="es">Tasa de Exploración (ε = 0.2)</span>
+                <span data-lang="en" style="display:none">Exploration Rate (ε = 0.2)</span>
+            </h3>
             <ul>
-                <li><strong>Valores más altos:</strong> Más exploración aleatoria</li>
-                <li><strong>Valores más bajos:</strong> Más explotación del comportamiento aprendido</li>
-                <li><strong>Actual:</strong> 20% de exploración mantiene la adaptabilidad</li>
+                <li>
+                    <span data-lang="es"><strong>Valores más altos:</strong> Más exploración aleatoria</span>
+                    <span data-lang="en" style="display:none"><strong>Higher values:</strong> More random exploration</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Valores más bajos:</strong> Más explotación del comportamiento aprendido</span>
+                    <span data-lang="en" style="display:none"><strong>Lower values:</strong> More exploitation of learned behavior</span>
+                </li>
+                <li>
+                    <span data-lang="es"><strong>Actual:</strong> 20% de exploración mantiene la adaptabilidad</span>
+                    <span data-lang="en" style="display:none"><strong>Current:</strong> 20% exploration maintains adaptability</span>
+                </li>
             </ul>
 
-            <h2>Conclusión</h2>
-            <p>Este sistema de IA crea enemigos desafiantes y adaptativos que proporcionan una experiencia de juego atractiva mientras mantienen la sensación clásica de Donkey Kong. La combinación de lógica basada en reglas con Q-Learning resulta en comportamientos que son tanto predecibles como sorprendentes.</p>
+            <h2>
+                <span data-lang="es">Conclusión</span>
+                <span data-lang="en" style="display:none">Conclusion</span>
+            </h2>
+            <p>
+                <span data-lang="es">Este sistema de IA crea enemigos desafiantes y adaptativos que proporcionan una experiencia de juego atractiva mientras mantienen la sensación clásica de Donkey Kong. La combinación de lógica basada en reglas con Q-Learning resulta en comportamientos que son tanto predecibles como sorprendentes.</span>
+                <span data-lang="en" style="display:none">This AI system creates challenging and adaptive enemies that provide an engaging gaming experience while maintaining the classic Donkey Kong feel. The combination of rule-based logic with Q-Learning results in behaviors that are both predictable and surprising.</span>
+            </p>
         </div>
     </div>
 </body>
