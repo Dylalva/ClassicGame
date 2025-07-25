@@ -35,7 +35,7 @@ A classic Donkey Kong-style platformer game developed in Python with Pygame, fea
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
+git clone https://github.com/Dylalva/ClassicGame.git
 cd ClassicGame
 ```
 
@@ -47,7 +47,6 @@ pip install -r requirements.txt
 3. **Configure Firebase** (see [docs/firebase-setup.md](docs/firebase-setup.md))
 ```bash
 cp .env.example .env
-# Edit .env with your Firebase credentials
 ```
 
 4. **Run the game**
@@ -123,6 +122,7 @@ This project is licensed under the MIT License.
 
 ---
 
+<details>
 ## Español
 
 ### 🎮 Visión General del Juego
@@ -154,7 +154,7 @@ Un juego de plataformas clásico estilo Donkey Kong desarrollado en Python con P
 
 1. **Clonar el repositorio**
 ```bash
-git clone <repository-url>
+git clone https://github.com/Dylalva/ClassicGame.git
 cd ClassicGame
 ```
 
@@ -166,7 +166,6 @@ pip install -r requirements.txt
 3. **Configurar Firebase** (ver [docs/firebase-setup.md](docs/firebase-setup.md))
 ```bash
 cp .env.example .env
-# Editar .env con tus credenciales de Firebase
 ```
 
 4. **Ejecutar el juego**
